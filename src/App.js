@@ -3,7 +3,10 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+
   render() {
+    fetch('http://localhost:3001/api/v1/artists')
+    .then(res => res.json())
     return (
       <div className="App">
         <header className="App-header">
