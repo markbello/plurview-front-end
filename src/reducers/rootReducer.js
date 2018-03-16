@@ -1,12 +1,19 @@
 export default function rootReducer(state = {
-  artists: []
+  artists: [],
+  genres: [],
+  activeGenre: [],
+  searchTerm: ''
 }, action) {
-  console.log(action)
   switch(action.type) {
 
     case 'LOAD_ARTISTS':
-      console.log("LOAD_ARTISTS Action Payload: ", action.payload)
       return {...state, artists: action.payload}
+    case 'LOAD_GENRES':
+      return {...state, genres: action.payload}
+    case 'FILTER_ARTISTS':
+      return {...state, searchTerm: action.payload}
+    case 'FILTER_GENRE':
+      return {...state, activeGenre: action.payload}
     case 'UPDATE_RELATED_ARTISTS':
       const foundArtist = state.artists.find((artist) => artist.id === action.payload.id)
       let foundArtistIndex = state.artists.indexOf(foundArtist)
