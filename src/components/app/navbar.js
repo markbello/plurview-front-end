@@ -1,19 +1,25 @@
 import React from 'react'
-import { Input, Menu, Form, Button, Select } from 'semantic-ui-react'
-import { filterArtists, filterGenre } from '../../actions/index'
+import { Input, Menu, Form, Button, Select, Radio, Label } from 'semantic-ui-react'
+import { filterArtists, filterGenre, loadGenreArtists } from '../../actions/index'
 import {connect} from 'react-redux'
 
 class Navbar extends React.Component {
 
   state = {
-    searchTerm: '',
-    activeArtists: this.props.artists
+    searchTerm: ''
   }
 
-  handleChange = (e) => {
+  // handleChange = (e) => {
+  //   this.setState({
+  //     searchTerm: e.target.value
+  //   })
+  // }
+
+  handleChange = (value) => {
+    this.state.value === value ? value = "" : null
     this.setState({
-      searchTerm: e.target.value
-    })
+      searchTerm: value
+    }, () => this.props.filterArtists(this.state.searchTerm))
   }
 
   handleSubmit = (e) => {
@@ -29,22 +35,102 @@ class Navbar extends React.Component {
     const options = this.props.genres.map((genre) => {
     return  {
         text: `${genre.name} (${genre.artist_count})`,
-        value: genre.id,
-        onClick: () => this.filterGenre(genre.id)
+        value: genre,
+        onClick: () => this.props.loadGenreArtists(genre.id),
+        key: `genre-option-${genre.id}`
       }
 
     })
     return (
       <Menu>
         <Menu.Item>
-          <Form onSubmit={this.handleSubmit}>
-            <Form.Field><input placeholder='Sort' onChange={this.handleChange}/></Form.Field>
-            <Button type='submit'>Sort Artists</Button>
-          </Form>
+
+          <Form.Field>
+
+            <Radio
+              name='radioGroup'
+              value='loudness'
+              label='loudness'
+              toggle
+              checked={this.state.searchTerm === 'loudness'}
+              onChange={() => this.handleChange('loudness')}
+            />
+
+          </Form.Field>
+          <Form.Field>
+
+
+            <Radio
+              label='Valence'
+              toggle
+              name='radioGroup'
+              value='valence'
+              checked={this.state.searchTerm === 'valence'}
+              onChange={() => this.handleChange('valence')}
+            />
+          </Form.Field>
+          <Form.Field>
+
+          <Radio
+            toggle
+            name='radioGroup'
+            value='Energy'
+            checked={this.state.searchTerm === 'Energy'}
+            onClick={() => this.handleChange('energy')}
+          />
+          </Form.Field>
+          <Form.Field>
+            <Radio
+              label='Danceability'
+              toggle
+              name='radioGroup'
+              value='danceability'
+              checked={this.state.searchTerm === 'danceability'}
+              onClick={() => this.handleChange('danceability')}
+            />
+          </Form.Field>
+          <Form.Field>
+            <Radio
+              label='Tempo'
+              name='radioGroup'
+              toggle
+              value='tempo'
+              checked={this.state.searchTerm === 'tempo'}
+              onClick={() => this.handleChange('tempo')}
+            />
+          </Form.Field>
+          <Form.Field>
+            <Radio
+              label='Popularity'
+              name='radioGroup'
+              toggle
+              value='popularity'
+              checked={this.state.searchTerm === 'popularity'}
+              onClick={() => this.handleChange('popularity')}
+            />
+          </Form.Field>
+          <Form.Field>
+            <Radio
+              label='Followers'
+              name='radioGroup'
+              toggle
+              value='followers'
+              checked={this.state.searchTerm === 'followers'}
+              onClick={() => this.handleChange('followers')}
+            />
+          </Form.Field>
         </Menu.Item>
         <Menu.Item>
           <Select placeholder='Select Genre' options={options} />
         </Menu.Item>
+        <Button color='red'>House</Button>
+        <Button color='pink'>Big Room</Button>
+        <Button color='orange'>orange</Button>
+        <Button color='blue'>Trance</Button>
+        <Button color='violet'>Bass Music</Button>
+        <Button color='green'>Dubstep</Button>
+        <Button color='yellow'>Trap</Button>
+
       </Menu>
     );
   }
@@ -54,4 +140,4 @@ const mapStateToProps = (state) => {
   return { genres: state.genres, artists: state.artists};
 };
 
-export default connect(mapStateToProps, { filterArtists, filterGenre })(Navbar)
+export default connect(mapStateToProps, { filterArtists, filterGenre, loadGenreArtists })(Navbar)

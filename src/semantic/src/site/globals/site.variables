@@ -221,14 +221,14 @@
 --------------------*/
 
 /*---  Colors  ---*/
-@red              : #DB2828;
-@orange           : #F2711C;
-@yellow           : #FBBD08;
+@red              : #D50000;
+@orange           : #FF6D00;
+@yellow           : #FFD600;
 @olive            : #B5CC18;
-@green            : #21BA45;
+@green            : #64DD17;
 @teal             : #00B5AD;
-@blue             : #2185D0;
-@violet           : #6435C9;
+@blue             : #3F51B5;
+@violet           : #673AB7;
 @purple           : #A333C8;
 @pink             : #E03997;
 @brown            : #A5673F;

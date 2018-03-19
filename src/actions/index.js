@@ -22,7 +22,19 @@ export const loadGenres = (genres) => {
         payload: genres
       })
     })
+  }
+}
 
+export const loadGenreArtists = (genreId) => {
+  return function(dispatch){
+    return fetch(`http://localhost:3001/api/v1/genres/${genreId}`)
+    .then(res => res.json())
+    .then(artists => {
+      dispatch({
+        type: "LOAD_GENRE_ARTISTS",
+        payload: artists
+      })
+    })
   }
 }
 
@@ -44,6 +56,6 @@ export const filterArtists = (term) => {
   return { type: 'FILTER_ARTISTS', payload: term}
 }
 
-export const filterGenre = (genreId) => {
-  return { type: 'FILTER_GENRE', payload: [genreId]}
+export const filterGenre = (genre) => {
+  return { type: 'FILTER_GENRE', payload: [genre]}
 }

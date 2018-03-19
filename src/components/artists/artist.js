@@ -1,9 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { updateRelatedArtists } from '../../actions/index'
-import { Card, Button } from 'semantic-ui-react'
+import { Card, Button, Loader } from 'semantic-ui-react'
 
 class Artist extends React.Component {
+  state = {
+    loading: false
+  }
   render() {
     // console.dir(this.props.artist)
     return (
@@ -17,9 +20,8 @@ class Artist extends React.Component {
           <li>tempo: {this.props.artist.tempo}</li>
           <li>popularity: {this.props.artist.popularity}</li>
           <li>followers: {this.props.artist.followers}</li>
-          <li>{this.props.artist.related_artists.map((artist) => <a href={`#artist-${artist.id}`}>{artist.name}, </a>)}</li>
-          <li>{this.props.artist.genres.map((genre) => genre.name)}</li>
-          <Button onClick={() => this.props.updateRelatedArtists(this.props.artist)}>Update Related Artists</Button>
+
+          { this.state.loading ? <Loader active /> : <Button onClick={() => this.setState({loading: true}, () => this.props.updateRelatedArtists(this.props.artist))}>Update Related Artists</Button>}
         </Card.Content>
 
       </Card>
@@ -28,3 +30,6 @@ class Artist extends React.Component {
 }
 
 export default connect(null, { updateRelatedArtists })(Artist)
+
+// <li>{this.props.artist.related_artists.map((artist) => <a key={`${artist}`} href={`#artist-${artist.id}`}>{artist.name}, </a>)}</li>
+// <li>{this.props.artist.genres.map((genre) => genre.name)}</li>
