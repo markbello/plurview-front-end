@@ -32,7 +32,7 @@ export const loadGenreArtists = (genreId) => {
     .then(artists => {
       dispatch({
         type: "LOAD_GENRE_ARTISTS",
-        payload: artists
+        payload: {artists: artists, genreId: genreId}
       })
     })
   }
@@ -48,9 +48,10 @@ export const updateRelatedArtists = (artist) => {
         payload: artist
       })
     })
-
   }
 }
+
+
 
 export const filterArtists = (term) => {
   return { type: 'FILTER_ARTISTS', payload: term}

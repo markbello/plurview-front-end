@@ -123,13 +123,7 @@ class Navbar extends React.Component {
         <Menu.Item>
           <Select placeholder='Select Genre' options={options} />
         </Menu.Item>
-        <Button color='red'>House</Button>
-        <Button color='pink'>Big Room</Button>
-        <Button color='orange'>orange</Button>
-        <Button color='blue'>Trance</Button>
-        <Button color='violet'>Bass Music</Button>
-        <Button color='green'>Dubstep</Button>
-        <Button color='yellow'>Trap</Button>
+        
 
       </Menu>
     );
