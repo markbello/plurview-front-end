@@ -74,6 +74,13 @@ class Artist extends React.Component {
 
   render() {
     // console.dir(this.props.artist)
+    const colorGradient = () => {
+      if(this.props.artist.gradient_values){
+        <div style={{height: '20px', width: '100%', background: `linear-gradient(to right, ${this.props.artist.gradient_values}) `}}/>
+      } else{
+        <div style={{height: '20px', width: '100%', background: `linear-gradient(to right, hsl(348, ${this.props.artist.major_saturation}%, 58%), hsl(348, ${this.props.artist.major_saturation}%, ${this.props.artist.major_brightness}%)) `}}/>
+      }
+    }
     return (
       <Card id={`artist-${this.props.artist.id}`}>
         <Card.Content>
@@ -85,7 +92,7 @@ class Artist extends React.Component {
           <li>tempo: {this.props.artist.tempo}</li>
           <li>popularity: {this.props.artist.popularity}</li>
           <li>followers: {this.props.artist.followers}</li>
-          <div style={{height: '20px', width: '100%', background: `linear-gradient(to right, hsl(348, ${this.props.artist.major_saturation}%, 58%), hsl(348, ${this.props.artist.major_saturation}%, ${this.props.artist.major_brightness}%)) `}}/>
+          { this.props.artist.hsl ? <div style={{height: '20px', width: '100%', background: `linear-gradient(to right, ${this.props.artist.hsl}) `}}/> : null }
           { this.state.loading ? <Loader active /> : <Button onClick={() => this.setState({loading: true}, () => this.props.updateRelatedArtists(this.props.artist))}>Update Related Artists</Button>}
             <Menu basic borderless>
               <Menu.Item>
@@ -125,3 +132,5 @@ export default connect(mapStateToProps, { updateRelatedArtists })(Artist)
 
 // <li>{this.props.artist.related_artists.map((artist) => <a key={`${artist}`} href={`#artist-${artist.id}`}>{artist.name}, </a>)}</li>
 // <li>{this.props.artist.genres.map((genre) => genre.name)}</li>
+
+// <div style={{height: '20px', width: '100%', background: `linear-gradient(to right, hsl(348, ${this.props.artist.major_saturation}%, 58%), hsl(348, ${this.props.artist.major_saturation}%, ${this.props.artist.major_brightness}%))`}}/>

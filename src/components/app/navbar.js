@@ -37,10 +37,13 @@ class Navbar extends React.Component {
         text: `${genre.name} (${genre.artist_count})`,
         value: genre,
         onClick: () => this.props.loadGenreArtists(genre.id),
-        key: `genre-option-${genre.id}`
+        key: `genre-option-${genre.id}`,
+        active: genre.id === this.props.activeGenre
       }
 
     })
+    let selectOptionText = "Select a Genre"
+    this.props.activeGenre.length > 0 ? selectOptionText = this.props.genres.find((genre) => genre.id === this.props.activeGenre).name : console.log( "No active genre yet")
     return (
       <Menu>
         <Menu.Item>
@@ -121,9 +124,9 @@ class Navbar extends React.Component {
           </Form.Field>
         </Menu.Item>
         <Menu.Item>
-          <Select placeholder='Select Genre' options={options} />
+          <Select placeholder='Select Genre' options={options}/>
         </Menu.Item>
-        
+
 
       </Menu>
     );
@@ -131,7 +134,7 @@ class Navbar extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return { genres: state.genres, artists: state.artists};
+  return { genres: state.genres, artists: state.artists, activeGenre: state.activeGenre};
 };
 
 export default connect(mapStateToProps, { filterArtists, filterGenre, loadGenreArtists })(Navbar)
