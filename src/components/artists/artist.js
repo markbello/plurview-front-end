@@ -40,7 +40,6 @@ class Artist extends React.Component {
       method: "post",
       body: JSON.stringify({
         vibeId: vibeId,
-        genreId: this.props.activeGenre,
         artistId: artistId
       })
     })

@@ -73,19 +73,11 @@ class Genre extends React.Component {
   // }
 
   render() {
-    console.log("Poop genre")
-    console.dir(this.props.genre)
-    const colorGradient = () => {
-      if(this.props.genre.gradient_values){
-        <div style={{height: '20px', width: '100%', background: `linear-gradient(to right, ${this.props.artist.gradient_values}) `}}/>
-      } else{
-        <div style={{height: '20px', width: '100%', background: `linear-gradient(to right, hsl(348, ${this.props.artist.major_saturation}%, 58%), hsl(348, ${this.props.artist.major_saturation}%, ${this.props.artist.major_brightness}%)) `}}/>
-      }
-    }
+
     return (
       <Card id={`genre-${this.props.genre.id}`}>
         <Card.Content>
-          <Card.Header>{this.props.genre.name}</Card.Header>
+          <Card.Header>{this.props.genre.name} ({this.props.genre.id})</Card.Header>
 
           { this.props.genre.hsl ? <div style={{height: '20px', width: '100%', background: `linear-gradient(to right, ${this.props.genre.hsl}) `}}/> : null }
             <Menu basic borderless>
