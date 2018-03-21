@@ -5,8 +5,10 @@ import * as actions from  './actions/index';
 import './App.css';
 import Artist from './components/artists/artist'
 import ArtistList from './components/artists/artistList'
+import GenreList from './components/genres/genreList'
 import Navbar from './components/app/navbar'
 import { Container, Segment } from 'semantic-ui-react'
+import {Route, Switch, Redirect} from 'react-router-dom'
 
 class App extends Component {
 
@@ -25,7 +27,11 @@ class App extends Component {
       <div className="App">
         <Navbar />
         <Container>
-            <ArtistList />
+          <Switch>
+            <Route path='/artists/' render={() => <ArtistList />} />
+            <Route path='/genres/' render={() => <GenreList />} />
+          </Switch>
+
         </Container>
       </div>
     );
