@@ -102,16 +102,16 @@ class Artist extends React.Component {
                 <Button color='pink' circular value='Big Room' onClick={() => this.registerVibes(4, this.props.artist.id)}>{this.state.bigRoomCount}</Button>
               </Menu.Item>
               <Menu.Item>
-                <Button color='blue' circular value='Trance' onClick={() => this.registerVibes(6, this.props.artist.id)}>{this.state.tranceCount}</Button>
-              </Menu.Item>
-              <Menu.Item>
-                <Button color='violet' circular value='Bass Music' onClick={() => this.registerVibes(5, this.props.artist.id)}>{this.state.bassMusicCount}</Button>
+                <Button color='yellow' circular value='Trap' onClick={() => this.registerVibes(1, this.props.artist.id)}>{this.state.trapCount}</Button>
               </Menu.Item>
               <Menu.Item>
                 <Button color='green' circular value='Dubstep' onClick={() => this.registerVibes(2, this.props.artist.id)}>{this.state.dubstepCount}</Button>
               </Menu.Item>
               <Menu.Item>
-                <Button color='yellow' circular value='Trap' onClick={() => this.registerVibes(1, this.props.artist.id)}>{this.state.trapCount}</Button>
+                <Button color='blue' circular value='Trance' onClick={() => this.registerVibes(6, this.props.artist.id)}>{this.state.tranceCount}</Button>
+              </Menu.Item>
+              <Menu.Item>
+                <Button color='violet' circular value='Bass Music' onClick={() => this.registerVibes(5, this.props.artist.id)}>{this.state.bassMusicCount}</Button>
               </Menu.Item>
           </Menu>
 
