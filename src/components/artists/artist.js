@@ -15,17 +15,25 @@ class Artist extends React.Component {
   }
 
   componentDidMount = () => {
-    fetch(`http://localhost:3001/api/v1/vibes/artists/${this.props.artist.id}`)
-    .then(res => res.json())
-    .then(vibeCounts => {
-      this.setState({
-        trapCount: vibeCounts.trap,
-        dubstepCount: vibeCounts.dubstep,
-        houseCount: vibeCounts.house,
-        bigRoomCount: vibeCounts.big_room,
-        bassMusicCount: vibeCounts.bass_music,
-        tranceCount: vibeCounts.trance,
-      })
+    // fetch(`http://localhost:3001/api/v1/vibes/artists/${this.props.artist.id}`)
+    // .then(res => res.json())
+    // .then(vibeCounts => {
+    //   this.setState({
+    //     trapCount: vibeCounts.trap,
+    //     dubstepCount: vibeCounts.dubstep,
+    //     houseCount: vibeCounts.house,
+    //     bigRoomCount: vibeCounts.big_room,
+    //     bassMusicCount: vibeCounts.bass_music,
+    //     tranceCount: vibeCounts.trance,
+    //   })
+    // })
+    this.setState({
+      trapCount: this.props.artist.trap_music,
+      dubstepCount: this.props.artist.dubstep,
+      houseCount: this.props.artist.house,
+      bigRoomCount: this.props.artist.big_room,
+      bassMusicCount: this.props.artist.bass_music,
+      tranceCount: this.props.artist.trance,
     })
   }
 
@@ -83,7 +91,7 @@ class Artist extends React.Component {
     return (
       <Card id={`artist-${this.props.artist.id}`}>
         <Card.Content>
-          <Card.Header>{this.props.artist.name}</Card.Header>
+          <Card.Header>{this.props.artist.name} ({this.props.artist.id})</Card.Header>
           <li>loudness: {this.props.artist.loudness}</li>
           <li>valence: {this.props.artist.valence}</li>
           <li>energy: {this.props.artist.energy}</li>
@@ -91,6 +99,7 @@ class Artist extends React.Component {
           <li>tempo: {this.props.artist.tempo}</li>
           <li>popularity: {this.props.artist.popularity}</li>
           <li>followers: {this.props.artist.followers}</li>
+          <li>hsl: {this.props.artist.hsl}</li>
           { this.props.artist.hsl ? <div style={{height: '20px', width: '100%', background: `linear-gradient(to right, ${this.props.artist.hsl}) `}}/> : null }
           { this.state.loading ? <Loader active /> : <Button onClick={() => this.setState({loading: true}, () => this.props.updateRelatedArtists(this.props.artist))}>Update Related Artists</Button>}
             <Menu basic borderless>

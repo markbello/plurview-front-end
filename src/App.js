@@ -14,10 +14,9 @@ class App extends Component {
 
   componentDidMount() {
     this.props.loadGenres()
-    // .then(() => {
-    //   this.props.loadArtists()
-    //
-    // })
+    .then(() => {
+      this.props.loadArtists()
+    })
   }
 
 

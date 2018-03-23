@@ -1,30 +1,25 @@
 import React from 'react'
-import { Input, Menu, Form, Button, Select, Radio, Label } from 'semantic-ui-react'
-import { filterArtists, filterGenre, loadGenreArtists } from '../../actions/index'
+import { Input, Menu, Form, Button, Select, Radio, Label, Search } from 'semantic-ui-react'
+import { filterArtists, sortArtists, filterGenre, loadGenreArtists } from '../../actions/index'
 import {connect} from 'react-redux'
 
 class Navbar extends React.Component {
 
   state = {
-    searchTerm: ''
+    sortingMetric: '',
+    searchValue: ''
   }
-
-  // handleChange = (e) => {
-  //   this.setState({
-  //     searchTerm: e.target.value
-  //   })
-  // }
 
   handleChange = (value) => {
     this.state.value === value ? value = "" : null
     this.setState({
-      searchTerm: value
-    }, () => this.props.filterArtists(this.state.searchTerm))
+      sortingMetric: value
+    }, () => this.props.sortArtists(this.state.sortingMetric))
   }
 
   handleSubmit = (e) => {
     e.preventDefault()
-    this.props.filterArtists(this.state.searchTerm)
+    this.props.sortArtists(this.state.sortingMetric)
   }
 
   filterGenre = (id) => {
@@ -55,7 +50,7 @@ class Navbar extends React.Component {
               value='loudness'
               label='loudness'
               toggle
-              checked={this.state.searchTerm === 'loudness'}
+              checked={this.state.sortingMetric === 'loudness'}
               onChange={() => this.handleChange('loudness')}
             />
 
@@ -68,7 +63,7 @@ class Navbar extends React.Component {
               toggle
               name='radioGroup'
               value='valence'
-              checked={this.state.searchTerm === 'valence'}
+              checked={this.state.sortingMetric === 'valence'}
               onChange={() => this.handleChange('valence')}
             />
           </Form.Field>
@@ -78,7 +73,7 @@ class Navbar extends React.Component {
             toggle
             name='radioGroup'
             value='Energy'
-            checked={this.state.searchTerm === 'Energy'}
+            checked={this.state.sortingMetric === 'Energy'}
             onClick={() => this.handleChange('energy')}
           />
           </Form.Field>
@@ -88,7 +83,7 @@ class Navbar extends React.Component {
               toggle
               name='radioGroup'
               value='danceability'
-              checked={this.state.searchTerm === 'danceability'}
+              checked={this.state.sortingMetric === 'danceability'}
               onClick={() => this.handleChange('danceability')}
             />
           </Form.Field>
@@ -98,7 +93,7 @@ class Navbar extends React.Component {
               name='radioGroup'
               toggle
               value='tempo'
-              checked={this.state.searchTerm === 'tempo'}
+              checked={this.state.sortingMetric === 'tempo'}
               onClick={() => this.handleChange('tempo')}
             />
           </Form.Field>
@@ -108,7 +103,7 @@ class Navbar extends React.Component {
               name='radioGroup'
               toggle
               value='popularity'
-              checked={this.state.searchTerm === 'popularity'}
+              checked={this.state.sortingMetric === 'popularity'}
               onClick={() => this.handleChange('popularity')}
             />
           </Form.Field>
@@ -118,7 +113,7 @@ class Navbar extends React.Component {
               name='radioGroup'
               toggle
               value='followers'
-              checked={this.state.searchTerm === 'followers'}
+              checked={this.state.sortingMetric === 'followers'}
               onClick={() => this.handleChange('followers')}
             />
           </Form.Field>
@@ -126,6 +121,7 @@ class Navbar extends React.Component {
         <Menu.Item>
           <Select placeholder='Select Genre' options={options}/>
         </Menu.Item>
+
 
 
       </Menu>
@@ -137,4 +133,4 @@ const mapStateToProps = (state) => {
   return { genres: state.genres, artists: state.artists, activeGenre: state.activeGenre};
 };
 
-export default connect(mapStateToProps, { filterArtists, filterGenre, loadGenreArtists })(Navbar)
+export default connect(mapStateToProps, { filterArtists, sortArtists, filterGenre, loadGenreArtists })(Navbar)

@@ -1,13 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Artist from './artist'
+import { filterArtists } from '../../actions/index'
 import { Card, Segment, Loader, Sticky, Rail, Button, Menu, Search } from 'semantic-ui-react'
+import _ from 'lodash'
 
 class ArtistList extends React.Component {
 
   state = {
-    loading: true
-  }
+    loading: true,
+    searchTerm: ''
+    }
 
   handleContextRef = contextRef => this.setState({ contextRef })
 
@@ -16,21 +19,34 @@ class ArtistList extends React.Component {
   }
 
   filterActiveArtists = (props) => {
-    console.dir(props)
     if(props.activeArtists[0]){
-      this.setState({ loading: false}, () => console.dir(this.state))
+      this.setState({ loading: false})
     }
   }
 
+  sortArtists = (props) => {
+    if(this.state.searchTerm){
+      return props.activeArtists.sort((a,b)=> b[props.sortingMetric] - a[props.sortingMetric] ).filter((artist) => artist.name.toLowerCase().includes(this.state.searchTerm.toLowerCase()))
+    } else {
+      return props.activeArtists.sort((a,b)=> b[props.sortingMetric] - a[props.sortingMetric] )
+    }
+  }
+
+  handleSearchChange = (e) => {
+    this.setState({
+      searchTerm: e.target.value
+    })
+  }
+
   render() {
-    const searchTerm = this.props.searchTerm
     const { contextRef } = this.state
+
 
     return (
       <Segment basic>
         <div ref={this.handleContextRef}>
           <Card.Group itemsPerRow={2}>
-            { this.state.loading ? <Loader active inverted /> : this.props.activeArtists.sort((a,b)=> b[searchTerm] - a[searchTerm] ).map((artist) => <Artist key={artist.id} artist={artist} allArtists={this.props.artists} />) }
+            { this.state.loading ? <Loader active inverted /> : this.sortArtists(this.props).map((artist) => <Artist key={artist.id} artist={artist} allArtists={this.props.artists} />) }
           </Card.Group>
           <Rail position='right'>
             <Sticky context={contextRef}>
@@ -55,7 +71,7 @@ class ArtistList extends React.Component {
                 </Menu.Item>
                 <Menu.Item>
                   <Search
-
+                    onSearchChange={this.handleSearchChange}
                   />
                 </Menu.Item>
               </Menu>
@@ -70,10 +86,11 @@ class ArtistList extends React.Component {
 
 const mapStateToProps = (state) => {
   return { artists: state.artists,
-           searchTerm: state.searchTerm,
+           sortingMetric: state.sortingMetric,
            activeGenre: state.activeGenre,
-           activeArtists: state.activeArtists
+           activeArtists: state.activeArtists,
+           searchTerm: state.searchTerm
    };
 };
 
-export default connect(mapStateToProps)(ArtistList)
+export default connect(mapStateToProps, { filterArtists })(ArtistList)
