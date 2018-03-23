@@ -25,18 +25,15 @@ class ArtistList extends React.Component {
   }
 
   sortArtists = (props) => {
-    if(this.state.searchTerm){
-      return props.activeArtists.sort((a,b)=> b[props.sortingMetric] - a[props.sortingMetric] ).filter((artist) => artist.name.toLowerCase().includes(this.state.searchTerm.toLowerCase()))
-    } else {
+    // if(this.state.searchTerm){
+    //
+    //   return props.activeArtists.sort((a,b)=> b[props.sortingMetric] - a[props.sortingMetric] ).filter((artist) => artist.name.toLowerCase().includes(this.state.searchTerm.toLowerCase()))
+    // } else {
       return props.activeArtists.sort((a,b)=> b[props.sortingMetric] - a[props.sortingMetric] )
-    }
+
   }
 
-  handleSearchChange = (e) => {
-    this.setState({
-      searchTerm: e.target.value
-    })
-  }
+
 
   render() {
     const { contextRef } = this.state
@@ -46,7 +43,7 @@ class ArtistList extends React.Component {
       <Segment basic>
         <div ref={this.handleContextRef}>
           <Card.Group itemsPerRow={2}>
-            { this.state.loading ? <Loader active inverted /> : this.sortArtists(this.props).map((artist) => <Artist key={artist.id} artist={artist} allArtists={this.props.artists} />) }
+            { this.state.loading ? <Loader active inverted /> : this.sortArtists(this.props).map((artist) => <Artist key={artist.id} artist={artist}/>) }
           </Card.Group>
           <Rail position='right'>
             <Sticky context={contextRef}>
@@ -69,11 +66,7 @@ class ArtistList extends React.Component {
                 <Menu.Item>
                   <Button color='yellow' circular>Trap (1)</Button>
                 </Menu.Item>
-                <Menu.Item>
-                  <Search
-                    onSearchChange={this.handleSearchChange}
-                  />
-                </Menu.Item>
+
               </Menu>
             </Sticky>
           </Rail>

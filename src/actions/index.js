@@ -53,6 +53,8 @@ export const updateRelatedArtists = (artist) => {
 
 
 
+
+
 export const sortArtists = (term) => {
   return { type: 'SORT_ARTISTS', payload: term}
 }

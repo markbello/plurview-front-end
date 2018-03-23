@@ -12,21 +12,10 @@ class Artist extends React.Component {
     bigRoomCount: '',
     bassMusicCount: '',
     tranceCount: '',
+    hsl: ''
   }
 
   componentDidMount = () => {
-    // fetch(`http://localhost:3001/api/v1/vibes/artists/${this.props.artist.id}`)
-    // .then(res => res.json())
-    // .then(vibeCounts => {
-    //   this.setState({
-    //     trapCount: vibeCounts.trap,
-    //     dubstepCount: vibeCounts.dubstep,
-    //     houseCount: vibeCounts.house,
-    //     bigRoomCount: vibeCounts.big_room,
-    //     bassMusicCount: vibeCounts.bass_music,
-    //     tranceCount: vibeCounts.trance,
-    //   })
-    // })
     this.setState({
       trapCount: this.props.artist.trap_music,
       dubstepCount: this.props.artist.dubstep,
@@ -34,92 +23,98 @@ class Artist extends React.Component {
       bigRoomCount: this.props.artist.big_room,
       bassMusicCount: this.props.artist.bass_music,
       tranceCount: this.props.artist.trance,
+      hsl: this.props.artist.hsl
     })
   }
 
-  registerVibes = (vibeId, artistId ) => {
-    console.log(vibeId, artistId)
+  registerVibes = (vibe, artistId ) => {
+    console.log(vibe, artistId)
     console.dir(this.props)
-    fetch(`http://localhost:3001/api/v1/vibes`, {
+    fetch(`http://localhost:3001/api/v1/artists/${artistId}`, {
       headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
       },
-      method: "post",
+      method: "PATCH",
+      mode: 'cors',
       body: JSON.stringify({
-        vibeId: vibeId,
+        vibe: vibe,
         artistId: artistId
       })
     })
     .then(res => res.json())
-    .then(vibe => {
-      switch(vibe.vibe_id){
-        case 1:
-          this.setState({trapCount: vibe.vibe_count})
-          return
-        case 2:
-          this.setState({dubstepCount: vibe.vibe_count})
-          return
-        case 3:
-          this.setState({houseCount: vibe.vibe_count})
-          return
-        case 4:
-          this.setState({bigRoomCount: vibe.vibe_count})
-          return
-        case 5:
-          this.setState({bassMusicCount: vibe.vibe_count})
-          return
-        case 6:
-          this.setState({tranceCount: vibe.vibe_count})
-          return
-        default:
-          console.log("Poop")
-          return
-      }
+    .then(json => {
+      console.log(json)
+      this.setState({
+        trapCount: json.trap_music,
+        dubstepCount: json.dubstep,
+        houseCount: json.house,
+        bigRoomCount: json.big_room,
+        bassMusicCount: json.bass_music,
+        tranceCount: json.trance,
+        hsl: json.hsl
+      })
     })
   }
 
+  inferGradient = () => {
+    console.log(this.props.artist.id)
+    console.dir(this.props)
+    fetch(`http://localhost:3001/api/v1/artists/${this.props.artist.id}/infer_gradient`)
+    .then(res => res.json())
+    .then(json => {
+      console.log(json)
+      this.setState({
+        loading: false,
+        trapCount: json.trap_music,
+        dubstepCount: json.dubstep,
+        houseCount: json.house,
+        bigRoomCount: json.big_room,
+        bassMusicCount: json.bass_music,
+        tranceCount: json.trance,
+        hsl: json.hsl
+      })
+    })
+  }
+
+  handleUpdateRelatedArtists = (artist) => {
+    this.props.updateRelatedArtists(artist)
+    .then(() => this.inferGradient())
+  }
+
   render() {
-    // console.dir(this.props.artist)
-    const colorGradient = () => {
-      if(this.props.artist.gradient_values){
-        <div style={{height: '20px', width: '100%', background: `linear-gradient(to right, ${this.props.artist.gradient_values}) `}}/>
-      } else{
-        <div style={{height: '20px', width: '100%', background: `linear-gradient(to right, hsl(348, ${this.props.artist.major_saturation}%, 58%), hsl(348, ${this.props.artist.major_saturation}%, ${this.props.artist.major_brightness}%)) `}}/>
-      }
-    }
+
     return (
       <Card id={`artist-${this.props.artist.id}`}>
         <Card.Content>
           <Card.Header>{this.props.artist.name} ({this.props.artist.id})</Card.Header>
-          <li>loudness: {this.props.artist.loudness}</li>
-          <li>valence: {this.props.artist.valence}</li>
-          <li>energy: {this.props.artist.energy}</li>
-          <li>danceability: {this.props.artist.danceability}</li>
-          <li>tempo: {this.props.artist.tempo}</li>
+          <li>lightness: {this.props.artist.lightness}</li>
+          <li>saturation: {this.props.artist.saturation}</li>
+
           <li>popularity: {this.props.artist.popularity}</li>
           <li>followers: {this.props.artist.followers}</li>
           <li>hsl: {this.props.artist.hsl}</li>
-          { this.props.artist.hsl ? <div style={{height: '20px', width: '100%', background: `linear-gradient(to right, ${this.props.artist.hsl}) `}}/> : null }
-          { this.state.loading ? <Loader active /> : <Button onClick={() => this.setState({loading: true}, () => this.props.updateRelatedArtists(this.props.artist))}>Update Related Artists</Button>}
+          { this.state.loading ? <Loader active /> : <Button onClick={() => this.setState({loading: true}, () => this.handleUpdateRelatedArtists(this.props.artist))}>Update Related Artists</Button>}
+          { this.state.loading ? <Loader active /> : <Button onClick={() => this.setState({loading: true}, () => this.inferGradient())}>Infer Gradient</Button>}
+          { this.state.hsl ? <div style={{height: '20px', width: '100%', background: `linear-gradient(to right, ${this.state.hsl}) `}}/> : null }
             <Menu basic borderless>
               <Menu.Item>
-                <Button color='red' circular value='House' onClick={() => this.registerVibes(3, this.props.artist.id)}>{this.state.houseCount}</Button>
+                <Button color='red' circular value='House' onClick={() => this.registerVibes("house", this.props.artist.id)}>{this.state.houseCount}</Button>
               </Menu.Item>
               <Menu.Item>
-                <Button color='pink' circular value='Big Room' onClick={() => this.registerVibes(4, this.props.artist.id)}>{this.state.bigRoomCount}</Button>
+                <Button color='pink' circular value='Big Room' onClick={() => this.registerVibes("big_room", this.props.artist.id)}>{this.state.bigRoomCount}</Button>
               </Menu.Item>
               <Menu.Item>
-                <Button color='yellow' circular value='Trap' onClick={() => this.registerVibes(1, this.props.artist.id)}>{this.state.trapCount}</Button>
+                <Button color='yellow' circular value='Trap' onClick={() => this.registerVibes("trap_music", this.props.artist.id)}>{this.state.trapCount}</Button>
               </Menu.Item>
               <Menu.Item>
-                <Button color='green' circular value='Dubstep' onClick={() => this.registerVibes(2, this.props.artist.id)}>{this.state.dubstepCount}</Button>
+                <Button color='green' circular value='Dubstep' onClick={() => this.registerVibes("dubstep", this.props.artist.id)}>{this.state.dubstepCount}</Button>
               </Menu.Item>
               <Menu.Item>
-                <Button color='blue' circular value='Trance' onClick={() => this.registerVibes(6, this.props.artist.id)}>{this.state.tranceCount}</Button>
+                <Button color='blue' circular value='Trance' onClick={() => this.registerVibes("trance", this.props.artist.id)}>{this.state.tranceCount}</Button>
               </Menu.Item>
               <Menu.Item>
-                <Button color='violet' circular value='Bass Music' onClick={() => this.registerVibes(5, this.props.artist.id)}>{this.state.bassMusicCount}</Button>
+                <Button color='violet' circular value='Bass Music' onClick={() => this.registerVibes("bass_music", this.props.artist.id)}>{this.state.bassMusicCount}</Button>
               </Menu.Item>
           </Menu>
 

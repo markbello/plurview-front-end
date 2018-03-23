@@ -2,19 +2,44 @@ import React from 'react'
 import { Input, Menu, Form, Button, Select, Radio, Label, Search } from 'semantic-ui-react'
 import { filterArtists, sortArtists, filterGenre, loadGenreArtists } from '../../actions/index'
 import {connect} from 'react-redux'
+import _ from 'lodash'
+
 
 class Navbar extends React.Component {
 
   state = {
     sortingMetric: '',
-    searchValue: ''
+    value: '',
+    isLoading: false,
+    results: [],
+    genre: ''
   }
 
-  handleChange = (value) => {
+  handleSortChange = (value) => {
     this.state.value === value ? value = "" : null
     this.setState({
       sortingMetric: value
     }, () => this.props.sortArtists(this.state.sortingMetric))
+  }
+
+  resetComponent = () => this.setState({ isLoading: false, results: [], value: '' })
+
+  handleResultSelect = (e, { result }) => this.setState({ value: result.name })
+
+  handleSearchChange = (e, { value }) => {
+    this.setState({ isLoading: true, value })
+
+    setTimeout(() => {
+      if (this.state.value.length < 1) return this.resetComponent()
+
+      const re = new RegExp(_.escapeRegExp(this.state.value), 'i')
+      const isMatch = result => re.test(result.name)
+
+      this.setState({
+        isLoading: false,
+        results: _.filter(this.props.artists, isMatch),
+      }, () => this.props.filterArtists(this.state.results))
+    }, 500)
   }
 
   handleSubmit = (e) => {
@@ -27,99 +52,54 @@ class Navbar extends React.Component {
   }
 
   render() {
-    const options = this.props.genres.map((genre) => {
-    return  {
-        text: `${genre.name} (${genre.artist_count})`,
-        value: genre,
-        onClick: () => this.props.loadGenreArtists(genre.id),
-        key: `genre-option-${genre.id}`,
-        active: genre.id === this.props.activeGenre
-      }
+    const genreOptions = this.props.genres.map((genre) => {
+      return  {
+          text: `${genre.name} (${genre.artist_count})`,
+          value: genre,
+          onClick: () => {
+            this.setState({genre: `${genre.name} (${genre.artist_count})`},() => this.props.loadGenreArtists(genre.id))},
+          key: `genre-option-${genre.id}`,
+          active: genre.id === this.props.activeGenre
+        }
+      })
 
-    })
-    let selectOptionText = "Select a Genre"
-    this.props.activeGenre.length > 0 ? selectOptionText = this.props.genres.find((genre) => genre.id === this.props.activeGenre).name : console.log( "No active genre yet")
+    const sortingMetrics = ["Loudness", "Valence", "Danceability", "Tempo", "Popularity", "Followers"]
+
+    const sortingOptions = sortingMetrics.map((metric) => {
+      return  {
+          text: `${metric}`,
+          value: metric.toLowerCase(),
+          onClick: () => {this.handleSortChange(metric)},
+          key: `metric-option-${metric}`,
+          active: genre === this.props.sortingMetric
+        }
+      })
+
+    // this.props.activeGenre.length > 0 ? selectOptionText = this.props.genres.find((genre) => genre.id === this.props.activeGenre).name : console.log( "No active genre yet")
+
+    const { isLoading, value, results, genre } = this.state
+
     return (
       <Menu>
         <Menu.Item>
+          <Select options={sortingOptions} placeholder={this.state.sortingMetric ? this.state.sortingMetric : "Sort Artists By"} />
+        </Menu.Item>
 
-          <Form.Field>
-
-            <Radio
-              name='radioGroup'
-              value='loudness'
-              label='loudness'
-              toggle
-              checked={this.state.sortingMetric === 'loudness'}
-              onChange={() => this.handleChange('loudness')}
-            />
-
-          </Form.Field>
-          <Form.Field>
-
-
-            <Radio
-              label='Valence'
-              toggle
-              name='radioGroup'
-              value='valence'
-              checked={this.state.sortingMetric === 'valence'}
-              onChange={() => this.handleChange('valence')}
-            />
-          </Form.Field>
-          <Form.Field>
-
-          <Radio
-            toggle
-            name='radioGroup'
-            value='Energy'
-            checked={this.state.sortingMetric === 'Energy'}
-            onClick={() => this.handleChange('energy')}
-          />
-          </Form.Field>
-          <Form.Field>
-            <Radio
-              label='Danceability'
-              toggle
-              name='radioGroup'
-              value='danceability'
-              checked={this.state.sortingMetric === 'danceability'}
-              onClick={() => this.handleChange('danceability')}
-            />
-          </Form.Field>
-          <Form.Field>
-            <Radio
-              label='Tempo'
-              name='radioGroup'
-              toggle
-              value='tempo'
-              checked={this.state.sortingMetric === 'tempo'}
-              onClick={() => this.handleChange('tempo')}
-            />
-          </Form.Field>
-          <Form.Field>
-            <Radio
-              label='Popularity'
-              name='radioGroup'
-              toggle
-              value='popularity'
-              checked={this.state.sortingMetric === 'popularity'}
-              onClick={() => this.handleChange('popularity')}
-            />
-          </Form.Field>
-          <Form.Field>
-            <Radio
-              label='Followers'
-              name='radioGroup'
-              toggle
-              value='followers'
-              checked={this.state.sortingMetric === 'followers'}
-              onClick={() => this.handleChange('followers')}
-            />
-          </Form.Field>
+        <Menu.Item>
+          <Select placeholder={this.state.genre ? genre : "Browse Subgenres"} options={genreOptions}/>
         </Menu.Item>
         <Menu.Item>
-          <Select placeholder='Select Genre' options={options}/>
+          <Search
+            onSearchChange={this.handleSearchChange}
+            onResultSelect={this.handleResultSelect}
+            results={results}
+            value={value}
+            resultRenderer={({name}) => <Label content={name} />}
+            {...this.props}
+          />
+        </Menu.Item>
+        <Menu.Item>
+          {this.state.value}
         </Menu.Item>
 
 
@@ -130,7 +110,7 @@ class Navbar extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return { genres: state.genres, artists: state.artists, activeGenre: state.activeGenre};
+  return { genres: state.genres, artists: state.artists, activeGenre: state.activeGenre, activeArtists: state.activeArtists};
 };
 
 export default connect(mapStateToProps, { filterArtists, sortArtists, filterGenre, loadGenreArtists })(Navbar)
