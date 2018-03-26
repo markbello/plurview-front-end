@@ -88,12 +88,7 @@ class Artist extends React.Component {
       <Card id={`artist-${this.props.artist.id}`}>
         <Card.Content>
           <Card.Header>{this.props.artist.name} ({this.props.artist.id})</Card.Header>
-          <li>lightness: {this.props.artist.lightness}</li>
-          <li>saturation: {this.props.artist.saturation}</li>
-
-          <li>popularity: {this.props.artist.popularity}</li>
-          <li>followers: {this.props.artist.followers}</li>
-          <li>hsl: {this.props.artist.hsl}</li>
+          
           { this.state.loading ? <Loader active /> : <Button onClick={() => this.setState({loading: true}, () => this.handleUpdateRelatedArtists(this.props.artist))}>Update Related Artists</Button>}
           { this.state.loading ? <Loader active /> : <Button onClick={() => this.setState({loading: true}, () => this.inferGradient())}>Infer Gradient</Button>}
           { this.state.hsl ? <div style={{height: '20px', width: '100%', background: `linear-gradient(to right, ${this.state.hsl}) `}}/> : null }

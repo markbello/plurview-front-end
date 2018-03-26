@@ -12,6 +12,8 @@ export default function rootReducer(state = {
       return {...state, artists: action.payload, activeArtists: action.payload}
     case 'LOAD_GENRES':
       return {...state, genres: action.payload}
+    case 'LOAD_RAVES':
+      return {...state, raves: action.payload}
     case 'LOAD_GENRE_ARTISTS':
       return {...state, activeArtists: action.payload.artists, activeGenre: action.payload.genreId}
     case 'SORT_ARTISTS':
@@ -27,6 +29,9 @@ export default function rootReducer(state = {
       let foundArtistIndex = state.artists.indexOf(foundArtist)
       let newArtists = state.artists.slice()
       newArtists[foundArtistIndex] = action.payload
+      return {...state, artists: newArtists}
+    case 'FIND_NEW_ARTIST':
+      newArtists = state.artists.push(action.payload)
       return {...state, artists: newArtists}
     default:
     console.log("App initialized");

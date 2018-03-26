@@ -1,12 +1,26 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Genre from './genre'
+import Genre from '../genres/genre'
+import Rave from './rave'
 import { Card, Segment, Loader, Sticky, Rail, Button, Menu } from 'semantic-ui-react'
 
-class GenreList extends React.Component {
+class EventList extends React.Component {
 
   state = {
-    loading: false
+    loading: true,
+    raves: []
+  }
+
+  componentDidMount(){
+    this.fetchEvents(70)
+  }
+
+  fetchEvents(locationId){
+    fetch(`http://edmtrain.com/api/events?locationIds=${locationId}&client=dd19c823-0beb-4950-b036-8a2a2d55114c`)
+    .then(res => res.json())
+    .then(json => {
+      this.setState({raves: json.data, loading: false})}
+      )
   }
 
   handleContextRef = contextRef => this.setState({ contextRef })
@@ -18,8 +32,8 @@ class GenreList extends React.Component {
     return (
       <Segment basic>
         <div ref={this.handleContextRef}>
-          <Card.Group itemsPerRow={2}>
-            { this.state.loading ? <Loader active inverted /> : this.props.genres.map((genre) => <Genre key={genre.id} genre={genre} />) }
+          <Card.Group itemsPerRow={1}>
+            { this.state.loading ? <Loader active inverted /> : this.state.raves.map((rave) => <Rave key={rave.id} rave={rave} />) }
           </Card.Group>
           <Rail position='right'>
             <Sticky context={contextRef}>
@@ -53,7 +67,7 @@ class GenreList extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return { genres: state.genres };
+  return { genres: state.genres, raves: state.raves };
 };
 
-export default connect(mapStateToProps)(GenreList)
+export default connect(mapStateToProps)(EventList)

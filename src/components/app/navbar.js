@@ -1,18 +1,21 @@
 import React from 'react'
 import { Input, Menu, Form, Button, Select, Radio, Label, Search } from 'semantic-ui-react'
-import { filterArtists, sortArtists, filterGenre, loadGenreArtists } from '../../actions/index'
+import { filterArtists, sortArtists, filterGenre, loadGenreArtists, findNewArtist } from '../../actions/index'
 import {connect} from 'react-redux'
 import _ from 'lodash'
 
 
 class Navbar extends React.Component {
 
+
+
   state = {
     sortingMetric: '',
     value: '',
     isLoading: false,
     results: [],
-    genre: ''
+    genre: '',
+    newArtist: ''
   }
 
   handleSortChange = (value) => {
@@ -26,6 +29,11 @@ class Navbar extends React.Component {
 
   handleResultSelect = (e, { result }) => this.setState({ value: result.name })
 
+  handleFindNewArtist = () => {
+    console.log(this.state.newArtist)
+    this.props.findNewArtist(this.state.newArtist.id)
+  }
+
   handleSearchChange = (e, { value }) => {
     this.setState({ isLoading: true, value })
 
@@ -38,7 +46,13 @@ class Navbar extends React.Component {
       this.setState({
         isLoading: false,
         results: _.filter(this.props.artists, isMatch),
-      }, () => this.props.filterArtists(this.state.results))
+      }, () => {
+        if(this.state.results.length > 0){
+          this.props.filterArtists(this.state.results)
+        } else{
+          this.handleNoResults()
+        }
+        })
     }, 500)
   }
 
@@ -51,7 +65,22 @@ class Navbar extends React.Component {
     this.props.filterGenre(id)
   }
 
+  handleNoResults = () => {
+    fetch(`http://localhost:3001/api/v1/artists/find_new/${this.state.value}`)
+    .then(res => res.json())
+    .then(json => {
+      console.log(json)
+      this.setState({newArtist: json}, () => console.log(this.state.newArtist))
+    })
+  }
+
   render() {
+    const FindArtist = (props) => {
+      return (
+        <div onClick={this.handleFindNewArtist}>{props.artist ? `Do you mean ${props.artist.name}?` : `No results...`}</div>
+      )
+    }
+
     const genreOptions = this.props.genres.map((genre) => {
       return  {
           text: `${genre.name} (${genre.artist_count})`,
@@ -95,6 +124,7 @@ class Navbar extends React.Component {
             results={results}
             value={value}
             resultRenderer={({name}) => <Label content={name} />}
+            noResultsMessage={<FindArtist artist={this.state.newArtist}/>}
             {...this.props}
           />
         </Menu.Item>
@@ -113,4 +143,4 @@ const mapStateToProps = (state) => {
   return { genres: state.genres, artists: state.artists, activeGenre: state.activeGenre, activeArtists: state.activeArtists};
 };
 
-export default connect(mapStateToProps, { filterArtists, sortArtists, filterGenre, loadGenreArtists })(Navbar)
+export default connect(mapStateToProps, { filterArtists, sortArtists, filterGenre, loadGenreArtists, findNewArtist })(Navbar)

@@ -14,64 +14,6 @@ class Genre extends React.Component {
     tranceCount: '',
   }
 
-  // componentDidMount = () => {
-  //   fetch(`http://localhost:3001/api/v1/vibes/artists/${this.props.artist.id}`)
-  //   .then(res => res.json())
-  //   .then(vibeCounts => {
-  //     this.setState({
-  //       trapCount: vibeCounts.trap,
-  //       dubstepCount: vibeCounts.dubstep,
-  //       houseCount: vibeCounts.house,
-  //       bigRoomCount: vibeCounts.big_room,
-  //       bassMusicCount: vibeCounts.bass_music,
-  //       tranceCount: vibeCounts.trance,
-  //     })
-  //   })
-  // }
-
-  // registerVibes = (vibeId, artistId ) => {
-  //   console.log(vibeId, artistId)
-  //   console.dir(this.props)
-  //   fetch(`http://localhost:3001/api/v1/vibes`, {
-  //     headers: {
-  //     'Accept': 'application/json',
-  //     'Content-Type': 'application/json'
-  //     },
-  //     method: "post",
-  //     body: JSON.stringify({
-  //       vibeId: vibeId,
-  //       genreId: this.props.activeGenre,
-  //       artistId: artistId
-  //     })
-  //   })
-  //   .then(res => res.json())
-  //   .then(vibe => {
-  //     switch(vibe.vibe_id){
-  //       case 1:
-  //         this.setState({trapCount: vibe.vibe_count})
-  //         return
-  //       case 2:
-  //         this.setState({dubstepCount: vibe.vibe_count})
-  //         return
-  //       case 3:
-  //         this.setState({houseCount: vibe.vibe_count})
-  //         return
-  //       case 4:
-  //         this.setState({bigRoomCount: vibe.vibe_count})
-  //         return
-  //       case 5:
-  //         this.setState({bassMusicCount: vibe.vibe_count})
-  //         return
-  //       case 6:
-  //         this.setState({tranceCount: vibe.vibe_count})
-  //         return
-  //       default:
-  //         console.log("Poop")
-  //         return
-  //     }
-  //   })
-  // }
-
   render() {
 
     return (
@@ -82,22 +24,22 @@ class Genre extends React.Component {
           { this.props.genre.hsl ? <div style={{height: '20px', width: '100%', background: `linear-gradient(to right, ${this.props.genre.hsl}) `}}/> : null }
             <Menu basic borderless>
               <Menu.Item>
-                <Button color='red' circular value='House' onClick={() => console.log("Clicked genre button")}>{this.state.houseCount}</Button>
+                <Button color='red' circular value='House' onClick={() => console.log("Clicked genre button")}>{this.props.genre.houseCount}</Button>
               </Menu.Item>
               <Menu.Item>
-                <Button color='pink' circular value='Big Room' onClick={() => console.log("Clicked genre button")}>{this.state.bigRoomCount}</Button>
+                <Button color='pink' circular value='Big Room' onClick={() => console.log("Clicked genre button")}>{this.props.genre.bigRoomCount}</Button>
               </Menu.Item>
               <Menu.Item>
-                <Button color='yellow' circular value='Trap' onClick={() => console.log("Clicked genre button")}>{this.state.trapCount}</Button>
+                <Button color='yellow' circular value='Trap' onClick={() => console.log("Clicked genre button")}>{this.props.genre.trapCount}</Button>
               </Menu.Item>
               <Menu.Item>
-                <Button color='green' circular value='Dubstep' onClick={() => console.log("Clicked genre button")}>{this.state.dubstepCount}</Button>
+                <Button color='green' circular value='Dubstep' onClick={() => console.log("Clicked genre button")}>{this.props.genre.dubstepCount}</Button>
               </Menu.Item>
               <Menu.Item>
-                <Button color='blue' circular value='Trance' onClick={() => console.log("Clicked genre button")}>{this.state.tranceCount}</Button>
+                <Button color='blue' circular value='Trance' onClick={() => console.log("Clicked genre button")}>{this.props.genre.tranceCount}</Button>
               </Menu.Item>
               <Menu.Item>
-                <Button color='violet' circular value='Bass Music' onClick={() => console.log("Clicked genre button")}>{this.state.bassMusicCount}</Button>
+                <Button color='violet' circular value='Bass Music' onClick={() => console.log("Clicked genre button")}>{this.props.genre.bassMusicCount}</Button>
               </Menu.Item>
           </Menu>
 
