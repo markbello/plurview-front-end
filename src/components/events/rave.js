@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { updateRelatedArtists } from '../../actions/index'
 import Artist from '../artists/artist'
-import { Card, Button, Loader, Menu } from 'semantic-ui-react'
+import { Card, Button, Loader, Menu, Grid, Segment, Header } from 'semantic-ui-react'
 import _ from 'lodash'
 import { findNewArtist } from '../../actions/index'
 
@@ -29,13 +29,13 @@ class Rave extends React.Component {
           storedArtists.push(test)
         }
         else{
-            
-            fetch(`http://localhost:3001/api/v1/artists/find_new/${artist.name}`)
-            .then(res => res.json())
-            .then(json => {
-              console.log(json)
-              this.setState({newArtist: json}, () => this.props.findNewArtist(this.state.newArtist.id))
-            })
+            //
+            // fetch(`http://localhost:3001/api/v1/artists/find_new/${artist.name}`)
+            // .then(res => res.json())
+            // .then(json => {
+            //   console.log(json)
+            //   this.setState({newArtist: json}, () => this.props.findNewArtist(this.state.newArtist.id))
+            // })
 
         }
       }
@@ -56,16 +56,14 @@ class Rave extends React.Component {
 
   render() {
     return (
-      <Card>
-        <Card.Content>
-          <Card.Group id={`rave-${this.props.rave.id}`} columns={this.props.rave.artistList.count}>
-              {this.props.rave.artistList.map((artist)  => artist.name)}
-              {this.props.rave.date}
-              {this.state.raveArtists.length > 0 ? this.state.raveArtists.map((raveArtist) => <div>{raveArtist[0].name} FUCK<Artist artist={raveArtist[0]} /></div>) : null}
-
-          </Card.Group>
-        </Card.Content>
-      </Card>
+      <Segment basic>
+        <Segment basic inverted><Header className={"poop"}>{this.props.rave.venue.name} - {this.props.rave.venue.location}</Header></Segment>
+          <Grid id={`rave-${this.props.rave.id}`} columns={3} equal padded inverted>
+            <Segment.Group style={{background: "transparent"}} columns={3} basic horizontal stackable>
+              {this.state.raveArtists.length > 0 ? this.state.raveArtists.map((raveArtist) => <Segment><Card basic><Artist artist={raveArtist[0]} /></Card></Segment>) : null}
+            </Segment.Group>
+          </Grid>
+      </Segment>
     );
   }
 }

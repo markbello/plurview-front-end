@@ -4,7 +4,8 @@ export default function rootReducer(state = {
   activeGenre: [],
   activeArtists: [],
   sortingMetric: '',
-  searchTerm: ''
+  searchTerm: '',
+  raves: []
 }, action) {
   switch(action.type) {
 

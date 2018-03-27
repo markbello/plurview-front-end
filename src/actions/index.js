@@ -14,12 +14,12 @@ export const loadArtists = (artist) => {
 
 export const loadRaves = (locationId) => {
   return function(dispatch){
-    return fetch(`http://edmtrain.com/api/events?locationIds=${locationId}&client=dd19c823-0beb-4950-b036-8a2a2d55114c`)
+    return fetch(`http://localhost:3001/api/v1/raves`)
     .then(res => res.json())
-    .then(raves => {
+    .then(json => {
       dispatch({
         type: "LOAD_RAVES",
-        payload: raves.data
+        payload: json.raves
       })
     })
 

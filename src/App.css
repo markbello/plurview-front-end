@@ -1,3 +1,18 @@
 /* .ui.radio.checkbox label:before, .ui.radio.checkbox label:after {
   top: 200px;
 } */
+
+.gradient-border{
+  /* border: 3px solid red; */
+  /* border: 3px solid transparent; */
+  background: linear-gradient(to right, rgb(185, 111, 126), rgb(99, 74, 79));
+}
+
+.basic-segment-group{
+  background: transparent;
+}
+
+.poop{
+  font-size: 2rem;
+  font-weight: 300;
+}
