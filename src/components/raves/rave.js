@@ -5,31 +5,31 @@ import Artist from '../artists/artist'
 import { Card, Button, Loader, Menu, Grid, Segment, Header } from 'semantic-ui-react'
 import _ from 'lodash'
 import { findNewArtist } from '../../actions/index'
+import DynamicSVG from '../app/dynamicSVG'
 
 
 class Rave extends React.Component {
 
   state = {
     raveArtists: [],
-    newArtist: ''
+    newArtist: '',
+    raveGradient: {background: 'linear-gradient(to right, rgb(185, 111, 126), rgb(99, 74, 79))'}
   }
 
   loadArtists = (props) => {
     let storedArtists = []
+    let hsl = {background: 'linear-gradient(to right, hsl(348, 34%, 58%), hsl(348, 14%, 34%))'}
     if(props.rave){
       props.rave.artistList.forEach((artist) => {
-      console.log(artist)
-      console.log(props.artists)
       if(props.artists.length > 1){
 
         let test = props.artists.filter((storedArtist) => artist.name === storedArtist.name)
 
-        console.log("TEST IS ", test)
         if(test.length > 0){
           storedArtists.push(test)
         }
         else{
-            //
+
             // fetch(`http://localhost:3001/api/v1/artists/find_new/${artist.name}`)
             // .then(res => res.json())
             // .then(json => {
@@ -40,9 +40,26 @@ class Rave extends React.Component {
         }
       }
     })}
-    // console.log()
-    console.log("STORED ARTISTS I ", storedArtists)
-    if(storedArtists.length > 0){this.setState({raveArtists: storedArtists}, () => console.log("STATETETETE ", this.state))}
+    if(storedArtists.length > 0){
+      hsl = {background: `linear-gradient(to right, ${storedArtists[0][0].hsl})`}
+      this.setState({raveArtists: storedArtists, raveGradient: hsl}, () => console.log(storedArtists[0][0].hsl))
+    }
+  }
+
+  processGradient = () => {
+    fetch('http://localhost:3001/api/v1/raves/process_gradient', {
+      headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+      },
+      method: "POST",
+      mode: 'cors',
+      body: JSON.stringify({
+        raveArtists: this.state.raveArtists
+      })
+    })
+    .then(res => res.json())
+    .then(gradient => console.log(gradient))
   }
 
   componentDidMount(){
@@ -56,14 +73,28 @@ class Rave extends React.Component {
 
   render() {
     return (
-      <Segment basic>
-        <Segment basic inverted><Header className={"poop"}>{this.props.rave.venue.name} - {this.props.rave.venue.location}</Header></Segment>
-          <Grid id={`rave-${this.props.rave.id}`} columns={3} equal padded inverted>
-            <Segment.Group style={{background: "transparent"}} columns={3} basic horizontal stackable>
-              {this.state.raveArtists.length > 0 ? this.state.raveArtists.map((raveArtist) => <Segment><Card basic><Artist artist={raveArtist[0]} /></Card></Segment>) : null}
-            </Segment.Group>
+      <Segment.Group basic >
+          <Segment basic inverted>
+            <Header as={"h2"}>{this.props.rave.venue.name}</Header>
+            <div className={'bordertest'} style={this.state.raveGradient}/>
+            <em>{this.props.rave.venue.location} {this.props.rave.ages ? <span>({this.props.rave.ages})</span> : null} </em>
+
+          </Segment>
+
+
+          <Grid container id={`rave-${this.props.rave.id}`} columns={3} padded inverted>
+              {this.state.raveArtists.length > 0 ? this.state.raveArtists.map((raveArtist, idx) =>
+                <Grid.Column>
+
+                    <Artist artist={raveArtist[0]} />
+
+                </Grid.Column>
+              ) : null}
           </Grid>
-      </Segment>
+          <Segment basic>
+            <Button inverted circular color={"green"} href={this.props.rave.ticketLink} target={'_blank'}>Buy Tickets</Button>
+          </Segment>
+        </Segment.Group>
     );
   }
 }
@@ -107,3 +138,6 @@ export default connect(mapStateToProps, { updateRelatedArtists, findNewArtist })
 //   </Menu>
 //
 // </Card.Content>
+
+// <Segment.Group style={{background: "transparent"}} horizontal compact>
+// <Button onClick={() => this.processGradient()}>CLICK</Button>

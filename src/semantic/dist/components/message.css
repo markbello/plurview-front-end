@@ -1,5 +1,5 @@
 /*!
- * # Semantic UI 2.3.0 - Message
+ * # Semantic UI 2.3.1 - Message
  * http://github.com/semantic-org/semantic-ui/
  *
  *
@@ -365,12 +365,12 @@
 }
 .ui.red.message {
   background-color: #FFE8E6;
-  color: #D50000;
-  -webkit-box-shadow: 0px 0px 0px 1px #D50000 inset, 0px 0px 0px 0px rgba(0, 0, 0, 0);
-          box-shadow: 0px 0px 0px 1px #D50000 inset, 0px 0px 0px 0px rgba(0, 0, 0, 0);
+  color: #ff0011;
+  -webkit-box-shadow: 0px 0px 0px 1px #ff0011 inset, 0px 0px 0px 0px rgba(0, 0, 0, 0);
+          box-shadow: 0px 0px 0px 1px #ff0011 inset, 0px 0px 0px 0px rgba(0, 0, 0, 0);
 }
 .ui.red.message .header {
-  color: #bc0000;
+  color: #e6000f;
 }
 .ui.orange.message {
   background-color: #FFEDDE;
@@ -419,12 +419,12 @@
 }
 .ui.blue.message {
   background-color: #DFF0FF;
-  color: #3F51B5;
-  -webkit-box-shadow: 0px 0px 0px 1px #3F51B5 inset, 0px 0px 0px 0px rgba(0, 0, 0, 0);
-          box-shadow: 0px 0px 0px 1px #3F51B5 inset, 0px 0px 0px 0px rgba(0, 0, 0, 0);
+  color: #1500ff;
+  -webkit-box-shadow: 0px 0px 0px 1px #1500ff inset, 0px 0px 0px 0px rgba(0, 0, 0, 0);
+          box-shadow: 0px 0px 0px 1px #1500ff inset, 0px 0px 0px 0px rgba(0, 0, 0, 0);
 }
 .ui.blue.message .header {
-  color: #3849a2;
+  color: #1300e6;
 }
 .ui.violet.message {
   background-color: #EAE7FF;
@@ -437,21 +437,21 @@
 }
 .ui.purple.message {
   background-color: #F6E7FF;
-  color: #A333C8;
-  -webkit-box-shadow: 0px 0px 0px 1px #A333C8 inset, 0px 0px 0px 0px rgba(0, 0, 0, 0);
-          box-shadow: 0px 0px 0px 1px #A333C8 inset, 0px 0px 0px 0px rgba(0, 0, 0, 0);
+  color: #bf00ff;
+  -webkit-box-shadow: 0px 0px 0px 1px #bf00ff inset, 0px 0px 0px 0px rgba(0, 0, 0, 0);
+          box-shadow: 0px 0px 0px 1px #bf00ff inset, 0px 0px 0px 0px rgba(0, 0, 0, 0);
 }
 .ui.purple.message .header {
-  color: #922eb4;
+  color: #ac00e6;
 }
 .ui.pink.message {
   background-color: #FFE3FB;
-  color: #E03997;
-  -webkit-box-shadow: 0px 0px 0px 1px #E03997 inset, 0px 0px 0px 0px rgba(0, 0, 0, 0);
-          box-shadow: 0px 0px 0px 1px #E03997 inset, 0px 0px 0px 0px rgba(0, 0, 0, 0);
+  color: #ff0090;
+  -webkit-box-shadow: 0px 0px 0px 1px #ff0090 inset, 0px 0px 0px 0px rgba(0, 0, 0, 0);
+          box-shadow: 0px 0px 0px 1px #ff0090 inset, 0px 0px 0px 0px rgba(0, 0, 0, 0);
 }
 .ui.pink.message .header {
-  color: #dd238b;
+  color: #e60082;
 }
 .ui.brown.message {
   background-color: #F1E2D3;

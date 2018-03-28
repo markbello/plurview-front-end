@@ -1,5 +1,5 @@
 import React from 'react'
-import { Input, Menu, Form, Button, Select, Radio, Label, Search } from 'semantic-ui-react'
+import { Input, Menu, Form, Button, Select, Radio, Label, Search, Image } from 'semantic-ui-react'
 import { filterArtists, sortArtists, filterGenre, loadGenreArtists, findNewArtist } from '../../actions/index'
 import {connect} from 'react-redux'
 import _ from 'lodash'
@@ -30,7 +30,6 @@ class Navbar extends React.Component {
   handleResultSelect = (e, { result }) => this.setState({ value: result.name })
 
   handleFindNewArtist = () => {
-    console.log(this.state.newArtist)
     this.props.findNewArtist(this.state.newArtist.id)
   }
 
@@ -109,32 +108,27 @@ class Navbar extends React.Component {
     const { isLoading, value, results, genre } = this.state
 
     return (
-      <Menu>
-        <Menu.Item>
-          <Select options={sortingOptions} placeholder={this.state.sortingMetric ? this.state.sortingMetric : "Sort Artists By"} />
-        </Menu.Item>
+      <div className={'rainbow'}>
+      <Menu inverted fixed={'top'} >
 
-        <Menu.Item>
-          <Select placeholder={this.state.genre ? genre : "Browse Subgenres"} options={genreOptions}/>
-        </Menu.Item>
-        <Menu.Item>
+
+        <Menu.Item position={'right'}>
+          <Menu.Item>
+            <Select placeholder={this.state.genre ? genre : "Browse Subgenres"} options={genreOptions}/>
+          </Menu.Item>
           <Search
             onSearchChange={this.handleSearchChange}
             onResultSelect={this.handleResultSelect}
             results={results}
             value={value}
+            placeholder={'Search for an Artist'}
             resultRenderer={({name}) => <Label content={name} />}
             noResultsMessage={<FindArtist artist={this.state.newArtist}/>}
             {...this.props}
           />
         </Menu.Item>
-        <Menu.Item>
-          {this.state.value}
-        </Menu.Item>
-
-
-
       </Menu>
+    </div>
     );
   }
 }
@@ -144,3 +138,7 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, { filterArtists, sortArtists, filterGenre, loadGenreArtists, findNewArtist })(Navbar)
+
+// <Menu.Item>
+//   <Select options={sortingOptions} placeholder={this.state.sortingMetric ? this.state.sortingMetric : "Sort Artists By"} />
+// </Menu.Item>

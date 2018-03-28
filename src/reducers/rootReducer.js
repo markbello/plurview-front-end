@@ -32,8 +32,7 @@ export default function rootReducer(state = {
       newArtists[foundArtistIndex] = action.payload
       return {...state, artists: newArtists}
     case 'FIND_NEW_ARTIST':
-      newArtists = state.artists.push(action.payload)
-      return {...state, artists: newArtists}
+      return {...state, artists: [...state.artists, action.payload]}
     default:
     console.log("App initialized");
 

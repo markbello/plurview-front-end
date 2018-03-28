@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { updateRelatedArtists } from '../../actions/index'
-import { Card, Button, Loader, Menu } from 'semantic-ui-react'
+import { Card, Button, Loader, Menu, Segment, Header } from 'semantic-ui-react'
 import ArtistDetails from './artistDetails'
 
 class Artist extends React.Component {
@@ -85,23 +85,26 @@ class Artist extends React.Component {
     })
   }
 
-  handleUpdateRelatedArtists = (artist) => {
-    this.props.updateRelatedArtists(artist)
-    .then(() => this.inferGradient())
-  }
+  // handleUpdateRelatedArtists = (artist) => {
+  //   this.props.updateRelatedArtists(artist)
+  //   .then(() => this.inferGradient())
+  // }
 
   render() {
 
     return (
-        <Card basic onClick={this.toggleDetails}>
-          <Card.Content>
-            <strong>{this.props.artist.name} ({this.props.artist.id})</strong>
-            <Card.Meta>
-            </Card.Meta>
-          </Card.Content>
-          { this.state.hsl ? <div style={{height: '20px', width: '100%', background: `linear-gradient(to right, ${this.state.hsl}) `}}/> : null }
-          { this.state.active ? <ArtistDetails artist={this.props.artist} /> : null}
-        </Card>
+
+      <Card link onClick={() => this.toggleDetails()} as={'div'}>
+        <Card.Content>
+            <Card.Header as={'h3'}>{this.props.artist.name} ({this.props.artist.id})</Card.Header>
+          <Card.Meta>
+          </Card.Meta>
+        </Card.Content>
+        { this.state.hsl ? <div  style={{height: '20px', width: '100%', background: `linear-gradient(to right, ${this.state.hsl}) `}}/> : null }
+        { this.state.active ? <ArtistDetails artist={this.props.artist} /> : null}
+      </Card>
+
+
 
     );
   }
@@ -139,3 +142,10 @@ export default connect(mapStateToProps, { updateRelatedArtists })(Artist)
 //   </Menu.Item>
 // </Menu>
 // </Card>
+
+
+// <Segment size={'small'}>
+//   <Header >{this.props.artist.name} ({this.props.artist.id})</Header>
+//     { this.state.hsl ? <div style={{height: '20px', width: '200px', background: `linear-gradient(to right, ${this.state.hsl}) `}}/> : null }
+//
+// </Segment>

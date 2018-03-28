@@ -1,5 +1,5 @@
 /*!
- * # Semantic UI 2.3.0 - Site
+ * # Semantic UI 2.3.1 - Site
  * http://github.com/semantic-org/semantic-ui/
  *
  *
@@ -13,7 +13,7 @@
              Page
 *******************************/
 
-@import url('https://fonts.googleapis.com/css?family=Montserrat:300,600,300italic,600italic&subset=latin');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:200,600,200italic,600italic&subset=latin');
 html,
 body {
   height: 100%;
@@ -47,7 +47,7 @@ h5 {
   font-family: 'Montserrat', 'Helvetica Neue', Arial, Helvetica, sans-serif;
   line-height: 1.28571429em;
   margin: calc(2rem -  0.14285714em ) 0em 1rem;
-  font-weight: bold;
+  font-weight: normal;
   padding: 0em;
 }
 h1 {

@@ -1,5 +1,5 @@
 /*!
- * # Semantic UI 2.3.0 - Segment
+ * # Semantic UI 2.3.1 - Segment
  * http://github.com/semantic-org/semantic-ui/
  *
  *
@@ -520,10 +520,10 @@
 
 /* Red */
 .ui.red.segment:not(.inverted) {
-  border-top: 2px solid #D50000 !important;
+  border-top: 2px solid #ff0011 !important;
 }
 .ui.inverted.red.segment {
-  background-color: #D50000 !important;
+  background-color: #ff0011 !important;
   color: #FFFFFF !important;
 }
 
@@ -538,10 +538,10 @@
 
 /* Yellow */
 .ui.yellow.segment:not(.inverted) {
-  border-top: 2px solid #FFD600 !important;
+  border-top: 2px solid #ffff00 !important;
 }
 .ui.inverted.yellow.segment {
-  background-color: #FFD600 !important;
+  background-color: #ffff00 !important;
   color: #FFFFFF !important;
 }
 
@@ -556,10 +556,10 @@
 
 /* Green */
 .ui.green.segment:not(.inverted) {
-  border-top: 2px solid #64DD17 !important;
+  border-top: 2px solid #00ff11 !important;
 }
 .ui.inverted.green.segment {
-  background-color: #64DD17 !important;
+  background-color: #00ff11 !important;
   color: #FFFFFF !important;
 }
 
@@ -574,10 +574,10 @@
 
 /* Blue */
 .ui.blue.segment:not(.inverted) {
-  border-top: 2px solid #3F51B5 !important;
+  border-top: 2px solid #1500ff !important;
 }
 .ui.inverted.blue.segment {
-  background-color: #3F51B5 !important;
+  background-color: #1500ff !important;
   color: #FFFFFF !important;
 }
 
@@ -592,19 +592,19 @@
 
 /* Purple */
 .ui.purple.segment:not(.inverted) {
-  border-top: 2px solid #A333C8 !important;
+  border-top: 2px solid #bf00ff !important;
 }
 .ui.inverted.purple.segment {
-  background-color: #A333C8 !important;
+  background-color: #bf00ff !important;
   color: #FFFFFF !important;
 }
 
 /* Pink */
 .ui.pink.segment:not(.inverted) {
-  border-top: 2px solid #E03997 !important;
+  border-top: 2px solid #ff0090 !important;
 }
 .ui.inverted.pink.segment {
-  background-color: #E03997 !important;
+  background-color: #ff0090 !important;
   color: #FFFFFF !important;
 }
 

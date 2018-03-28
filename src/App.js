@@ -6,7 +6,7 @@ import './App.css';
 import Artist from './components/artists/artist'
 import ArtistList from './components/artists/artistList'
 import GenreList from './components/genres/genreList'
-import EventList from './components/events/eventList'
+import RaveList from './components/raves/raveList'
 import Navbar from './components/app/navbar'
 import { Container, Segment } from 'semantic-ui-react'
 import {Route, Switch, Redirect} from 'react-router-dom'
@@ -15,7 +15,7 @@ class App extends Component {
 
   componentDidMount() {
     this.props.loadArtists()
-    
+
     .then(() => {
       this.props.loadGenres()})
     .then(() => {
@@ -31,9 +31,9 @@ class App extends Component {
         <Navbar />
         <Container>
           <Switch>
+            <Route path='/' render={() => <RaveList />} />
             <Route path='/artists/' render={() => <ArtistList />} />
             <Route path='/genres/' render={() => <GenreList />} />
-            <Route path='/events/' render={() => <EventList />} />
           </Switch>
 
         </Container>

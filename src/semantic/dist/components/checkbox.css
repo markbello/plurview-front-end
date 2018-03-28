@@ -1,5 +1,5 @@
 /*!
- * # Semantic UI 2.3.0 - Checkbox
+ * # Semantic UI 2.3.1 - Checkbox
  * http://github.com/semantic-org/semantic-ui/
  *
  *
@@ -549,7 +549,7 @@
 }
 .ui.toggle.checkbox input:checked ~ .box:before,
 .ui.toggle.checkbox input:checked ~ label:before {
-  background-color: #3F51B5 !important;
+  background-color: #1500ff !important;
 }
 .ui.toggle.checkbox input:checked ~ .box:after,
 .ui.toggle.checkbox input:checked ~ label:after {
@@ -565,7 +565,7 @@
 }
 .ui.toggle.checkbox input:focus:checked ~ .box:before,
 .ui.toggle.checkbox input:focus:checked ~ label:before {
-  background-color: #2b3da1 !important;
+  background-color: #1200d6 !important;
 }
 
 

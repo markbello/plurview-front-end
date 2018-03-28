@@ -16,3 +16,19 @@
   font-size: 2rem;
   font-weight: 300;
 }
+
+.bordertest {
+    content:'';
+    /* position:absolute; */
+    width:75%;
+    height:2px;
+    /* background: linear-gradient(to right, rgb(185, 111, 126), rgb(99, 74, 79)); */
+    margin-bottom: 1em;
+    /* top: -2px; */
+    /* left:0; */
+}
+
+.rainbow{
+  background-image: url('./assets/rainbow.png');
+  background-size: cover;
+}

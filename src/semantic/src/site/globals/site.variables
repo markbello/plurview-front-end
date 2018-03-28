@@ -14,7 +14,7 @@
 
 @googleFontName    : @fontName;
 @importGoogleFonts : true;
-@googleFontSizes   : '300,600,300italic,600italic';
+@googleFontSizes   : '200,600,200italic,600italic';
 @googleSubset      : 'latin';
 
 @googleProtocol    : 'https://';
@@ -221,16 +221,16 @@
 --------------------*/
 
 /*---  Colors  ---*/
-@red              : #D50000;
+@red              : #ff0011;
 @orange           : #FF6D00;
-@yellow           : #FFD600;
+@yellow           : #ffff00;
 @olive            : #B5CC18;
-@green            : #64DD17;
+@green            : #00ff11;
 @teal             : #00B5AD;
-@blue             : #3F51B5;
+@blue             : #1500ff;
 @violet           : #673AB7;
-@purple           : #A333C8;
-@pink             : #E03997;
+@purple           : #bf00ff;
+@pink             : #ff0090;
 @brown            : #A5673F;
 @grey             : #767676;
 @black            : #1B1C1D;

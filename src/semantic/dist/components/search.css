@@ -1,5 +1,5 @@
 /*!
- * # Semantic UI 2.3.0 - Search
+ * # Semantic UI 2.3.1 - Search
  * http://github.com/semantic-org/semantic-ui/
  *
  *
@@ -131,7 +131,7 @@
 }
 .ui.search > .results .result .price {
   float: right;
-  color: #64DD17;
+  color: #00ff11;
 }
 
 /*--------------
@@ -252,6 +252,18 @@
   color: rgba(0, 0, 0, 0.85);
 }
 
+/*--------------------
+        Disabled
+----------------------*/
+
+
+/* Disabled */
+.ui.disabled.search {
+  cursor: default;
+  pointer-events: none;
+  opacity: 0.45;
+}
+
 
 /*******************************
            Types
@@ -288,7 +300,7 @@
 }
 .ui.search.selection > .icon.input > .remove.icon:hover {
   opacity: 1;
-  color: #D50000;
+  color: #ff0011;
 }
 
 /*--------------
