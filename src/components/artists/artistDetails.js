@@ -78,7 +78,7 @@ class ArtistDetails extends React.Component {
           {this.state.subGenres.length > 0 ?
 
             <React.Fragment>
-              <em>SubGenres:</em>
+              <em>Subgenres:</em>
               <Segment basic>
                 <List>
 

@@ -28,8 +28,8 @@ class RaveList extends React.Component {
 
     Object.keys(this.props.raves).map((key) => console.log(moment(key).format('dddd, MMMM Do')))
     return (
-      <Container>
-      <Segment basic>
+      <Container >
+      <Segment basic style={{marginLeft: "100px", marginTop: "50px"}}>
 
           <Grid>
             {Object.keys(this.props.raves).length > 0 ? Object.keys(this.props.raves).map((key) =>

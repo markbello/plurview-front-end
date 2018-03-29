@@ -8,7 +8,7 @@ import ArtistList from './components/artists/artistList'
 import GenreList from './components/genres/genreList'
 import RaveList from './components/raves/raveList'
 import Navbar from './components/app/navbar'
-import { Container, Segment } from 'semantic-ui-react'
+import { Container, Segment, Rail } from 'semantic-ui-react'
 import {Route, Switch, Redirect} from 'react-router-dom'
 
 class App extends Component {
@@ -28,8 +28,12 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Navbar />
+      <div />
         <Container>
+          <Rail position='left' internal>
+            <Navbar />
+          </Rail>
+
           <Switch>
             <Route path='/' render={() => <RaveList />} />
             <Route path='/artists/' render={() => <ArtistList />} />

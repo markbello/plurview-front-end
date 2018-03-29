@@ -1,8 +1,10 @@
 import React from 'react'
-import { Input, Menu, Form, Button, Select, Radio, Label, Search, Image } from 'semantic-ui-react'
+import { Input, Menu, Form, Button, Select, Radio, Label, Search, Image, Segment, Sticky, Container } from 'semantic-ui-react'
 import { filterArtists, sortArtists, filterGenre, loadGenreArtists, findNewArtist } from '../../actions/index'
 import {connect} from 'react-redux'
 import _ from 'lodash'
+
+import logo from '../../assets/ticket-logo.svg'
 
 
 class Navbar extends React.Component {
@@ -82,10 +84,10 @@ class Navbar extends React.Component {
 
     const genreOptions = this.props.genres.map((genre) => {
       return  {
-          text: `${genre.name} (${genre.artist_count})`,
+          text: `${genre.name}`,
           value: genre,
           onClick: () => {
-            this.setState({genre: `${genre.name} (${genre.artist_count})`},() => this.props.loadGenreArtists(genre.id))},
+            this.setState({genre: `${genre.name}`},() => this.props.loadGenreArtists(genre.id))},
           key: `genre-option-${genre.id}`,
           active: genre.id === this.props.activeGenre
         }
@@ -108,14 +110,14 @@ class Navbar extends React.Component {
     const { isLoading, value, results, genre } = this.state
 
     return (
-      <div className={'rainbow'}>
-      <Menu inverted fixed={'top'} >
+      <Container className={'flex-container'}>
+        <Segment.Group  style={{background: 'transparent', marginTop: '100px', position: 'fixed'}}>
+          <Segment basic>
 
+            <img src={logo} width="300px"/>
+          </Segment>
 
-        <Menu.Item position={'right'}>
-          <Menu.Item>
-            <Select placeholder={this.state.genre ? genre : "Browse Subgenres"} options={genreOptions}/>
-          </Menu.Item>
+          <Segment basic style={{marginTop: '50px', marginLeft: '50px'}}>
           <Search
             onSearchChange={this.handleSearchChange}
             onResultSelect={this.handleResultSelect}
@@ -126,9 +128,14 @@ class Navbar extends React.Component {
             noResultsMessage={<FindArtist artist={this.state.newArtist}/>}
             {...this.props}
           />
-        </Menu.Item>
-      </Menu>
-    </div>
+        </Segment>
+        <Segment basic style={{marginLeft: '50px'}}>
+          <Select placeholder={this.state.genre ? genre : "Browse Subgenres"} options={genreOptions}/>
+        </Segment>
+        </Segment.Group>
+
+      </Container>
+
     );
   }
 }

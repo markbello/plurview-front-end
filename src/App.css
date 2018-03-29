@@ -1,10 +1,6 @@
-/* .ui.radio.checkbox label:before, .ui.radio.checkbox label:after {
-  top: 200px;
-} */
 
 .gradient-border{
-  /* border: 3px solid red; */
-  /* border: 3px solid transparent; */
+
   background: linear-gradient(to right, rgb(185, 111, 126), rgb(99, 74, 79));
 }
 
@@ -12,23 +8,23 @@
   background: transparent;
 }
 
-.poop{
-  font-size: 2rem;
-  font-weight: 300;
-}
 
 .bordertest {
     content:'';
-    /* position:absolute; */
     width:75%;
     height:2px;
-    /* background: linear-gradient(to right, rgb(185, 111, 126), rgb(99, 74, 79)); */
     margin-bottom: 1em;
-    /* top: -2px; */
-    /* left:0; */
 }
 
-.rainbow{
-  background-image: url('./assets/rainbow.png');
-  background-size: cover;
+.logo{
+  background-image: url('./assets/ticket-logo-2.svg');
+  /* background-repeat: repeat; */
+  /* height: 250px; */
+  /* max-width: 250px; */
+  height: 350px;
+  /* margin-top: 0px; */
+  /* z-index: 10000; */
+  /* position: fixed;
+  top: 0;
+  left: 0; */
 }

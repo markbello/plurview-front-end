@@ -19,7 +19,7 @@ class Genre extends React.Component {
     return (
       <Card id={`genre-${this.props.genre.id}`}>
         <Card.Content>
-          <Card.Header>{this.props.genre.name} ({this.props.genre.id})</Card.Header>
+          <Card.Header>{this.props.genre.name}</Card.Header>
 
           { this.props.genre.hsl ? <div style={{height: '20px', width: '100%', background: `linear-gradient(to right, ${this.props.genre.hsl}) `}}/> : null }
             <Menu basic borderless>

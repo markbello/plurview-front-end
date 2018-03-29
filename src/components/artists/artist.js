@@ -96,7 +96,7 @@ class Artist extends React.Component {
 
       <Card link onClick={() => this.toggleDetails()} as={'div'}>
         <Card.Content>
-            <Card.Header as={'h3'}>{this.props.artist.name} ({this.props.artist.id})</Card.Header>
+            <Card.Header as={'h3'}>{this.props.artist.name}</Card.Header>
           <Card.Meta>
           </Card.Meta>
         </Card.Content>
