@@ -111,24 +111,25 @@ class Navbar extends React.Component {
     return (
       <Container className={'flex-container'}>
         <Segment.Group  style={{background: 'transparent', marginTop: '100px', position: 'fixed'}}>
-          <Segment basic>
+          <Segment basic style={{marginLeft: '50px'}}>
 
             <img src={logo} width="300px"/>
           </Segment>
 
-          <Segment basic style={{marginTop: '150px', marginLeft: '50px'}}>
+          <Segment basic style={{marginTop: '100px', marginLeft: '100px'}}>
           <Search
             onSearchChange={this.handleSearchChange}
             onResultSelect={this.handleResultSelect}
             results={results}
             value={value}
+            scrolling
             placeholder={'Search for an Artist'}
-            resultRenderer={({name}) => <Label content={name} />}
+            resultRenderer={({name}) => <Segment basic content={name} />}
             noResultsMessage={<FindArtist artist={this.state.newArtist}/>}
             {...this.props}
           />
         </Segment>
-        <Segment basic style={{marginLeft: '50px'}}>
+        <Segment basic style={{marginLeft: '100px'}}>
           <Select placeholder={this.state.genre ? genre : "Browse Subgenres"} options={genreOptions}/>
         </Segment>
         </Segment.Group>
