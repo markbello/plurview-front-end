@@ -3,9 +3,11 @@ import { connect } from 'react-redux';
 import Genre from '../genres/genre'
 import Rave from './rave'
 import ArtistList from '../artists/artistList'
-import { Card, Segment, Loader, Sticky, Rail, Button, Menu, Grid, Header, Container } from 'semantic-ui-react'
+import { Card, Segment, Loader, Sticky, Rail, Button, Menu, Grid, Header, Container, Image } from 'semantic-ui-react'
 import DynamicSVG from '../app/dynamicSVG';
 import moment from 'moment'
+import logo from '../../assets/raves-header.svg'
+
 
 
 class RaveList extends React.Component {
@@ -30,9 +32,11 @@ class RaveList extends React.Component {
     return (
       <Container >
         <Segment basic style={{marginLeft: "100px", marginTop: "50px"}}>
-
             <Grid>
               {this.props.activeArtists.length > 0 ? <ArtistList /> : null }
+              <Segment basic>
+                <Image src={logo} centered size="small" />
+              </Segment>
               {Object.keys(this.props.raves).length > 0 ? Object.keys(this.props.raves).map((key) =>
                 <Grid.Row>
                   <Segment.Group>

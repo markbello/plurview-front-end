@@ -2,8 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Artist from './artist'
 import { filterArtists } from '../../actions/index'
-import { Card, Segment, Loader, Sticky, Rail, Button, Menu, Search, Grid, Header } from 'semantic-ui-react'
+import { Card, Segment, Loader, Sticky, Rail, Button, Menu, Search, Grid, Header, Image } from 'semantic-ui-react'
 import _ from 'lodash'
+import logo from '../../assets/artists-header.svg'
+
 
 class ArtistList extends React.Component {
 
@@ -40,6 +42,10 @@ class ArtistList extends React.Component {
 
 
     return (
+      <Segment basic>
+      <Segment basic>
+        <Image src={logo} size="small" />
+      </Segment>
       <Segment.Group basic>
         <Segment basic inverted>
           <Header as={"h1"}><em>Top Artists by {this.props.searchTerm}</em></Header>
@@ -60,6 +66,7 @@ class ArtistList extends React.Component {
 
 
       </Segment.Group>
+      </Segment>
     );
   }
 }
