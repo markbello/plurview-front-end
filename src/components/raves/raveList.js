@@ -35,7 +35,7 @@ class RaveList extends React.Component {
             <Grid>
               {this.props.activeArtists.length > 0 ? <ArtistList /> : null }
               <Segment basic>
-                <Image src={logo} centered size="small" />
+                <Image src={logo} centered size="tiny" />
               </Segment>
               {Object.keys(this.props.raves).length > 0 ? Object.keys(this.props.raves).map((key) =>
                 <Grid.Row>

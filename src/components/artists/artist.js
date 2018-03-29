@@ -100,7 +100,7 @@ class Artist extends React.Component {
           <Card.Meta>
           </Card.Meta>
         </Card.Content>
-        { this.state.hsl ? <div  style={{height: '20px', width: '100%', background: `linear-gradient(to right, ${this.state.hsl}) `}}/> : null }
+        { this.props.artist.hsl ? <div  style={{height: '20px', width: '100%', background: `linear-gradient(to right, ${this.state.hsl}) `}}/> : null }
         { this.state.active ? <ArtistDetails artist={this.props.artist} /> : null}
       </Card>
 

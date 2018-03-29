@@ -44,7 +44,7 @@ class ArtistList extends React.Component {
     return (
       <Segment basic>
       <Segment basic>
-        <Image src={logo} size="small" />
+        <Image src={logo} size="tiny" />
       </Segment>
       <Segment.Group basic>
         <Segment basic inverted>
