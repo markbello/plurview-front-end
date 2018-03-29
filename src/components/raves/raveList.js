@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Genre from '../genres/genre'
 import Rave from './rave'
+import ArtistList from '../artists/artistList'
 import { Card, Segment, Loader, Sticky, Rail, Button, Menu, Grid, Header, Container } from 'semantic-ui-react'
 import DynamicSVG from '../app/dynamicSVG';
 import moment from 'moment'
@@ -26,33 +27,33 @@ class RaveList extends React.Component {
   render() {
     const { contextRef } = this.state
 
-    Object.keys(this.props.raves).map((key) => console.log(moment(key).format('dddd, MMMM Do')))
     return (
       <Container >
-      <Segment basic style={{marginLeft: "100px", marginTop: "50px"}}>
+        <Segment basic style={{marginLeft: "100px", marginTop: "50px"}}>
 
-          <Grid>
-            {Object.keys(this.props.raves).length > 0 ? Object.keys(this.props.raves).map((key) =>
-              <Grid.Row>
-                <Segment.Group>
-                  <Segment basic>
-                    {<Header inverted as={'h1'}><em>{moment(key).format('dddd, MMMM Do')}</em></Header>}
-                  </Segment>
+            <Grid>
+              {this.props.activeArtists.length > 0 ? <ArtistList /> : null }
+              {Object.keys(this.props.raves).length > 0 ? Object.keys(this.props.raves).map((key) =>
+                <Grid.Row>
                   <Segment.Group>
+                    <Segment basic>
+                      {<Header inverted as={'h1'}><em>{moment(key).format('dddd, MMMM Do')}</em></Header>}
+                    </Segment>
+                    <Segment.Group>
 
-                    {this.props.raves[key].map((rave) =>
-                      rave.artistList.length > 0 ? <Rave rave={rave} /> : null
-                    ) }
+                      {this.props.raves[key].map((rave) =>
+                        rave.artistList.length > 0 ? <Rave rave={rave} /> : null
+                      ) }
+                    </Segment.Group>
                   </Segment.Group>
-                </Segment.Group>
 
-            </Grid.Row>)
+              </Grid.Row>)
 
-            : null }
-          </Grid>
+              : null }
+            </Grid>
 
 
-      </Segment>
+        </Segment>
       </Container>
 
     );
@@ -60,7 +61,7 @@ class RaveList extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return { genres: state.genres, raves: state.raves };
+  return { genres: state.genres, raves: state.raves, activeArtists: state.activeArtists };
 };
 
 export default connect(mapStateToProps)(RaveList)

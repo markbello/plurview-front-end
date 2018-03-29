@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Artist from './artist'
 import { filterArtists } from '../../actions/index'
-import { Card, Segment, Loader, Sticky, Rail, Button, Menu, Search } from 'semantic-ui-react'
+import { Card, Segment, Loader, Sticky, Rail, Button, Menu, Search, Grid, Header } from 'semantic-ui-react'
 import _ from 'lodash'
 
 class ArtistList extends React.Component {
@@ -40,15 +40,26 @@ class ArtistList extends React.Component {
 
 
     return (
-      <Segment basic>
-        <div ref={this.handleContextRef}>
-          <Card.Group itemsPerRow={2}>
-            { this.state.loading ? <Loader active inverted /> : this.sortArtists(this.props).map((artist) => <Artist key={artist.id} artist={artist}/>) }
-          </Card.Group>
+      <Segment.Group basic>
+        <Segment basic inverted>
+          <Header as={"h1"}><em>Top Artists by {this.props.searchTerm}</em></Header>
+            <div className={'bordertest'} style={{background: 'linear-gradient(to right, rgb(185, 111, 126), rgb(99, 74, 79))'}}/>
+
+        </Segment>
+        <Grid container columns={3} padded inverted>
+          {this.props.activeArtists.slice(0,15).map((artist) =>
+              <Grid.Column>
+
+                  <Artist artist={artist} />
 
 
-        </div>
-      </Segment>
+              </Grid.Column>
+            )}
+        </Grid>
+
+
+
+      </Segment.Group>
     );
   }
 }
@@ -89,3 +100,8 @@ export default connect(mapStateToProps, { filterArtists })(ArtistList)
 //     </Menu>
 //   </Sticky>
 // </Rail>
+
+// <div ref={this.handleContextRef}>
+//   <Card.Group itemsPerRow={2}>
+//     { this.state.loading ? <Loader active inverted /> : this.sortArtists(this.props).map((artist) => <Artist key={artist.id} artist={artist}/>) }
+//   </Card.Group>

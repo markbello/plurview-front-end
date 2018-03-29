@@ -27,7 +27,7 @@ class Navbar extends React.Component {
     }, () => this.props.sortArtists(this.state.sortingMetric))
   }
 
-  resetComponent = () => this.setState({ isLoading: false, results: [], value: '' })
+  resetComponent = () => this.setState({ isLoading: false, results: [], value: '' }, () => this.props.filterArtists(this.state.results))
 
   handleResultSelect = (e, { result }) => this.setState({ value: result.name })
 
@@ -49,7 +49,7 @@ class Navbar extends React.Component {
         results: _.filter(this.props.artists, isMatch),
       }, () => {
         if(this.state.results.length > 0){
-          this.props.filterArtists(this.state.results)
+          this.props.filterArtists(this.state.results, this.state.value)
         } else{
           this.handleNoResults()
         }
@@ -70,7 +70,6 @@ class Navbar extends React.Component {
     fetch(`http://localhost:3001/api/v1/artists/find_new/${this.state.value}`)
     .then(res => res.json())
     .then(json => {
-      console.log(json)
       this.setState({newArtist: json}, () => console.log(this.state.newArtist))
     })
   }
@@ -87,7 +86,7 @@ class Navbar extends React.Component {
           text: `${genre.name}`,
           value: genre,
           onClick: () => {
-            this.setState({genre: `${genre.name}`},() => this.props.loadGenreArtists(genre.id))},
+            this.setState({genre: `${genre.name}`},() => this.props.loadGenreArtists(genre))},
           key: `genre-option-${genre.id}`,
           active: genre.id === this.props.activeGenre
         }

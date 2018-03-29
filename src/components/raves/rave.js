@@ -42,7 +42,7 @@ class Rave extends React.Component {
     })}
     if(storedArtists.length > 0){
       hsl = {background: `linear-gradient(to right, ${storedArtists[0][0].hsl})`}
-      this.setState({raveArtists: storedArtists, raveGradient: hsl}, () => console.log(storedArtists[0][0].hsl))
+      this.setState({raveArtists: storedArtists, raveGradient: hsl})
     }
   }
 

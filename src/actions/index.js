@@ -39,14 +39,14 @@ export const loadGenres = (genres) => {
   }
 }
 
-export const loadGenreArtists = (genreId) => {
+export const loadGenreArtists = (genre) => {
   return function(dispatch){
-    return fetch(`http://localhost:3001/api/v1/genres/${genreId}`)
+    return fetch(`http://localhost:3001/api/v1/genres/${genre.id}`)
     .then(res => res.json())
     .then(artists => {
       dispatch({
         type: "LOAD_GENRE_ARTISTS",
-        payload: {artists: artists, genreId: genreId}
+        payload: {artists: artists, genreId: genre.id, searchTerm: genre.name}
       })
     })
   }
@@ -96,8 +96,8 @@ export const sortArtists = (term) => {
   return { type: 'SORT_ARTISTS', payload: term}
 }
 
-export const filterArtists = (term) => {
-  return { type: 'FILTER_ARTISTS', payload: term}
+export const filterArtists = (artists, searchTerm) => {
+  return { type: 'FILTER_ARTISTS', payload: {artists: artists, searchTerm: searchTerm}}
 }
 
 export const filterGenre = (genre) => {

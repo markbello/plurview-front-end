@@ -10,19 +10,19 @@ export default function rootReducer(state = {
   switch(action.type) {
 
     case 'LOAD_ARTISTS':
-      return {...state, artists: action.payload, activeArtists: action.payload}
+      return {...state, artists: action.payload}
     case 'LOAD_GENRES':
       return {...state, genres: action.payload}
     case 'LOAD_RAVES':
       return {...state, raves: action.payload}
     case 'LOAD_GENRE_ARTISTS':
-      return {...state, activeArtists: action.payload.artists, activeGenre: action.payload.genreId}
+      return {...state, activeArtists: action.payload.artists, activeGenre: action.payload.genreId, searchTerm: `Subgenre: ${action.payload.searchTerm}`}
     case 'SORT_ARTISTS':
       return {...state, sortingMetric: action.payload}
     case 'FILTER_ARTISTS':
       console.log("filter artists: ", action.payload)
       console.dir(state.activeArtists)
-      return {...state, activeArtists: action.payload}
+      return {...state, activeArtists: action.payload.artists, searchTerm: `Search Term: ${action.payload.searchTerm}`}
     case 'FILTER_GENRE':
       return {...state, activeGenre: action.payload}
     case 'UPDATE_RELATED_ARTISTS':
