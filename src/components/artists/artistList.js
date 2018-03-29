@@ -11,26 +11,30 @@ class ArtistList extends React.Component {
 
   state = {
     loading: true,
-    searchTerm: ''
+    searchTerm: '',
+    hsl: {background: 'linear-gradient(to right, rgb(185, 111, 126), rgb(99, 74, 79))'}
     }
 
   handleContextRef = contextRef => this.setState({ contextRef })
 
   componentWillReceiveProps(nextProps){
     this.filterActiveArtists(nextProps)
+    if(nextProps.activeGenre && nextProps.activeGenre.hsl){
+      this.setState({gradient: nextProps.activeGenre.hsl})
+    }
+
   }
 
   filterActiveArtists = (props) => {
+    let activeHsl = {background: 'linear-gradient(to right, rgb(185, 111, 126), rgb(99, 74, 79))'}
+    props.activeGenre.hsl ? activeHsl = {background: `linear-gradient(to right, ${props.activeGenre.hsl})`} : null
     if(props.activeArtists[0]){
-      this.setState({ loading: false})
+      this.setState({ loading: false, hsl: activeHsl})
     }
   }
 
   sortArtists = (props) => {
-    // if(this.state.searchTerm){
-    //
-    //   return props.activeArtists.sort((a,b)=> b[props.sortingMetric] - a[props.sortingMetric] ).filter((artist) => artist.name.toLowerCase().includes(this.state.searchTerm.toLowerCase()))
-    // } else {
+
       return props.activeArtists.sort((a,b)=> b[props.sortingMetric] - a[props.sortingMetric] )
 
   }
@@ -49,7 +53,7 @@ class ArtistList extends React.Component {
       <Segment.Group basic>
         <Segment basic inverted>
           <Header as={"h1"}><em>Top Artists by {this.props.searchTerm}</em></Header>
-            <div className={'bordertest'} style={{background: 'linear-gradient(to right, rgb(185, 111, 126), rgb(99, 74, 79))'}}/>
+            <div className={'bordertest'} style={this.state.hsl}/>
 
         </Segment>
         <Grid container columns={3} padded inverted>

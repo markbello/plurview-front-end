@@ -46,7 +46,7 @@ export const loadGenreArtists = (genre) => {
     .then(artists => {
       dispatch({
         type: "LOAD_GENRE_ARTISTS",
-        payload: {artists: artists, genreId: genre.id, searchTerm: genre.name}
+        payload: {artists: artists, genreId: genre.id, genre: genre, searchTerm: genre.name}
       })
     })
   }

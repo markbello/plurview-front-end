@@ -16,7 +16,7 @@ export default function rootReducer(state = {
     case 'LOAD_RAVES':
       return {...state, raves: action.payload}
     case 'LOAD_GENRE_ARTISTS':
-      return {...state, activeArtists: action.payload.artists, activeGenre: action.payload.genreId, searchTerm: `Subgenre: ${action.payload.searchTerm}`}
+      return {...state, activeArtists: action.payload.artists, activeGenre: action.payload.genre, searchTerm: `Subgenre: ${action.payload.searchTerm}`}
     case 'SORT_ARTISTS':
       return {...state, sortingMetric: action.payload}
     case 'FILTER_ARTISTS':
