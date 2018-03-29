@@ -66,7 +66,7 @@ class ArtistDetails extends React.Component {
       {this.state.loading ? <Loader active inverted /> :
 
         <React.Fragment>
-        <Segment basic>
+        <Segment basic >
           {this.state.relatedArtists.length > 0 ? <em>Related Artists:</em> : <div><em onClick={this.handleUpdateRelatedArtists(this.props.artist)}>Loading related artists...</em></div>}
           {this.state.loading ? <Loader active inverted /> :
             this.state.relatedArtists.sort((a,b) => a.followers > b.followers).slice(0,4).map((artist) =>

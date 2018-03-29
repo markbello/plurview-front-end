@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { updateRelatedArtists } from '../../actions/index'
-import { Card, Button, Loader, Menu, Segment, Header } from 'semantic-ui-react'
+import { Card, Button, Loader, Menu, Segment, Header, Icon, Item } from 'semantic-ui-react'
 import ArtistDetails from './artistDetails'
 
 class Artist extends React.Component {
@@ -96,7 +96,9 @@ class Artist extends React.Component {
 
       <Card link onClick={() => this.toggleDetails()} as={'div'}>
         <Card.Content>
-            <Card.Header as={'h3'}>{this.props.artist.name}</Card.Header>
+          <Card.Header as={'h3'}>{this.props.artist.name} <Icon name='chevron right' style={{float: 'right', transition: 'ease-in .1s'}} rotated={this.state.active ? 'clockwise' : null}/></Card.Header>
+
+
           <Card.Meta>
           </Card.Meta>
         </Card.Content>

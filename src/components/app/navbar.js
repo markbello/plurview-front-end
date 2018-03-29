@@ -116,7 +116,7 @@ class Navbar extends React.Component {
             <img src={logo} width="300px"/>
           </Segment>
 
-          <Segment basic style={{marginTop: '50px', marginLeft: '50px'}}>
+          <Segment basic style={{marginTop: '150px', marginLeft: '50px'}}>
           <Search
             onSearchChange={this.handleSearchChange}
             onResultSelect={this.handleResultSelect}
