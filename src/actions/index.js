@@ -1,6 +1,6 @@
 export const loadArtists = (artist) => {
   return function(dispatch){
-    return fetch('https://plurview.herokuapp.com/api/v1/artists')
+    return fetch('https://plurview-api.herokuapp.com/api/v1/artists')
     .then(res => res.json())
     .then(artists => {
       dispatch({
@@ -14,7 +14,7 @@ export const loadArtists = (artist) => {
 
 export const loadRaves = (locationId) => {
   return function(dispatch){
-    return fetch(`https://plurview.herokuapp.com/api/v1/raves`)
+    return fetch(`https://plurview-api.herokuapp.com/api/v1/raves`)
     .then(res => res.json())
     .then(json => {
       dispatch({
@@ -28,7 +28,7 @@ export const loadRaves = (locationId) => {
 
 export const loadGenres = (genres) => {
   return function(dispatch){
-    return fetch('https://plurview.herokuapp.com/api/v1/genres')
+    return fetch('https://plurview-api.herokuapp.com/api/v1/genres')
     .then(res => res.json())
     .then(genres => {
       dispatch({
@@ -41,7 +41,7 @@ export const loadGenres = (genres) => {
 
 export const loadGenreArtists = (genre) => {
   return function(dispatch){
-    return fetch(`https://plurview.herokuapp.com/api/v1/genres/${genre.id}`)
+    return fetch(`https://plurview-api.herokuapp.com/api/v1/genres/${genre.id}`)
     .then(res => res.json())
     .then(artists => {
       dispatch({
@@ -54,7 +54,7 @@ export const loadGenreArtists = (genre) => {
 
 export const updateRelatedArtists = (artist) => {
   return function(dispatch){
-    return fetch(`https://plurview.herokuapp.com/api/v1/artists/${artist.id}/find_related`)
+    return fetch(`https://plurview-api.herokuapp.com/api/v1/artists/${artist.id}/find_related`)
     .then(res => res.json())
     .then(artist => {
       dispatch({
@@ -67,7 +67,7 @@ export const updateRelatedArtists = (artist) => {
 
 export const findNewArtist = (artistId) => {
   return function(dispatch){
-    return fetch(`https://plurview.herokuapp.com/api/v1/artists/find_new`, {
+    return fetch(`https://plurview-api.herokuapp.com/api/v1/artists/find_new`, {
       headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
