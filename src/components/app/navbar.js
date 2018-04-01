@@ -67,7 +67,7 @@ class Navbar extends React.Component {
   }
 
   handleNoResults = () => {
-    fetch(`http://localhost:3001/api/v1/artists/find_new/${this.state.value}`)
+    fetch(`https://plurview.herokuapp.com/api/v1/artists/find_new/${this.state.value}`)
     .then(res => res.json())
     .then(json => {
       this.setState({newArtist: json}, () => console.log(this.state.newArtist))

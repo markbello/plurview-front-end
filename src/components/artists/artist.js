@@ -38,7 +38,7 @@ class Artist extends React.Component {
   registerVibes = (vibe, artistId ) => {
     console.log(vibe, artistId)
     console.dir(this.props)
-    fetch(`http://localhost:3001/api/v1/artists/${artistId}`, {
+    fetch(`https://plurview.herokuapp.com/api/v1/artists/${artistId}`, {
       headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
@@ -68,7 +68,7 @@ class Artist extends React.Component {
   inferGradient = () => {
     console.log(this.props.artist.id)
     console.dir(this.props)
-    fetch(`http://localhost:3001/api/v1/artists/${this.props.artist.id}/infer_gradient`)
+    fetch(`https://plurview.herokuapp.com/api/v1/artists/${this.props.artist.id}/infer_gradient`)
     .then(res => res.json())
     .then(json => {
       console.log(json)

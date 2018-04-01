@@ -31,7 +31,7 @@ class RaveList extends React.Component {
 
     return (
       <Container >
-        <Segment basic style={{marginLeft: "100px", marginTop: "50px"}}>
+        <Segment basic style={{marginLeft: "150px", marginTop: "50px"}}>
             <Grid>
               {this.props.activeArtists.length > 0 ? <ArtistList /> : null }
               <Segment basic>

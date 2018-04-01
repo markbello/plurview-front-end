@@ -30,7 +30,7 @@ class Rave extends React.Component {
         }
         else{
 
-            // fetch(`http://localhost:3001/api/v1/artists/find_new/${artist.name}`)
+            // fetch(`https://plurview.herokuapp.com/api/v1/artists/find_new/${artist.name}`)
             // .then(res => res.json())
             // .then(json => {
             //   console.log(json)
@@ -47,7 +47,7 @@ class Rave extends React.Component {
   }
 
   processGradient = () => {
-    fetch('http://localhost:3001/api/v1/raves/process_gradient', {
+    fetch('https://plurview.herokuapp.com/api/v1/raves/process_gradient', {
       headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'

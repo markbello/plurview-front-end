@@ -17,7 +17,7 @@ class ArtistDetails extends React.Component {
   }
 
   fetchRelatedArtists = () => {
-    fetch(`http://localhost:3001/api/v1/artists/${this.props.artist.id}/show_related`)
+    fetch(`https://plurview.herokuapp.com/api/v1/artists/${this.props.artist.id}/show_related`)
     .then(res => res.json())
     .then(relatedArtists => this.setState({
       relatedArtists: relatedArtists,
@@ -26,7 +26,7 @@ class ArtistDetails extends React.Component {
   }
 
   fetchSubGenres = () => {
-    fetch(`http://localhost:3001/api/v1/artists/${this.props.artist.id}/show_genres`)
+    fetch(`https://plurview.herokuapp.com/api/v1/artists/${this.props.artist.id}/show_genres`)
     .then(res => res.json())
     .then(subGenres => this.setState({
       subGenres: subGenres,
@@ -43,7 +43,7 @@ class ArtistDetails extends React.Component {
   inferGradient = () => {
     // console.log(this.props.artist.id)
     // console.dir(this.props)
-    fetch(`http://localhost:3001/api/v1/artists/${this.props.artist.id}/infer_gradient`)
+    fetch(`https://plurview.herokuapp.com/api/v1/artists/${this.props.artist.id}/infer_gradient`)
     .then(res => res.json())
     .then(json => {
       // console.log(json)
