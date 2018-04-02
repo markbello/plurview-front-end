@@ -109,14 +109,13 @@ class Navbar extends React.Component {
     const { isLoading, value, results, genre } = this.state
 
     return (
-      <Container className={'flex-container'}>
         <Segment.Group  style={{background: 'transparent', marginTop: '100px', position: 'fixed'}}>
-          <Segment basic style={{marginLeft: '50px'}}>
+          <Segment basic >
 
-            <img src={logo} width="300px"/>
+            <img src={logo} width="200px"/>
           </Segment>
 
-          <Segment basic style={{marginTop: '100px', marginLeft: '100px'}}>
+          <Segment basic style={{marginTop: '100px'}}>
           <Search
             onSearchChange={this.handleSearchChange}
             onResultSelect={this.handleResultSelect}
@@ -129,12 +128,11 @@ class Navbar extends React.Component {
             {...this.props}
           />
         </Segment>
-        <Segment basic style={{marginLeft: '100px'}}>
+        <Segment basic >
           <Select placeholder={this.state.genre ? genre : "Browse Subgenres"} options={genreOptions}/>
         </Segment>
         </Segment.Group>
 
-      </Container>
 
     );
   }
