@@ -30,7 +30,7 @@ class App extends Component {
       <div className="App">
       <div />
         <Container>
-          <Rail position='left' internal>
+          <Rail position='left' internal {...Responsive.onlyComputer}>
             <Navbar />
           </Rail>
 
