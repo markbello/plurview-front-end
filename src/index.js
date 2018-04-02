@@ -10,8 +10,8 @@ import rootReducer from './reducers/rootReducer';
 import registerServiceWorker from './registerServiceWorker';
 import {BrowserRouter} from 'react-router-dom';
 
-// const store = createStore(rootReducer, applyMiddleware(reduxThunk))
-const store = createStore(rootReducer, compose(applyMiddleware(reduxThunk), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()) )
+const store = createStore(rootReducer, applyMiddleware(reduxThunk))
+// const store = createStore(rootReducer, compose(applyMiddleware(reduxThunk), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()) )
 
 ReactDOM.render(
    <Provider store={store}>
