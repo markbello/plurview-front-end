@@ -10,6 +10,7 @@ import RaveList from './components/raves/raveList'
 import Navbar from './components/app/navbar'
 import { Container, Segment, Rail, Responsive, Grid } from 'semantic-ui-react'
 import {Route, Switch, Redirect} from 'react-router-dom'
+import Logo from './components/app/logo'
 
 class App extends Component {
 
@@ -31,6 +32,7 @@ class App extends Component {
         <Grid stackable padded>
           <Grid.Row>
             <Grid.Column width={2} padded>
+              <Logo />
               <Navbar />
             </Grid.Column>
             <Grid.Column>
