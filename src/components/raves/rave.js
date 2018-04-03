@@ -5,7 +5,6 @@ import Artist from '../artists/artist'
 import { Card, Button, Loader, Menu, Grid, Segment, Header } from 'semantic-ui-react'
 import _ from 'lodash'
 import { findNewArtist } from '../../actions/index'
-import DynamicSVG from '../app/dynamicSVG'
 
 
 class Rave extends React.Component {

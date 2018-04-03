@@ -4,7 +4,6 @@ import Genre from '../genres/genre'
 import Rave from './rave'
 import ArtistList from '../artists/artistList'
 import { Card, Segment, Loader, Sticky, Rail, Button, Menu, Grid, Header, Container, Image } from 'semantic-ui-react'
-import DynamicSVG from '../app/dynamicSVG';
 import moment from 'moment'
 import logo from '../../assets/raves-header.svg'
 

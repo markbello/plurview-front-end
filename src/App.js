@@ -8,7 +8,7 @@ import ArtistList from './components/artists/artistList'
 import GenreList from './components/genres/genreList'
 import RaveList from './components/raves/raveList'
 import Navbar from './components/app/navbar'
-import { Container, Segment, Rail } from 'semantic-ui-react'
+import { Container, Segment, Rail, Responsive, Grid } from 'semantic-ui-react'
 import {Route, Switch, Redirect} from 'react-router-dom'
 
 class App extends Component {
@@ -27,21 +27,21 @@ class App extends Component {
   render() {
 
     return (
-      <div className="App">
-      <div />
-        <Container>
-          <Rail position='left' internal {...Responsive.onlyComputer}>
-            <Navbar />
-          </Rail>
 
-          <Switch>
-            <Route path='/' render={() => <RaveList />} />
-            <Route path='/artists/' render={() => <ArtistList />} />
-            <Route path='/genres/' render={() => <GenreList />} />
-          </Switch>
+        <Grid stackable>
+          <Grid.Row>
+            <Grid.Column width={2} padded>
+              <Navbar />
+            </Grid.Column>
+            <Grid.Column>
+              <Switch>
+                <Route path='/' render={() => <RaveList />} />
 
-        </Container>
-      </div>
+              </Switch>
+            </Grid.Column>
+
+          </Grid.Row>
+        </Grid>
     );
   }
 }
@@ -51,3 +51,6 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, actions)(App)
+
+// <Route path='/artists/' render={() => <ArtistList />} />
+// <Route path='/genres/' render={() => <GenreList />} />

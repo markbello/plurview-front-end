@@ -1,15 +1,11 @@
 import React from 'react'
-import { Input, Menu, Form, Button, Select, Radio, Label, Search, Image, Segment, Sticky, Container } from 'semantic-ui-react'
+import { Select, Search, Segment} from 'semantic-ui-react'
 import { filterArtists, sortArtists, filterGenre, loadGenreArtists, findNewArtist } from '../../actions/index'
 import {connect} from 'react-redux'
 import _ from 'lodash'
 
-import logo from '../../assets/ticket-logo.svg'
-
 
 class Navbar extends React.Component {
-
-
 
   state = {
     sortingMetric: '',
@@ -84,7 +80,6 @@ class Navbar extends React.Component {
     const genreOptions = this.props.genres.map((genre) => {
       return  {
           text: `${genre.name}`,
-          value: genre,
           onClick: () => {
             this.setState({genre: `${genre.name}`},() => this.props.loadGenreArtists(genre))},
           key: `genre-option-${genre.id}`,
@@ -92,46 +87,40 @@ class Navbar extends React.Component {
         }
       })
 
-    const sortingMetrics = ["Loudness", "Valence", "Danceability", "Tempo", "Popularity", "Followers"]
-
-    const sortingOptions = sortingMetrics.map((metric) => {
-      return  {
-          text: `${metric}`,
-          value: metric.toLowerCase(),
-          onClick: () => {this.handleSortChange(metric)},
-          key: `metric-option-${metric}`,
-          active: genre === this.props.sortingMetric
-        }
-      })
+    // const sortingMetrics = ["Loudness", "Valence", "Danceability", "Tempo", "Popularity", "Followers"]
+    //
+    // const sortingOptions = sortingMetrics.map((metric) => {
+    //   return  {
+    //       text: `${metric}`,
+    //       value: metric.toLowerCase(),
+    //       onClick: () => {this.handleSortChange(metric)},
+    //       key: `metric-option-${metric}`,
+    //       active: genre === this.props.sortingMetric
+    //     }
+    //   })
 
     // this.props.activeGenre.length > 0 ? selectOptionText = this.props.genres.find((genre) => genre.id === this.props.activeGenre).name : console.log( "No active genre yet")
 
     const { isLoading, value, results, genre } = this.state
 
     return (
-        <Segment.Group  style={{background: 'transparent', marginTop: '100px', position: 'fixed'}}>
-          <Segment basic >
-
-            <img src={logo} width="200px"/>
-          </Segment>
-
-          <Segment basic style={{marginTop: '100px'}}>
-          <Search
-            onSearchChange={this.handleSearchChange}
-            onResultSelect={this.handleResultSelect}
-            results={results}
-            value={value}
-            scrolling
-            placeholder={'Search for an Artist'}
-            resultRenderer={({name}) => <Segment basic content={name} />}
-            noResultsMessage={<FindArtist artist={this.state.newArtist}/>}
-            {...this.props}
-          />
-        </Segment>
+      <Segment.Group style={{background: 'transparent'}}>
         <Segment basic >
-          <Select placeholder={this.state.genre ? genre : "Browse Subgenres"} options={genreOptions}/>
-        </Segment>
-        </Segment.Group>
+        <Search
+          onSearchChange={this.handleSearchChange}
+          onResultSelect={this.handleResultSelect}
+          results={results}
+          value={value}
+          placeholder={'Search for an Artist'}
+          resultRenderer={({name}) => <Segment basic content={name} />}
+          noResultsMessage={<FindArtist artist={this.state.newArtist}/>}
+          {...this.props}
+        />
+      </Segment>
+      <Segment basic >
+        <Select placeholder={this.state.genre ? genre : "Browse Subgenres"} options={genreOptions}/>
+      </Segment>
+    </Segment.Group>
 
 
     );
@@ -147,3 +136,5 @@ export default connect(mapStateToProps, { filterArtists, sortArtists, filterGenr
 // <Menu.Item>
 //   <Select options={sortingOptions} placeholder={this.state.sortingMetric ? this.state.sortingMetric : "Sort Artists By"} />
 // </Menu.Item>
+
+// style={{background: 'transparent', marginTop: '100px', position: 'fixed'}}
