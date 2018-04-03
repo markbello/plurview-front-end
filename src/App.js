@@ -28,7 +28,7 @@ class App extends Component {
 
     return (
 
-        <Grid stackable>
+        <Grid stackable padded>
           <Grid.Row>
             <Grid.Column width={2} padded>
               <Navbar />

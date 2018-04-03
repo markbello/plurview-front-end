@@ -29,7 +29,7 @@ class RaveList extends React.Component {
     const { contextRef } = this.state
 
     return (
-        <Segment basic style={{marginLeft: "150px", marginTop: "50px"}}>
+        <Segment basic >
             <Grid stackable>
               {this.props.activeArtists.length > 0 ? <ArtistList /> : null }
               <Segment basic>
@@ -105,3 +105,5 @@ export default connect(mapStateToProps)(RaveList)
 //
 //   </Rail>
 // </div>
+
+// style={{marginLeft: "150px", marginTop: "50px"}}
