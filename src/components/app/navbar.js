@@ -111,13 +111,14 @@ class Navbar extends React.Component {
           onResultSelect={this.handleResultSelect}
           results={results}
           value={value}
+          fluid
           placeholder={'Search for an Artist'}
           resultRenderer={({name}) => <Segment basic content={name} />}
           noResultsMessage={<FindArtist artist={this.state.newArtist}/>}
           {...this.props}
         />
       </Segment>
-      <Segment basic >
+      <Segment basic fluid>
         <Select placeholder={this.state.genre ? genre : "Browse Subgenres"} options={genreOptions}/>
       </Segment>
     </Segment.Group>
