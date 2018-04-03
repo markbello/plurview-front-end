@@ -31,7 +31,7 @@ class App extends Component {
 
         <Grid stackable padded>
           <Grid.Row>
-            <Grid.Column width={2} padded centered>
+            <Grid.Column width={3}>
               <Logo />
 
             </Grid.Column>

@@ -32,9 +32,10 @@ class RaveList extends React.Component {
         <Segment basic >
             <Grid stackable>
               {this.props.activeArtists.length > 0 ? <ArtistList /> : null }
-              <Segment basic>
+              <Segment basic >
                 <Image src={logo} centered size="tiny" />
               </Segment>
+              {this.state.loading ? <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100vh', width: '100vw', justifyContent: 'center'}}><Loader inverted active><h2>Checking IDs</h2></Loader></div> : null}
               {Object.keys(this.props.raves).length > 0 ? Object.keys(this.props.raves).map((key) =>
                 <Grid.Row>
                   <Segment.Group>
@@ -51,7 +52,7 @@ class RaveList extends React.Component {
 
               </Grid.Row>)
 
-              : null }
+              : null  }
             </Grid>
 
 

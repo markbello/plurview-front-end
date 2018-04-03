@@ -1,8 +1,9 @@
 import logoImage from '../../assets/ticket-logo.svg'
+import {Image} from 'semantic-ui-react'
 import React from 'react'
 
 const Logo = (props) => {
-  return (<img src={logoImage} width="80%" textAlign="center"/>)
+  return (<Image src={logoImage} fluid />)
 }
 
 export default Logo
