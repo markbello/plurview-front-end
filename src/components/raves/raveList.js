@@ -30,7 +30,7 @@ class RaveList extends React.Component {
 
     return (
         <Segment basic style={{marginLeft: "150px", marginTop: "50px"}}>
-            <Grid>
+            <Grid stackable>
               {this.props.activeArtists.length > 0 ? <ArtistList /> : null }
               <Segment basic>
                 <Image src={logo} centered size="tiny" />

@@ -81,7 +81,7 @@ class Rave extends React.Component {
           </Segment>
 
 
-          <Grid container id={`rave-${this.props.rave.id}`} columns={3} padded inverted>
+          <Grid container id={`rave-${this.props.rave.id}`} columns={3} padded inverted stackable>
               {this.state.raveArtists.length > 0 ? this.state.raveArtists.map((raveArtist, idx) =>
                 <Grid.Column>
 
