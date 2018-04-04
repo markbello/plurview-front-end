@@ -29,20 +29,14 @@ class App extends Component {
 
     return (
 
-        <Grid stackable padded>
-          <Grid.Row>
-            <Grid.Column width={3}>
-              <Logo />
+        <Grid stackable padded >
+          <Logo />
+          
+          <Switch>
+            <Route path='/' render={() => <RaveList />} />
 
-            </Grid.Column>
-            <Grid.Column>
-              <Switch>
-                <Route path='/' render={() => <RaveList />} />
+          </Switch>
 
-              </Switch>
-            </Grid.Column>
-
-          </Grid.Row>
         </Grid>
     );
   }
@@ -56,3 +50,7 @@ export default connect(mapStateToProps, actions)(App)
 
 // <Route path='/artists/' render={() => <ArtistList />} />
 // <Route path='/genres/' render={() => <GenreList />} />
+
+// <Grid.Column width={3}>
+//
+// </Grid.Column>
