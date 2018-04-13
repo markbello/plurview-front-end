@@ -1,13 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Genre from '../genres/genre'
 import Rave from './rave'
-import ArtistList from '../artists/artistList'
-import { Card, Segment, Loader, Sticky, Rail, Button, Menu, Grid, Header, Container, Image } from 'semantic-ui-react'
+import { Segment, Loader, Grid, Header, } from 'semantic-ui-react'
 import moment from 'moment'
-import logo from '../../assets/raves-header.svg'
-
-
 
 class RaveList extends React.Component {
 
@@ -16,23 +11,18 @@ class RaveList extends React.Component {
   }
 
   componentWillReceiveProps(nextProps){
-    this.setState({loading: false})
+    this.props != nextProps ? this.setState({loading: false}) : null
   }
 
-  componentShouldUpdate(nextProps){
+  shouldComponentUpdate(nextProps){
     nextProps.raves.length > this.props.raves.length
   }
 
-  handleContextRef = contextRef => this.setState({ contextRef })
-
   render() {
-    const { contextRef } = this.state
 
     return (
       <React.Fragment>
-      {this.state.loading ?
-
-            <Loader inverted active><h2>Checking IDs</h2></Loader> : null}
+      {this.state.loading ? <Loader inverted active><h2>Checking IDs</h2></Loader> : null}
 
         <Grid.Row>
 
@@ -62,7 +52,7 @@ class RaveList extends React.Component {
         </Grid.Row>
 
       </React.Fragment>
-    );
+    )
   }
 }
 
@@ -71,50 +61,3 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps)(RaveList)
-
-// { this.state.loading ? <Loader active inverted /> : this.props.raves.keys.map((date) => <Grid.Row columns={3}>{date}</Grid.Row>) }
-
-// <Rail position='right'>
-//   <Sticky context={contextRef} offset={200}>
-//     <Menu basic vertical inverted borderless>
-//
-//       <Menu.Item>
-//         <Button color='pink' circular>Big Room (4)</Button>
-//       </Menu.Item>
-//
-//       <Menu.Item>
-//         <Button color='green' circular>Dubstep (2)</Button>
-//       </Menu.Item>
-//       <Menu.Item>
-//         <Button color='yellow' circular>Trap (1)</Button>
-//       </Menu.Item>
-//     </Menu>
-//   </Sticky>
-// </Rail>
-
-// <div ref={this.handleContextRef}>
-//   <Rail position='left'>
-//     <Sticky context={contextRef} offset={200}>
-//       <Menu basic vertical inverted borderless>
-//         <Menu.Item>
-//           <Button color='red' circular>House (3)</Button>
-//         </Menu.Item>
-//         <Menu.Item>
-//           <Button color='blue' circular>Trance (6)</Button>
-//         </Menu.Item>
-//         <Menu.Item>
-//           <Button color='violet' circular>Bass Music (5)</Button>
-//         </Menu.Item>
-//       </Menu>
-//     </Sticky>
-//
-//   </Rail>
-// </div>
-
-// style={{marginLeft: "150px", marginTop: "50px"}}
-
-// <Segment basic >
-//   <Image src={logo} centered size="tiny" />
-// </Segment>
-
-// {this.state.loading ? <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100vw', justifyContent: 'center'}}><Loader inverted active><h2>Checking IDs</h2></Loader></div> : null}
