@@ -6,7 +6,7 @@ const Logo = () => {
   return (
     <Grid.Row centered>
       <Segment basic padded>
-        <Image src={logoImage} size='medium' centered verticalAlign='middle' centered />
+        <Image src={logoImage} size='medium' centered verticalAlign='middle' />
       </Segment>
     </Grid.Row>
     )
