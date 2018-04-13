@@ -14,9 +14,9 @@ class RaveList extends React.Component {
     this.props != nextProps ? this.setState({loading: false}) : null
   }
 
-  shouldComponentUpdate(nextProps){
-    nextProps.raves.length > this.props.raves.length
-  }
+  // shouldComponentUpdate(nextProps){
+  //   nextProps.raves.length > this.props.raves.length
+  // }
 
   render() {
 
