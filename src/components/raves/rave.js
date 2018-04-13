@@ -2,10 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { updateRelatedArtists } from '../../actions/index'
 import Artist from '../artists/artist'
-import { Card, Button, Loader, Menu, Grid, Segment, Header } from 'semantic-ui-react'
-import _ from 'lodash'
+import { Button, Grid, Segment, Header } from 'semantic-ui-react'
 import { findNewArtist } from '../../actions/index'
-
 
 class Rave extends React.Component {
 
@@ -28,14 +26,12 @@ class Rave extends React.Component {
           storedArtists.push(test)
         }
         else{
-
             // fetch(`https://plurview-api.herokuapp.com/api/v1/artists/find_new/${artist.name}`)
             // .then(res => res.json())
             // .then(json => {
             //   console.log(json)
             //   this.setState({newArtist: json}, () => this.props.findNewArtist(this.state.newArtist.id))
             // })
-
         }
       }
     })}
@@ -72,21 +68,16 @@ class Rave extends React.Component {
 
   render() {
     return (
-      <Segment.Group basic >
+      <Segment.Group >
           <Segment basic inverted>
             <Header as={"h2"}>{this.props.rave.venue.name}</Header>
             <div className={'bordertest'} style={this.state.raveGradient}/>
             <em>{this.props.rave.venue.location} {this.props.rave.ages ? <span>({this.props.rave.ages})</span> : null} </em>
-
           </Segment>
-
-
           <Grid container id={`rave-${this.props.rave.id}`} columns={3} padded inverted stackable>
               {this.state.raveArtists.length > 0 ? this.state.raveArtists.map((raveArtist, idx) =>
-                <Grid.Column>
-
+                <Grid.Column key={`raveList-raveArtist-${idx}`}>
                     <Artist artist={raveArtist[0]} />
-
                 </Grid.Column>
               ) : null}
           </Grid>
@@ -105,38 +96,3 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, { updateRelatedArtists, findNewArtist })(Rave)
-
-// {this.props.rave.artistList.map((artist) => artist.name )}
-// {this.state.artists.map((artist) => <Artist artist={artist} />)}
-
-// <Card.Content>
-//   <Card.Header>{this.props.artist.name} ({this.props.artist.id})</Card.Header>
-//
-//   { this.state.loading ? <Loader active /> : <Button onClick={() => this.setState({loading: true}, () => this.handleUpdateRelatedArtists(this.props.artist))}>Update Related Artists</Button>}
-//   { this.state.loading ? <Loader active /> : <Button onClick={() => this.setState({loading: true}, () => this.inferGradient())}>Infer Gradient</Button>}
-//   { this.state.hsl ? <div style={{height: '20px', width: '100%', background: `linear-gradient(to right, ${this.state.hsl}) `}}/> : null }
-//     <Menu basic borderless>
-//       <Menu.Item>
-//         <Button color='red' circular value='House' onClick={() => this.registerVibes("house", this.props.artist.id)}>{this.state.houseCount}</Button>
-//       </Menu.Item>
-//       <Menu.Item>
-//         <Button color='pink' circular value='Big Room' onClick={() => this.registerVibes("big_room", this.props.artist.id)}>{this.state.bigRoomCount}</Button>
-//       </Menu.Item>
-//       <Menu.Item>
-//         <Button color='yellow' circular value='Trap' onClick={() => this.registerVibes("trap_music", this.props.artist.id)}>{this.state.trapCount}</Button>
-//       </Menu.Item>
-//       <Menu.Item>
-//         <Button color='green' circular value='Dubstep' onClick={() => this.registerVibes("dubstep", this.props.artist.id)}>{this.state.dubstepCount}</Button>
-//       </Menu.Item>
-//       <Menu.Item>
-//         <Button color='blue' circular value='Trance' onClick={() => this.registerVibes("trance", this.props.artist.id)}>{this.state.tranceCount}</Button>
-//       </Menu.Item>
-//       <Menu.Item>
-//         <Button color='violet' circular value='Bass Music' onClick={() => this.registerVibes("bass_music", this.props.artist.id)}>{this.state.bassMusicCount}</Button>
-//       </Menu.Item>
-//   </Menu>
-//
-// </Card.Content>
-
-// <Segment.Group style={{background: "transparent"}} horizontal compact>
-// <Button onClick={() => this.processGradient()}>CLICK</Button>

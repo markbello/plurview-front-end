@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { updateRelatedArtists } from '../../actions/index'
-import { Card, Button, Loader, Menu, Segment, Label, List } from 'semantic-ui-react'
+import { Loader, Segment, List } from 'semantic-ui-react'
 
 class ArtistDetails extends React.Component {
 
@@ -22,7 +22,7 @@ class ArtistDetails extends React.Component {
     .then(relatedArtists => this.setState({
       relatedArtists: relatedArtists,
       loading: false
-    }), console.log("ARtist details ", this.state, this.props.artist))
+    }))
   }
 
   fetchSubGenres = () => {
@@ -31,7 +31,7 @@ class ArtistDetails extends React.Component {
     .then(subGenres => this.setState({
       subGenres: subGenres,
       loading: false
-    }), console.log("ARtist genres ", this.state, this.props.artist))
+    }))
   }
 
   handleUpdateRelatedArtists = (artist) => {
@@ -41,12 +41,9 @@ class ArtistDetails extends React.Component {
   }
 
   inferGradient = () => {
-    // console.log(this.props.artist.id)
-    // console.dir(this.props)
     fetch(`https://plurview-api.herokuapp.com/api/v1/artists/${this.props.artist.id}/infer_gradient`)
     .then(res => res.json())
     .then(json => {
-      // console.log(json)
       this.setState({
         loading: false,
         trapCount: json.trap_music,
@@ -83,7 +80,6 @@ class ArtistDetails extends React.Component {
                 <List>
 
                 {this.state.subGenres.filter((subGenre) => subGenre.name !== "edm").slice(0,4).map((subGenre) =>
-
                     <List.Item value={'-'}>{subGenre.name}</List.Item>
                   )}
               </List>
@@ -103,5 +99,3 @@ class ArtistDetails extends React.Component {
 }
 
 export default connect(null, {updateRelatedArtists})(ArtistDetails)
-
-// <Button onClick={() => this.setState({loading: true}, () => this.handleUpdateRelatedArtists(this.props.artist))}>Update Related Artists</Button>

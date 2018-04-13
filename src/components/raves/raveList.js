@@ -11,7 +11,7 @@ class RaveList extends React.Component {
   }
 
   componentWillReceiveProps(nextProps){
-    this.props !== nextProps ? this.setState({loading: false}) : null
+    this.setState({loading: false})
   }
 
   // shouldComponentUpdate(nextProps){
@@ -32,15 +32,15 @@ class RaveList extends React.Component {
           <Grid.Column>
             <Segment basic >
               <Grid stackable>
-                {Object.keys(this.props.raves).length > 0 ? Object.keys(this.props.raves).map((key) =>
-                  <Grid.Row>
+                {Object.keys(this.props.raves).length > 0 ? Object.keys(this.props.raves).map((key,idx) =>
+                  <Grid.Row key={`raveDate-${idx}`}>
                     <Segment.Group>
                       <Segment basic>
                         {<Header inverted as={'h1'}><em>{moment(key).format('dddd, MMMM Do')}</em></Header>}
                       </Segment>
                       <Segment.Group>
-                        {this.props.raves[key].map((rave) =>
-                          rave.artistList.length > 0 ? <Rave rave={rave} /> : null
+                        {this.props.raves[key].map((rave, idx) =>
+                          rave.artistList.length > 0 ? <Rave rave={rave} key={`raveArtist-${idx}`} /> : null
                         ) }
                       </Segment.Group>
                     </Segment.Group>
