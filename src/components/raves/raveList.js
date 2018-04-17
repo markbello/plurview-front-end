@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Rave from './rave'
-import { Segment, Loader, Grid, Header, } from 'semantic-ui-react'
+import { Segment, Loader, Grid, Header } from 'semantic-ui-react'
 import moment from 'moment'
 
 class RaveList extends React.Component {
@@ -9,6 +9,7 @@ class RaveList extends React.Component {
   state = {
     loading: true
   }
+
 
   componentWillReceiveProps(nextProps){
     this.setState({loading: false})
@@ -19,7 +20,6 @@ class RaveList extends React.Component {
   // }
 
   render() {
-
     return (
       <React.Fragment>
       {this.state.loading ? <Loader inverted active><h2>Checking IDs</h2></Loader> : null}
@@ -33,11 +33,11 @@ class RaveList extends React.Component {
             <Segment basic >
               <Grid stackable>
                 {Object.keys(this.props.raves).length > 0 ? Object.keys(this.props.raves).map((key,idx) =>
-                  <Grid.Row key={`raveDate-${idx}`}>
+                  <Grid.Row key={`raveDate-${idx}`} >
                     <Segment.Group>
-                      <Segment basic>
-                        {<Header inverted as={'h1'}><em >{moment(key).format('dddd, MMMM Do')}</em></Header>}
-                      </Segment>
+                        <Segment basic>
+                          {<Header inverted as={'p'} style={{fontFamily: "'Inconsolata', monospace"}}>{moment(key).format('dddd, MMMM Do')}</Header>}
+                        </Segment>
                       <Segment.Group>
                         {this.props.raves[key].map((rave, idx) =>
                           rave.artistList.length > 0 ? <Rave rave={rave} key={`raveArtist-${idx}`} /> : null
