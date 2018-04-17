@@ -40,8 +40,9 @@ em.rave-location {
   }
   .bordertest{
     margin-top:4em;
-    height: 3px;
-    width: 100%;
+    height: 1px;
+    width: 75%;
+    margin-bottom: 1em;
   }
 
   em.rave-location {

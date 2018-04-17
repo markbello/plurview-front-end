@@ -72,7 +72,7 @@ class Rave extends React.Component {
       <Segment.Group >
 
           <Segment basic inverted>
-            <Header className={'rave-location'} as={"h3"}>{this.props.rave.venue.name} </Header>
+            <Header className={'rave-location'} as={"p"} style={{fontFamily: "'Inconsolata', monospace"}}>{this.props.rave.venue.name} </Header>
               <em className={'rave-location'} >{this.props.rave.venue.location} {this.props.rave.ages ? <span>({this.props.rave.ages})</span> : null} <a href={this.props.rave.ticketLink}><Image style={{marginLeft: '25px'}} src={ticketImage} size='mini' centered verticalAlign='middle' /></a></em>
 
               <div className={'bordertest'} style={this.state.raveGradient}/>
