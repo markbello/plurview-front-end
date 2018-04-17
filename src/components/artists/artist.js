@@ -95,7 +95,7 @@ class Artist extends React.Component {
     return (
       <Card link onClick={() => this.toggleDetails()} as={'div'}>
         <Card.Content>
-          <Card.Header as={'h3'}>{this.props.artist.name} <Icon name='chevron right' style={{float: 'right', transition: 'ease-in .1s', color: 'white'}} rotated={this.state.active ? 'clockwise' : null}/></Card.Header>
+          <Card.Header as={'h3'} >{this.props.artist.name} <Icon name='chevron right' style={{float: 'right', transition: 'ease-in .1s', color: 'white'}} rotated={this.state.active ? 'clockwise' : null}/></Card.Header>
         </Card.Content>
         { this.state.active ? <ArtistDetails artist={this.props.artist} /> : null}
         { this.props.artist.hsl ? <div style={{height: '3px', width: '100%', background: `linear-gradient(to right, ${this.state.hsl}) `}}/> : null }

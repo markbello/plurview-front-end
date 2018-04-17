@@ -36,7 +36,7 @@ class RaveList extends React.Component {
                   <Grid.Row key={`raveDate-${idx}`} >
                     <Segment.Group>
                         <Segment basic>
-                          {<Header inverted as={'p'} style={{fontFamily: "'Inconsolata', monospace"}}>{moment(key).format('dddd, MMMM Do')}</Header>}
+                          {<Header inverted as={'p'} style={{fontFamily: "'Inconsolata', monospace"}}><em>{moment(key).format('dddd, MMMM Do')}</em></Header>}
                         </Segment>
                       <Segment.Group>
                         {this.props.raves[key].map((rave, idx) =>
