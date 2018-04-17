@@ -64,19 +64,19 @@ class ArtistDetails extends React.Component {
 
         <React.Fragment>
         <Segment basic >
-          {this.state.relatedArtists.length > 0 ? <em>Related Artists:</em> : <div><em onClick={this.handleUpdateRelatedArtists(this.props.artist)}>Loading related artists...</em></div>}
+          {this.state.relatedArtists.length > 0 ? <em style={{color: 'white'}}>Related Artists:</em> : <div><em style={{color: 'white'}} onClick={this.handleUpdateRelatedArtists(this.props.artist)}>Loading related artists...</em></div>}
           {this.state.loading ? <Loader active inverted /> :
             this.state.relatedArtists.sort((a,b) => a.followers > b.followers).slice(0,4).map((artist) =>
-              <Segment basic>
+              <Segment basic inverted>
                 {artist.name}
-                <div style={{width: "100%", height: "10px", background: `linear-gradient(to right, ${artist.hsl}) `}}/>
+                <div style={{width: "100%", height: "3px", background: `linear-gradient(to right, ${artist.hsl}) `}}/>
               </Segment>
             )}
           {this.state.subGenres.length > 0 ?
 
             <React.Fragment>
-              <em>Subgenres:</em>
-              <Segment basic>
+              <em style={{color: 'white'}}>Subgenres:</em>
+              <Segment basic inverted>
                 <List>
 
                 {this.state.subGenres.filter((subGenre) => subGenre.name !== "edm").slice(0,4).map((subGenre) =>

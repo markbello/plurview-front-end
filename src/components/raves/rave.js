@@ -2,8 +2,9 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { updateRelatedArtists } from '../../actions/index'
 import Artist from '../artists/artist'
-import { Button, Grid, Segment, Header } from 'semantic-ui-react'
+import { Button, Grid, Segment, Header, Image } from 'semantic-ui-react'
 import { findNewArtist } from '../../actions/index'
+import ticketImage from '../../assets/ticket.svg'
 
 class Rave extends React.Component {
 
@@ -69,10 +70,13 @@ class Rave extends React.Component {
   render() {
     return (
       <Segment.Group >
+
           <Segment basic inverted>
-            <Header as={"h2"}>{this.props.rave.venue.name}</Header>
-            <div className={'bordertest'} style={this.state.raveGradient}/>
-            <em>{this.props.rave.venue.location} {this.props.rave.ages ? <span>({this.props.rave.ages})</span> : null} </em>
+            <Header className={'rave-location'} as={"h2"}>{this.props.rave.venue.name} </Header>
+              <em className={'rave-location'} >{this.props.rave.venue.location} {this.props.rave.ages ? <span>({this.props.rave.ages})</span> : null} <a href={this.props.rave.ticketLink}><Image style={{marginLeft: '25px'}} src={ticketImage} size='mini' centered verticalAlign='middle' /></a></em>
+
+              <div className={'bordertest'} style={this.state.raveGradient}/>
+
           </Segment>
           <Grid container id={`rave-${this.props.rave.id}`} columns={3} padded inverted stackable>
               {this.state.raveArtists.length > 0 ? this.state.raveArtists.map((raveArtist, idx) =>
@@ -81,9 +85,7 @@ class Rave extends React.Component {
                 </Grid.Column>
               ) : null}
           </Grid>
-          <Segment basic>
-            <Button inverted circular color={"green"} href={this.props.rave.ticketLink} target={'_blank'}>Buy Tickets</Button>
-          </Segment>
+
         </Segment.Group>
     );
   }

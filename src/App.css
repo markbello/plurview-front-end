@@ -1,6 +1,5 @@
 
 .gradient-border{
-
   background: linear-gradient(to right, rgb(185, 111, 126), rgb(99, 74, 79));
 }
 
@@ -12,19 +11,65 @@
 .bordertest {
     content:'';
     width:75%;
-    height:2px;
+    height:1px;
     margin-bottom: 1em;
+    margin-top: 1em;
 }
 
 .logo{
   background-image: url('./assets/ticket-logo-2.svg');
-  /* background-repeat: repeat; */
-  /* height: 250px; */
-  /* max-width: 250px; */
   height: 350px;
-  /* margin-top: 0px; */
-  /* z-index: 10000; */
-  /* position: fixed;
-  top: 0;
-  left: 0; */
 }
+
+
+h2.rave-location {
+  display: inline;
+}
+
+em.rave-location {
+  float: right;
+  margin-right: 25%;
+}
+
+
+@media screen and (max-width: 480px){
+
+  /* h2.rave-location {
+    display: block;
+  } */
+
+  .bordertest{
+    margin-top: 2em;
+  }
+
+  em.rave-location {
+    float: left;
+    margin-right: 0px;
+    margin-bottom: .5em;
+    display: block;
+  }
+}
+
+/* .card:before, .card:after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: -3px;
+
+}
+.card:before {
+  top: -3px;
+  width: 3px;
+  background-image: -webkit-gradient(linear, 0 100%, 0 0, from(#000), to(transparent));
+  background-image: -webkit-linear-gradient(transparent, #fff);
+  background-image: -moz-linear-gradient(transparent, #fff);
+  background-image: -o-linear-gradient(transparent, #fff);
+}
+.card:after {
+  right: -3px;
+  height: 3px;
+  background-image: -webkit-gradient(linear, 0 0, 100% 0, from(#000), to(transparent));
+  background-image: -webkit-linear-gradient(left, #fff, transparent);
+  background-image: -moz-linear-gradient(left, #fff, transparent);
+  background-image: -o-linear-gradient(left, #fff, transparent);
+} */
