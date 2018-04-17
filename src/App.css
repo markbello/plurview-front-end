@@ -34,12 +34,12 @@ em.rave-location {
 
 @media screen and (max-width: 480px){
 
-  /* h2.rave-location {
+  h2.rave-location {
     display: block;
-  } */
-
+  }
   .bordertest{
-    margin-top: 2em;
+    margin-top:4em;
+    height: 1px;
   }
 
   em.rave-location {
