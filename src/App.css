@@ -10,11 +10,11 @@
 
 
 .bordertest {
-    content:'';
-    width:75%;
-    height:1px;
-    margin-bottom: 1em;
-    margin-top: 1em;
+  content:'';
+  width:75%;
+  height:2px;
+  margin-bottom: 1em;
+  margin-top: 1em;
 }
 
 .logo{
@@ -30,6 +30,7 @@ h2.rave-location {
 em.rave-location {
   float: right;
   margin-right: 25%;
+  margin-top: 1em;
 }
 
 
@@ -49,6 +50,7 @@ em.rave-location {
     float: left;
     margin-right: 0px;
     margin-bottom: .5em;
+    margin-top: 0px;
     display: block;
   }
 }
