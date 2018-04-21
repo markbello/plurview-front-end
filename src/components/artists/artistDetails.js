@@ -66,10 +66,10 @@ class ArtistDetails extends React.Component {
         <Segment basic >
           {this.state.relatedArtists.length > 0 ? <em style={{color: 'white'}}>Related Artists:</em> : <div><em style={{color: 'white'}} onClick={this.handleUpdateRelatedArtists(this.props.artist)}>Loading related artists...</em></div>}
           {this.state.loading ? <Loader active inverted /> :
-            this.state.relatedArtists.sort((a,b) => a.followers > b.followers).slice(0,4).map((artist) =>
-              <Segment basic inverted>
+            this.state.relatedArtists.sort((a,b) => a.followers > b.followers).slice(0,4).map((artist, idx) =>
+              <Segment basic inverted key={`artist-details-name-${idx}`}>
                 {artist.name}
-                <div style={{width: "100%", height: "3px", background: `linear-gradient(to right, ${artist.hsl}) `}}/>
+                <div style={{width: "100%", height: "1px", background: `linear-gradient(to right, ${artist.hsl}) `}}/>
               </Segment>
             )}
           {this.state.subGenres.length > 0 ?
@@ -79,16 +79,14 @@ class ArtistDetails extends React.Component {
               <Segment basic inverted>
                 <List>
 
-                {this.state.subGenres.filter((subGenre) => subGenre.name !== "edm").slice(0,4).map((subGenre) =>
-                    <List.Item value={'-'}>{subGenre.name}</List.Item>
+                {this.state.subGenres.filter((subGenre) => subGenre.name !== "edm").slice(0,4).map((subGenre, idx) =>
+                    <List.Item value={'-'} key={`artist-details-subgenre-${idx}`} >{subGenre.name}</List.Item>
                   )}
               </List>
             </Segment>
             </React.Fragment>
                : null}
-              <Segment basic>
 
-              </Segment>
         </Segment>
       </React.Fragment>
       }

@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { updateRelatedArtists } from '../../actions/index'
 import Artist from '../artists/artist'
-import { Grid, Segment, Header, Image } from 'semantic-ui-react'
+import { Grid, Segment, Header, Image, Card } from 'semantic-ui-react'
 import { findNewArtist } from '../../actions/index'
 import ticketImage from '../../assets/ticket.svg'
 
@@ -69,23 +69,23 @@ class Rave extends React.Component {
 
   render() {
     return (
-      <Segment.Group style={{marginTop: '3em'}}>
+      <Card fluid >
           <Segment basic inverted>
             <Header className={'rave-location'} as={"p"} ><em>{this.props.rave.venue.name} </em></Header>
-              <em className={'rave-location'} style={{fontSize: '.75em'}}>{this.props.rave.venue.location} {this.props.rave.ages ? <span>({this.props.rave.ages})</span> : null} <a href={this.props.rave.ticketLink}><Image style={{marginLeft: '25px'}} src={ticketImage} size='mini' centered verticalAlign='middle' /></a></em>
-
+            <em className={'rave-location'} style={{fontSize: '.75em'}}>{this.props.rave.venue.location} {this.props.rave.ages ? <span>({this.props.rave.ages})</span> : null}</em>
+              <a href={this.props.rave.ticketLink}><Image style={{marginLeft: '25px'}} src={ticketImage} size='mini' verticalAlign='middle' /></a>
               <div className={'bordertest'} style={this.state.raveGradient}/>
 
           </Segment>
-          <Grid container id={`rave-${this.props.rave.id}`} columns={3} padded inverted stackable>
+          <Grid container id={`rave-${this.props.rave.id}`} columns={1} padded inverted stackable>
               {this.state.raveArtists.length > 0 ? this.state.raveArtists.map((raveArtist, idx) =>
-                <Grid.Column key={`raveList-raveArtist-${idx}`}>
+                <Grid.Column key={`raveList-raveArtist-${idx}`} style={{marginLeft: '5%'}}>
                     <Artist artist={raveArtist[0]} />
                 </Grid.Column>
               ) : null}
           </Grid>
 
-        </Segment.Group>
+        </Card>
     );
   }
 }

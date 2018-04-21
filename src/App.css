@@ -28,9 +28,13 @@ h2.rave-location {
 }
 
 em.rave-location {
-  float: right;
+  float: left;
   margin-right: 25%;
   margin-top: 1em;
+}
+
+.rave-component {
+  max-width: 30%;
 }
 
 
@@ -40,10 +44,13 @@ em.rave-location {
     display: block;
   }
   .bordertest{
-    margin-top:4em;
     height: 1px;
     width: 75%;
     margin-bottom: 1em;
+  }
+
+  .rave-component{
+    max-width: 100%;
   }
 
   em.rave-location {

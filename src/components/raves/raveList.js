@@ -26,7 +26,7 @@ class RaveList extends React.Component {
 
         <Grid.Row>
 
-          <Grid.Column width={3}>
+          <Grid.Column width={2}>
           </Grid.Column>
 
           <Grid.Column>
