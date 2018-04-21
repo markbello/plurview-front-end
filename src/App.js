@@ -6,6 +6,8 @@ import RaveList from './components/raves/raveList'
 import { Grid } from 'semantic-ui-react'
 import {Route, Switch} from 'react-router-dom'
 import Logo from './components/app/logo'
+import About from './components/app/about'
+
 
 class App extends Component {
 

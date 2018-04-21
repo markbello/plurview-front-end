@@ -4,7 +4,7 @@ import React from 'react'
 
 const Logo = () => {
   return (
-    <Grid.Row centered>
+    <Grid.Row centered style={{marginTop: '25px'}}>
       <Segment basic padded>
         <Image src={logoImage} size='medium' centered verticalAlign='middle' />
       </Segment>

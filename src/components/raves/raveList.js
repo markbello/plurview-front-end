@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Rave from './rave'
+import About from '../app/about'
 import { Segment, Loader, Grid, Header } from 'semantic-ui-react'
 import moment from 'moment'
 
@@ -22,7 +23,16 @@ class RaveList extends React.Component {
   render() {
     return (
       <React.Fragment>
-      {this.state.loading ? <Loader inverted active><h2>Checking IDs</h2></Loader> : null}
+      {this.state.loading ? <Loader inverted active><h2>Checking IDs</h2></Loader> :
+        <Grid.Row>
+
+          <Grid.Column width={2}></Grid.Column>
+
+          <Grid.Column width={11}>
+            <About />
+          </Grid.Column>
+        </Grid.Row>
+      }
 
         <Grid.Row>
 
@@ -30,6 +40,8 @@ class RaveList extends React.Component {
           </Grid.Column>
 
           <Grid.Column>
+
+
             <Segment basic >
               <Grid stackable>
                 {Object.keys(this.props.raves).length > 0 ? Object.keys(this.props.raves).map((key,idx) =>
