@@ -69,22 +69,23 @@ class Rave extends React.Component {
 
   render() {
     return (
-      <Card fluid >
-          <Segment basic inverted>
-            <Header className={'rave-location'} as={"h3"} ><em>{this.props.rave.venue.name} </em><a href={this.props.rave.ticketLink}><Image style={{marginLeft: '25px'}} src={ticketImage} size='mini' verticalAlign='middle' /></a></Header>
-            <em className={'rave-location'} style={{fontSize: '.75em'}}>{this.props.rave.venue.location} {this.props.rave.ages ? <span>({this.props.rave.ages})</span> : null}</em>
+      <React.Fragment>
+        {this.state.raveArtists.length > 0 ? this.state.raveArtists.map((raveArtist, idx) =>
+        <Card fluid >
+            <Segment basic inverted>
+              <Header className={'rave-location'} as={"h3"} ><em>{this.props.rave.venue.name} </em></Header>
+              <em className={'rave-location'} style={{fontSize: '.75em'}}>{this.props.rave.venue.location} {this.props.rave.ages ? <span>({this.props.rave.ages})</span> : null}</em>
+                <a href={this.props.rave.ticketLink}><Image style={{marginLeft: '25px'}} src={ticketImage} size='mini' verticalAlign='middle' /></a>
+            </Segment>
+            <Grid container id={`rave-${this.props.rave.id}`} columns={1} inverted stackable>
+                  <Grid.Column key={`raveList-raveArtist-${idx}`} style={{marginLeft: '5%'}}>
+                      <Artist artist={raveArtist[0]} />
+                  </Grid.Column>
+            </Grid>
 
-
-          </Segment>
-          <Grid container id={`rave-${this.props.rave.id}`} columns={1} inverted stackable>
-              {this.state.raveArtists.length > 0 ? this.state.raveArtists.map((raveArtist, idx) =>
-                <Grid.Column key={`raveList-raveArtist-${idx}`} style={{marginLeft: '5%'}}>
-                    <Artist artist={raveArtist[0]} />
-                </Grid.Column>
-              ) : null}
-          </Grid>
-
-        </Card>
+          </Card>
+          ) : null}
+      </React.Fragment>
     );
   }
 }
