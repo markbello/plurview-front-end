@@ -11,33 +11,36 @@ class RaveList extends React.Component {
     loading: true
   }
 
-
   componentWillReceiveProps(nextProps){
     this.setState({loading: false})
   }
-
-  // shouldComponentUpdate(nextProps){
-  //   nextProps.raves.length > this.props.raves.length
-  // }
 
   render() {
     return (
       <React.Fragment>
       {this.state.loading ? <Loader inverted active><h2>Checking IDs</h2></Loader> :
+        <React.Fragment>
+          <Grid.Row>
+
+            <Grid.Column width={2}></Grid.Column>
+
+            <Grid.Column width={11}>
+              <About />
+            </Grid.Column>
+          </Grid.Row>
+          <Grid.Row>
+            <Grid.Column width={2}></Grid.Column>
+            <Grid.Column width={11}>
+              <Header inverted as='h2' textAlign='center'>Upcoming Events</Header>
+            </Grid.Column>
+          </Grid.Row>
+        </React.Fragment>
+      }
+
+
         <Grid.Row>
 
           <Grid.Column width={2}></Grid.Column>
-
-          <Grid.Column width={11}>
-            <About />
-          </Grid.Column>
-        </Grid.Row>
-      }
-
-        <Grid.Row>
-
-          <Grid.Column width={2}>
-          </Grid.Column>
 
           <Grid.Column>
 

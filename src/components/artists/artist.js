@@ -96,7 +96,7 @@ class Artist extends React.Component {
       <Segment basic link inverted onClick={() => this.toggleDetails()} as={'div'} className={'rave-component'}>
         <Header as={'p'} style={{fontFamily: "'Inconsolata', monospace"}}>{this.props.artist.name} <Icon name='chevron right' style={{float: 'right', transition: 'ease-in .1s', color: 'white'}} rotated={this.state.active ? 'clockwise' : null}/></Header>
         { this.state.active ? <ArtistDetails artist={this.props.artist} /> : null}
-        { this.props.artist.hsl ? <div style={{height: '1px', width: '100%', background: `linear-gradient(to right, ${this.state.hsl}) `}}/> : null }
+        { this.props.artist.hsl ? <div style={{height: '4px', width: '100%', background: `linear-gradient(to right, ${this.state.hsl}) `}}/> : null }
       </Segment>
 
 
