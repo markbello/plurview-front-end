@@ -48,7 +48,7 @@ class RaveList extends React.Component {
             <Segment basic >
               <Grid stackable>
                 {Object.keys(this.props.raves).length > 0 ? Object.keys(this.props.raves).map((key,idx) =>
-                  <Grid.Row key={`raveDate-${idx}`} >
+                  <Grid.Row id={`raveDate-${idx}`} key={`raveDate-${idx}`} >
                     <Segment.Group>
                         <Segment basic>
                           {<Header inverted as={'p'} style={{fontFamily: "'Inconsolata', monospace"}}><em>{moment(key).format('dddd, MMMM Do')}</em></Header>}
