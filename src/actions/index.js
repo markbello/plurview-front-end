@@ -1,6 +1,13 @@
+let API_URL
+
+process.env.REACT_APP_STAGE === 'dev'
+  ? API_URL = 'http://localhost:3001/api/v1'
+  : API_URL = 'https://plurview-api.herokuapp.com/api/v1'
+
 export const loadArtists = (artist) => {
+  // alert(`${API_URL}`)
   return function(dispatch){
-    return fetch('https://plurview-api.herokuapp.com/api/v1/artists')
+    return fetch(`${API_URL}/artists`)
     .then(res => res.json())
     .then(artists => {
       dispatch({
@@ -14,7 +21,7 @@ export const loadArtists = (artist) => {
 
 export const loadRaves = (locationId) => {
   return function(dispatch){
-    return fetch(`https://plurview-api.herokuapp.com/api/v1/raves`)
+    return fetch(`${API_URL}/raves`)
     .then(res => res.json())
     .then(json => {
       dispatch({
@@ -28,7 +35,7 @@ export const loadRaves = (locationId) => {
 
 export const loadGenres = (genres) => {
   return function(dispatch){
-    return fetch('https://plurview-api.herokuapp.com/api/v1/genres')
+    return fetch(`${API_URL}/genres`)
     .then(res => res.json())
     .then(genres => {
       dispatch({
@@ -41,7 +48,7 @@ export const loadGenres = (genres) => {
 
 export const loadGenreArtists = (genre) => {
   return function(dispatch){
-    return fetch(`https://plurview-api.herokuapp.com/api/v1/genres/${genre.id}`)
+    return fetch(`${API_URL}/genres/${genre.id}`)
     .then(res => res.json())
     .then(artists => {
       dispatch({
@@ -54,7 +61,7 @@ export const loadGenreArtists = (genre) => {
 
 export const updateRelatedArtists = (artist) => {
   return function(dispatch){
-    return fetch(`https://plurview-api.herokuapp.com/api/v1/artists/${artist.id}/find_related`)
+    return fetch(`${API_URL}/artists/${artist.id}/find_related`)
     .then(res => res.json())
     .then(artist => {
       dispatch({
@@ -67,7 +74,7 @@ export const updateRelatedArtists = (artist) => {
 
 export const findNewArtist = (artistId) => {
   return function(dispatch){
-    return fetch(`https://plurview-api.herokuapp.com/api/v1/artists/find_new`, {
+    return fetch(`${API_URL}/artists/find_new`, {
       headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
@@ -87,10 +94,6 @@ export const findNewArtist = (artistId) => {
     })
   }
 }
-
-
-
-
 
 export const sortArtists = (term) => {
   return { type: 'SORT_ARTISTS', payload: term}

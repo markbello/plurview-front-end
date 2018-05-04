@@ -20,11 +20,6 @@ div.ui.basic.inverted.segment{
   margin-top: 1em;
 }
 
-.logo{
-  background-image: url('./assets/ticket-logo-2.svg');
-  height: 350px;
-}
-
 em.rave-location {
   float: left;
   margin-right: 25%;
