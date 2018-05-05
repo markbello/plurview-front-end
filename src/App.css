@@ -1,23 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Inconsolata');
 
-.gradient-border{
-  background: linear-gradient(to right, rgb(185, 111, 126), rgb(99, 74, 79));
-}
-
-.basic-segment-group{
-  background: transparent;
-}
-
 div.ui.basic.inverted.segment{
   margin-bottom: 0px;
-}
-
-.bordertest {
-  content:'';
-  width:75%;
-  height:2px;
-  margin-bottom: 1em;
-  margin-top: 1em;
 }
 
 em.rave-location {
@@ -25,20 +9,71 @@ em.rave-location {
   margin-right: 25%;
 }
 
-.rave-component {
-  max-width: 30%;
-}
-
 h3.ui.header.rave-location {
   margin-bottom: 0px;
 }
 
+i.chevron.right.icon {
+  float: right;
+  transition: ease-in .1s;
+  color: white;
+}
 
+p.ui.header, h3.ui.header {
+  font-family: 'Inconsolata', monospace;
+}
+
+.artist-column {
+  margin-left: 5%;
+}
+
+.basic-segment-group{
+  background: transparent;
+}
+
+.logo-image {
+  margin-top: 25px;
+}
+
+.primary-gradient {
+  height: 4px;
+  width: 100%;
+}
+
+.rave-component {
+  max-width: 30%;
+}
+
+.secondary-gradient {
+  width: 100%;
+  height: 1px;
+}
+
+.ticket-link {
+  margin-left: 25px;
+}
+
+.ui.basic.segment em {
+  color: white;
+}
+
+#about-segment {
+  margin-left: 5%;
+  margin-right: 5%;
+}
 
 @media screen and (max-width: 480px){
 
   iframe{
     max-width: 100%;
+  }
+
+  em.rave-location {
+    float: left;
+    margin-right: 0px;
+    margin-bottom: .5em;
+    margin-top: 0px;
+    display: block;
   }
 
   h2.rave-location {
@@ -50,22 +85,9 @@ h3.ui.header.rave-location {
     margin-left: 5%;
   }
 
-  .bordertest{
-    height: 1px;
-    width: 75%;
-    margin-bottom: 1em;
-  }
-
   .rave-component{
     width: 346px;
     max-width: 100%;
   }
 
-  em.rave-location {
-    float: left;
-    margin-right: 0px;
-    margin-bottom: .5em;
-    margin-top: 0px;
-    display: block;
-  }
 }

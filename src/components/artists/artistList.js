@@ -53,7 +53,7 @@ class ArtistList extends React.Component {
       <Segment.Group basic>
         <Segment basic inverted>
           <Header as={"h1"}><em>Top Artists by {this.props.searchTerm}</em></Header>
-            <div className={'bordertest'} style={this.state.hsl}/>
+            <div style={this.state.hsl}/>
 
         </Segment>
         <Grid container columns={3} padded inverted>

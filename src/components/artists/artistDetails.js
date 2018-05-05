@@ -64,18 +64,18 @@ class ArtistDetails extends React.Component {
 
         <React.Fragment>
         <Segment basic >
-          {this.state.relatedArtists.length > 0 ? <em style={{color: 'white'}}>Related Artists:</em> : <div><em style={{color: 'white'}} onClick={this.handleUpdateRelatedArtists(this.props.artist)}>Loading related artists...</em></div>}
+          {this.state.relatedArtists.length > 0 ? <em>Related Artists:</em> : <div><em onClick={this.handleUpdateRelatedArtists(this.props.artist)}>Loading related artists...</em></div>}
           {this.state.loading ? <Loader active inverted /> :
             this.state.relatedArtists.sort((a,b) => a.followers > b.followers).slice(0,4).map((artist, idx) =>
               <Segment basic inverted key={`artist-details-name-${idx}`}>
                 {artist.name}
-                <div style={{width: "100%", height: "1px", background: `linear-gradient(to right, ${artist.hsl}) `}}/>
+                <div className={'secondary-gradient'} style={{background: `linear-gradient(to right, ${artist.hsl}) `}}/>
               </Segment>
             )}
           {this.state.subGenres.length > 0 ?
 
             <React.Fragment>
-              <em style={{color: 'white'}}>Subgenres:</em>
+              <em>Subgenres:</em>
               <Segment basic inverted>
                 <List>
 

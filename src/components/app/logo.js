@@ -4,9 +4,9 @@ import React from 'react'
 
 const Logo = () => {
   return (
-    <Grid.Row centered style={{marginTop: '25px'}}>
+    <Grid.Row centered >
       <Segment basic padded>
-        <Image src={logoImage} size='medium' centered verticalAlign='middle' />
+        <Image className={'logo-image'} src={logoImage} size='medium' centered verticalAlign='middle' />
       </Segment>
     </Grid.Row>
     )

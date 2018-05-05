@@ -25,10 +25,10 @@ class About extends React.Component {
     return (
       <React.Fragment>
           <Segment basic inverted onClick={() => this.toggleDetails()} as={'div'} className={'about-component rave-component'} >
-            <Header as={'h3'} style={{fontFamily: "'Inconsolata', monospace"}}>Color Guide <Icon name='chevron right' style={{float: 'right', transition: 'ease-in .1s', color: 'white'}} rotated={this.state.active ? 'clockwise' : null}/></Header>
-            <div style={{height: '4px', width: '100%', background: `linear-gradient(to right, rgb(227, 69, 79) 0%, rgb(235, 122, 186) 22.8738%, rgb(235, 235, 122) 42.2159%, rgb(122, 235, 130) 100%) `}}/>
+            <Header as={'h3'}>Color Guide <Icon name='chevron right' rotated={this.state.active ? 'clockwise' : null}/></Header>
+            <div className={'primary-gradient'} style={{background: `linear-gradient(to right, rgb(227, 69, 79) 0%, rgb(235, 122, 186) 22.8738%, rgb(235, 235, 122) 42.2159%, rgb(122, 235, 130) 100%) `}}/>
           </Segment>
-          {this.state.active ? <Segment basic inverted dangerouslySetInnerHTML={content} style={{marginLeft: '5%', marginRight: '5%'}}></Segment> : null }
+          {this.state.active ? <Segment basic inverted dangerouslySetInnerHTML={content} id={'about-segment'} style={{}}></Segment> : null }
 
       </React.Fragment>
       )

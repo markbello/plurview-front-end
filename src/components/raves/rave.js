@@ -73,14 +73,14 @@ class Rave extends React.Component {
         {this.state.raveArtists.length > 0 ?
           <Card fluid >
               <Segment basic inverted>
-                <Header className={'rave-location'} as={"h2"} ><em>{this.props.rave.venue.name} </em> <a href={this.props.rave.ticketLink}><Image style={{marginLeft: '25px'}} src={ticketImage} size='mini' verticalAlign='middle' /></a></Header>
-                <em className={'rave-location'} style={{fontSize: '.75em'}}>{this.props.rave.venue.location} {this.props.rave.ages ? <span>({this.props.rave.ages})</span> : null}</em>
+                <Header className={'rave-location'} as={"h2"} ><em>{this.props.rave.venue.name} </em> <a href={this.props.rave.ticketLink}><Image className={'ticket-link'} src={ticketImage} size='mini' verticalAlign='middle' /></a></Header>
+                <em className={'rave-location'}>{this.props.rave.venue.location} {this.props.rave.ages ? <span>({this.props.rave.ages})</span> : null}</em>
               </Segment>
               <Grid container id={`rave-${this.props.rave.id}`} columns={1} inverted stackable>
 
                 {this.state.raveArtists.map((raveArtist, idx) =>
 
-                  <Grid.Column key={`raveList-raveArtist-${idx}`} style={{marginLeft: '5%'}}>
+                  <Grid.Column key={`raveList-raveArtist-${idx}`} className={'artist-column'}>
                       <Artist artist={raveArtist[0]} />
                   </Grid.Column>
                 )}
