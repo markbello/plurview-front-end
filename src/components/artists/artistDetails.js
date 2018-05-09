@@ -34,7 +34,7 @@ class ArtistDetails extends React.Component {
     .then(subGenres => {
       const filteredSubGenres = subGenres.filter((subGenre) => subGenre.name !== "edm").slice(0,4)
       this.setState({
-        subGenres: subGenres,
+        subGenres: filteredSubGenres,
         loading: false
       })
     })
@@ -52,48 +52,45 @@ class ArtistDetails extends React.Component {
     .then(json => {
       this.setState({
         loading: false,
-        trapCount: json.trap_music,
-        dubstepCount: json.dubstep,
-        houseCount: json.house,
-        bigRoomCount: json.big_room,
-        bassMusicCount: json.bass_music,
-        tranceCount: json.trance,
         hsl: json.hsl
       })
     })
   }
 
   render() {
+    const {loading, relatedArtists, subGenres} = this.state
+    const {artist} = this.props
+    
     return (
       <React.Fragment>
-      {this.state.loading
+      {loading
         ? <Loader active inverted />
         : <React.Fragment>
           <Segment basic >
-            {this.state.relatedArtists.length > 0
+            {relatedArtists.length > 0
               ? <em>Related Artists:</em>
               : <div>
-                  <em onClick={this.handleUpdateRelatedArtists(this.props.artist)}>Loading related artists...</em>
+                  <em onClick={this.handleUpdateRelatedArtists(artist)}>Loading related artists...</em>
                 </div>
             }
-            {this.state.loading
+            {loading
               ? <Loader active inverted />
-              : this.state.relatedArtists.map((artist, idx) =>
+              : relatedArtists.map((artist, idx) =>
                   <Segment basic inverted key={`related-artist-${idx}`}>
                     {artist.name}
                     <div className={'secondary-gradient'} style={{background: `linear-gradient(to right, ${artist.hsl}) `}}/>
                   </Segment>
                 )
             }
-            {this.state.subGenres.length > 0
-              ?   <React.Fragment>
-                    <em>Subgenres:</em>
-                    <Segment basic inverted>
-                      <List>
-                        {this.state.subGenres.map((subGenre, idx) => <List.Item value={'-'} key={`subgenre-${idx}`} >{subGenre.name}</List.Item>)}
-                      </List>
-                    </Segment>
-                  </React.Fragment>
+            {subGenres.length > 0
+              ? <React.Fragment>
+                  <em>Subgenres:</em>
+                  <Segment basic inverted>
+                    <List>
+                      {subGenres.map((subGenre, idx) => <List.Item value={'-'} key={`subgenre-${idx}`} >{subGenre.name}</List.Item>)}
+                    </List>
+                  </Segment>
+                </React.Fragment>
               : null
             }
           </Segment>

@@ -16,45 +16,40 @@ class RaveList extends React.Component {
   }
 
   render() {
+    const {raves} = this.props
+
     return (
       <React.Fragment>
-      {this.state.loading ? <Loader inverted active><h2>Checking IDs</h2></Loader> :
-        <React.Fragment>
-          <Grid.Row>
-
-            <Grid.Column width={2}></Grid.Column>
-
-            <Grid.Column width={11}>
-              <About />
-            </Grid.Column>
-          </Grid.Row>
-          <Grid.Row>
-            <Grid.Column width={2}></Grid.Column>
-            <Grid.Column width={11}>
-              <Header inverted as='h2' textAlign='center'>Upcoming Events</Header>
-            </Grid.Column>
-          </Grid.Row>
-        </React.Fragment>
-      }
-
+      {this.state.loading
+        ?  <Loader inverted active><h2>Checking IDs</h2></Loader>
+        :  <React.Fragment>
+            <Grid.Row>
+              <Grid.Column width={2}></Grid.Column>
+              <Grid.Column width={11}>
+                <About />
+              </Grid.Column>
+            </Grid.Row>
+            <Grid.Row>
+              <Grid.Column width={2}></Grid.Column>
+              <Grid.Column width={11}>
+                <Header inverted as='h2' textAlign='center'>Upcoming Events</Header>
+              </Grid.Column>
+            </Grid.Row>
+          </React.Fragment>}
 
         <Grid.Row>
-
           <Grid.Column width={2}></Grid.Column>
-
           <Grid.Column>
-
-
             <Segment basic >
               <Grid stackable>
-                {Object.keys(this.props.raves).length > 0 ? Object.keys(this.props.raves).map((key,idx) =>
+                {Object.keys(raves).length > 0 ? Object.keys(raves).map((key,idx) =>
                   <Grid.Row id={`raveDate-${idx}`} key={`raveDate-${idx}`} >
                     <Segment.Group>
                         <Segment basic>
                           {<Header inverted as={'p'} ><em>{moment(key).format('dddd, MMMM Do')}</em></Header>}
                         </Segment>
                       <Segment.Group>
-                        {this.props.raves[key].map((rave, idx) =>
+                        {raves[key].map((rave, idx) =>
                           rave.artistList.length > 0 ? <Rave rave={rave} key={`raveArtist-${idx}`} /> : null
                         ) }
                       </Segment.Group>
@@ -63,9 +58,7 @@ class RaveList extends React.Component {
                 </Grid>
               </Segment>
           </Grid.Column>
-
         </Grid.Row>
-
       </React.Fragment>
     )
   }
