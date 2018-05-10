@@ -1,5 +1,6 @@
 import {Segment, Header, Icon} from 'semantic-ui-react'
 import React from 'react'
+import {fetchColorGuide} from '../../apiAdapter'
 
 class About extends React.Component {
 
@@ -9,7 +10,7 @@ class About extends React.Component {
   }
 
   toggleDetails = () => {
-    fetch('https://nephewapps.com/wp-json/wp/v2/posts/264')
+    fetchColorGuide()
     .then(res => res.json())
     .then(post => this.setState({
       active: !this.state.active,

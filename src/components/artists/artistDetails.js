@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { updateRelatedArtists } from '../../actions/index'
 import { Loader, Segment, List } from 'semantic-ui-react'
+import {fetchShowRelatedArtists, fetchArtistSubGenres, fetchInferredGradient} from '../../apiAdapter'
 
 class ArtistDetails extends React.Component {
 
@@ -17,7 +18,7 @@ class ArtistDetails extends React.Component {
   }
 
   fetchRelatedArtists = () => {
-    fetch(`http://localhost:3001/api/v1/artists/${this.props.artist.id}/show_related`)
+    fetchShowRelatedArtists(this.props.artist)
     .then(res => res.json())
     .then(relatedArtists => {
       const filteredRelatedArtists = relatedArtists.sort((a,b) => a.followers > b.followers).slice(0,4)
@@ -29,7 +30,7 @@ class ArtistDetails extends React.Component {
   }
 
   fetchSubGenres = () => {
-    fetch(`http://localhost:3001/api/v1/artists/${this.props.artist.id}/show_genres`)
+    fetchArtistSubGenres(this.props.artist)
     .then(res => res.json())
     .then(subGenres => {
       const filteredSubGenres = subGenres.filter((subGenre) => subGenre.name !== "edm").slice(0,4)
@@ -47,7 +48,7 @@ class ArtistDetails extends React.Component {
   }
 
   inferGradient = () => {
-    fetch(`http://localhost:3001/api/v1/artists/${this.props.artist.id}/infer_gradient`)
+    fetchInferredGradient(this.props.artist)
     .then(res => res.json())
     .then(json => {
       this.setState({
@@ -60,7 +61,7 @@ class ArtistDetails extends React.Component {
   render() {
     const {loading, relatedArtists, subGenres} = this.state
     const {artist} = this.props
-    
+
     return (
       <React.Fragment>
       {loading

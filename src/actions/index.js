@@ -1,13 +1,8 @@
-let API_URL
-
-process.env.REACT_APP_STAGE === 'dev'
-  ? API_URL = 'http://localhost:3001/api/v1'
-  : API_URL = 'https://plurview-api.herokuapp.com/api/v1'
+import { fetchArtists, fetchRaves, fetchGenres, fetchGenreArtists, fetchRelatedArtists, fetchNewArtist } from '../apiAdapter'
 
 export const loadArtists = (artist) => {
-  // alert(`${API_URL}`)
   return function(dispatch){
-    return fetch(`${API_URL}/artists`)
+    return fetchArtists()
     .then(res => res.json())
     .then(artists => {
       dispatch({
@@ -21,7 +16,7 @@ export const loadArtists = (artist) => {
 
 export const loadRaves = (locationId) => {
   return function(dispatch){
-    return fetch(`${API_URL}/raves`)
+    return fetchRaves()
     .then(res => res.json())
     .then(json => {
       dispatch({
@@ -35,7 +30,7 @@ export const loadRaves = (locationId) => {
 
 export const loadGenres = (genres) => {
   return function(dispatch){
-    return fetch(`${API_URL}/genres`)
+    return fetchGenres()
     .then(res => res.json())
     .then(genres => {
       dispatch({
@@ -48,7 +43,7 @@ export const loadGenres = (genres) => {
 
 export const loadGenreArtists = (genre) => {
   return function(dispatch){
-    return fetch(`${API_URL}/genres/${genre.id}`)
+    return fetchGenreArtists(genre)
     .then(res => res.json())
     .then(artists => {
       dispatch({
@@ -61,7 +56,7 @@ export const loadGenreArtists = (genre) => {
 
 export const updateRelatedArtists = (artist) => {
   return function(dispatch){
-    return fetch(`${API_URL}/artists/${artist.id}/find_related`)
+    return fetchRelatedArtists(artist)
     .then(res => res.json())
     .then(artist => {
       dispatch({
@@ -74,17 +69,7 @@ export const updateRelatedArtists = (artist) => {
 
 export const findNewArtist = (artistId) => {
   return function(dispatch){
-    return fetch(`${API_URL}/artists/find_new`, {
-      headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-      },
-      method: "POST",
-      mode: 'cors',
-      body: JSON.stringify({
-        artistId: artistId
-      })
-    })
+    return fetchNewArtist(artistId)
     .then(res => res.json())
     .then(artist => {
       dispatch({
