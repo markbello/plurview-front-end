@@ -1,30 +1,14 @@
 export default function rootReducer(state = {
   artists: [],
   genres: [],
-  activeGenre: [],
   activeArtists: [],
-  sortingMetric: '',
-  searchTerm: '',
   raves: []
 }, action) {
   switch(action.type) {
-
     case 'LOAD_ARTISTS':
       return {...state, artists: action.payload}
-    case 'LOAD_GENRES':
-      return {...state, genres: action.payload}
     case 'LOAD_RAVES':
       return {...state, raves: action.payload}
-    case 'LOAD_GENRE_ARTISTS':
-      return {...state, activeArtists: action.payload.artists, activeGenre: action.payload.genre, searchTerm: `Subgenre: ${action.payload.searchTerm}`}
-    case 'SORT_ARTISTS':
-      return {...state, sortingMetric: action.payload}
-    case 'FILTER_ARTISTS':
-      console.log("filter artists: ", action.payload)
-      console.dir(state.activeArtists)
-      return {...state, activeArtists: action.payload.artists, searchTerm: `Search Term: ${action.payload.searchTerm}`}
-    case 'FILTER_GENRE':
-      return {...state, activeGenre: action.payload}
     case 'UPDATE_RELATED_ARTISTS':
       const foundArtist = state.artists.find((artist) => artist.id === action.payload.id)
       let foundArtistIndex = state.artists.indexOf(foundArtist)
@@ -34,8 +18,7 @@ export default function rootReducer(state = {
     case 'FIND_NEW_ARTIST':
       return {...state, artists: [...state.artists, action.payload]}
     default:
-    console.log("App initialized");
-
+      console.log("App initialized");
       return state;
   }
 }

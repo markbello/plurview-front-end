@@ -1,19 +1,16 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import { updateRelatedArtists } from '../../actions/index'
 import Artist from '../artists/artist'
 import { Grid, Segment, Header, Image, Card } from 'semantic-ui-react'
-import { findNewArtist } from '../../actions/index'
 import ticketImage from '../../assets/ticket.svg'
 
 class Rave extends React.Component {
 
   state = {
-    raveArtists: [],
-    newArtist: ''
+    raveArtists: []
   }
 
-  loadArtists = (props) => {
+  verifyArtists = (props) => {
     const {rave, artists} = props
     let storedArtists = []
     if(rave){
@@ -24,14 +21,6 @@ class Rave extends React.Component {
           this.setState({raveArtists: verifiedArtists})
           storedArtists.push(verifiedArtists)
         }
-        else{
-            // fetch(`https://plurview-api.herokuapp.com/api/v1/artists/find_new/${artist.name}`)
-            // .then(res => res.json())
-            // .then(json => {
-            //   console.log(json)
-            //   this.setState({newArtist: json}, () => this.props.findNewArtist(this.state.newArtist.id))
-            // })
-        }
       }
     })}
     if(storedArtists.length > 0){
@@ -40,11 +29,11 @@ class Rave extends React.Component {
   }
 
   componentDidMount(){
-    this.loadArtists(this.props)
+    this.verifyArtists(this.props)
   }
 
   componentWillReceiveProps(nextProps){
-    this.loadArtists(nextProps)
+    this.verifyArtists(nextProps)
   }
 
   render() {
@@ -84,20 +73,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { updateRelatedArtists, findNewArtist })(Rave)
-
-// processGradient = () => {
-//   fetch('https://plurview-api.herokuapp.com/api/v1/raves/process_gradient', {
-//     headers: {
-//     'Accept': 'application/json',
-//     'Content-Type': 'application/json'
-//     },
-//     method: "POST",
-//     mode: 'cors',
-//     body: JSON.stringify({
-//       raveArtists: this.state.raveArtists
-//     })
-//   })
-//   .then(res => res.json())
-//   .then(gradient => console.log(gradient))
-// }
+export default connect(mapStateToProps)(Rave)

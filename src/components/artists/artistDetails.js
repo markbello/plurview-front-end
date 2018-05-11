@@ -1,8 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import { updateRelatedArtists } from '../../actions/index'
 import { Loader, Segment, List } from 'semantic-ui-react'
-import {fetchShowRelatedArtists, fetchArtistSubGenres, fetchInferredGradient} from '../../apiAdapter'
+import {fetchShowRelatedArtists, fetchArtistSubGenres} from '../../apiAdapter'
 
 class ArtistDetails extends React.Component {
 
@@ -41,23 +40,6 @@ class ArtistDetails extends React.Component {
     })
   }
 
-  handleUpdateRelatedArtists = (artist) => {
-    this.props.updateRelatedArtists(artist)
-    .then(() => this.inferGradient())
-    .then(() => this.fetchRelatedArtists())
-  }
-
-  inferGradient = () => {
-    fetchInferredGradient(this.props.artist)
-    .then(res => res.json())
-    .then(json => {
-      this.setState({
-        loading: false,
-        hsl: json.hsl
-      })
-    })
-  }
-
   render() {
     const {loading, relatedArtists, subGenres} = this.state
     const {artist} = this.props
@@ -71,7 +53,7 @@ class ArtistDetails extends React.Component {
             {relatedArtists.length > 0
               ? <em>Related Artists:</em>
               : <div>
-                  <em onClick={this.handleUpdateRelatedArtists(artist)}>Loading related artists...</em>
+                  <em>Loading related artists...</em>
                 </div>
             }
             {loading
@@ -103,4 +85,4 @@ class ArtistDetails extends React.Component {
   }
 }
 
-export default connect(null, {updateRelatedArtists})(ArtistDetails)
+export default ArtistDetails

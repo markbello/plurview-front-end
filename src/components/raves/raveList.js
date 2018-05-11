@@ -65,7 +65,7 @@ class RaveList extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return { genres: state.genres, raves: state.raves, activeArtists: state.activeArtists };
+  return { raves: state.raves };
 };
 
 export default connect(mapStateToProps)(RaveList)

@@ -13,24 +13,18 @@ class App extends Component {
   componentDidMount() {
     this.props.loadArtists()
     .then(() => {
-      this.props.loadGenres()})
-    .then(() => {
       this.props.loadRaves(70)
     })
   }
 
 
   render() {
-
     return (
-
         <Grid stackable padded >
           <Logo />
-
           <Switch>
             <Route path='/' render={() => <RaveList />} />
           </Switch>
-
         </Grid>
     );
   }

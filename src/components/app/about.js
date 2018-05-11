@@ -9,14 +9,18 @@ class About extends React.Component {
     content: ''
   }
 
-  toggleDetails = () => {
+  componentDidMount = () => {
     fetchColorGuide()
     .then(res => res.json())
     .then(post => this.setState({
-      active: !this.state.active,
       content: post.content.rendered
     }))
+  }
 
+  toggleDetails = () => {
+    this.setState({
+      active: !this.state.active
+    })
   }
 
   render() {
@@ -43,6 +47,3 @@ class About extends React.Component {
 }
 
 export default About
-
-// <Icon name='chevron right' style={{float: 'right', transition: 'ease-in .1s', color: 'white'}}
-//   rotated={this.state.active ? 'clockwise' : null}/>
