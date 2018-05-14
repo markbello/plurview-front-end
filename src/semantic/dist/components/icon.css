@@ -18,7 +18,7 @@
   src: url("./../themes/default/assets/fonts/icons.eot");
   src: url("./../themes/default/assets/fonts/icons.eot?#iefix") format('embedded-opentype'), url("./../themes/default/assets/fonts/icons.woff2") format('woff2'), url("./../themes/default/assets/fonts/icons.woff") format('woff'), url("./../themes/default/assets/fonts/icons.ttf") format('truetype'), url("./../themes/default/assets/fonts/icons.svg#icons") format('svg');
   font-style: normal;
-  font-weight: 200;
+  font-weight: normal;
   font-variant: normal;
   text-decoration: inherit;
   text-transform: none;
@@ -31,7 +31,7 @@ i.icon {
   height: 1em;
   font-family: 'Icons';
   font-style: normal;
-  font-weight: 200;
+  font-weight: normal;
   text-decoration: inherit;
   text-align: center;
   speak: none;
@@ -1821,7 +1821,7 @@ i.icon.language:before {
 i.icon.laptop:before {
   content: "\f109";
 }
-i.icon.laravel:before {
+i.icon.lashowl:before {
   content: "\f3bd";
 }
 i.icon.lastfm:before {
@@ -2268,7 +2268,7 @@ i.icon.quote.right:before {
 i.icon.random:before {
   content: "\f074";
 }
-i.icon.ravelry:before {
+i.icon.showlry:before {
   content: "\f2d9";
 }
 i.icon.react:before {
@@ -3785,7 +3785,7 @@ i.icon.toggle.up:before {
 i.icon.translate:before {
   content: "\f1ab";
 }
-i.icon.travel:before {
+i.icon.tshowl:before {
   content: "\f0b1";
 }
 i.icon.treatment:before {
@@ -4612,7 +4612,7 @@ i.icon.keycdn,
 i.icon.kickstarter,
 i.icon.kickstarter.k,
 i.icon.korvue,
-i.icon.laravel,
+i.icon.lashowl,
 i.icon.lastfm,
 i.icon.lastfm.square,
 i.icon.leanpub,
@@ -4672,7 +4672,7 @@ i.icon.python,
 i.icon.qq,
 i.icon.quinscape,
 i.icon.quora,
-i.icon.ravelry,
+i.icon.showlry,
 i.icon.react,
 i.icon.rebel,
 i.icon.redriver,

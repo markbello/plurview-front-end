@@ -145,7 +145,7 @@ i.icon.camera.roll:before { content: '\e3b3'}
 i.icon.cancel:before { content: '\e5c9'}
 i.icon.card.giftcard:before { content: '\e8f6'}
 i.icon.card.membership:before { content: '\e8f7'}
-i.icon.card.travel:before { content: '\e8f8'}
+i.icon.card.tshowl:before { content: '\e8f8'}
 i.icon.casino:before { content: '\eb40'}
 i.icon.cast:before { content: '\e307'}
 i.icon.cast.connected:before { content: '\e308'}

@@ -1,15 +1,15 @@
 let API_URL
 
 process.env.REACT_APP_STAGE === 'dev'
-  ? API_URL = 'http://localhost:3001/api/v1'
-  : API_URL = 'https://plurview-api.herokuapp.com/api/v1'
+  ? API_URL = 'http://localhost:3001/api/v2'
+  : API_URL = 'https://plurview-api.herokuapp.com/api/v2'
 
 export const fetchArtists = () => {
   return fetch(`${API_URL}/artists`)
 }
 
-export const fetchRaves = () => {
-  return fetch(`${API_URL}/raves`)
+export const fetchShows = () => {
+  return fetch(`${API_URL}/shows`)
 }
 
 export const fetchRelatedArtists = (artist) => {

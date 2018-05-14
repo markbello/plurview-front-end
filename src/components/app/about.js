@@ -35,7 +35,7 @@ class About extends React.Component {
 
     return (
       <React.Fragment>
-          <Segment basic inverted onClick={() => this.toggleDetails()} as={'div'} className={'about-component rave-component'} >
+          <Segment basic inverted onClick={() => this.toggleDetails()} as={'div'} className={'about-component show-component'} >
             <Header as={'h3'}>Color Guide <Icon name='chevron right' rotated={active ? 'clockwise' : null}/></Header>
             <div className={'primary-gradient'} style={aboutGradient}/>
           </Segment>

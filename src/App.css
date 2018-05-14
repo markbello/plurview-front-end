@@ -4,12 +4,12 @@ div.ui.basic.inverted.segment{
   margin-bottom: 0px;
 }
 
-em.rave-location {
+em.show-location {
   float: left;
   margin-right: 25%;
 }
 
-h3.ui.header.rave-location {
+h3.ui.header.show-location {
   margin-bottom: 0px;
 }
 
@@ -40,7 +40,7 @@ p.ui.header, h3.ui.header {
   width: 100%;
 }
 
-.rave-component {
+.show-component {
   max-width: 30%;
 }
 
@@ -68,7 +68,7 @@ p.ui.header, h3.ui.header {
     max-width: 100%;
   }
 
-  em.rave-location {
+  em.show-location {
     float: left;
     margin-right: 0px;
     margin-bottom: .5em;
@@ -76,16 +76,16 @@ p.ui.header, h3.ui.header {
     display: block;
   }
 
-  h2.rave-location {
+  h2.show-location {
     display: block;
     font-size: 2em;
   }
 
-  div.ui.basic.inverted.segment.about-component.rave-component{
+  div.ui.basic.inverted.segment.about-component.show-component{
     margin-left: 5%;
   }
 
-  .rave-component{
+  .show-component{
     width: 346px;
     max-width: 100%;
   }

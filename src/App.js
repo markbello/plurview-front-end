@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from  './actions/index';
 import './App.css';
-import RaveList from './components/raves/raveList'
+import ShowList from './components/shows/showList'
 import { Grid } from 'semantic-ui-react'
 import {Route, Switch} from 'react-router-dom'
 import Logo from './components/app/logo'
@@ -13,7 +13,7 @@ class App extends Component {
   componentDidMount() {
     this.props.loadArtists()
     .then(() => {
-      this.props.loadRaves(70)
+      this.props.loadShows(70)
     })
   }
 
@@ -23,7 +23,7 @@ class App extends Component {
         <Grid stackable padded >
           <Logo />
           <Switch>
-            <Route path='/' render={() => <RaveList />} />
+            <Route path='/' render={() => <ShowList />} />
           </Switch>
         </Grid>
     );

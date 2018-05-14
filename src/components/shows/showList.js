@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Rave from './rave'
+import Show from './show'
 import About from '../app/about'
 import { Segment, Loader, Grid, Header } from 'semantic-ui-react'
 import moment from 'moment'
 
-class RaveList extends React.Component {
+class ShowList extends React.Component {
 
   state = {
     loading: true
@@ -16,7 +16,7 @@ class RaveList extends React.Component {
   }
 
   render() {
-    const {raves} = this.props
+    const {shows} = this.props
 
     return (
       <React.Fragment>
@@ -42,15 +42,15 @@ class RaveList extends React.Component {
           <Grid.Column>
             <Segment basic >
               <Grid stackable>
-                {Object.keys(raves).length > 0 ? Object.keys(raves).map((key,idx) =>
-                  <Grid.Row id={`raveDate-${idx}`} key={`raveDate-${idx}`} >
+                {Object.keys(shows).length > 0 ? Object.keys(shows).map((key,idx) =>
+                  <Grid.Row id={`showDate-${idx}`} key={`showDate-${idx}`} >
                     <Segment.Group>
                         <Segment basic>
                           {<Header inverted as={'p'} ><em>{moment(key).format('dddd, MMMM Do')}</em></Header>}
                         </Segment>
                       <Segment.Group>
-                        {raves[key].map((rave, idx) =>
-                          rave.artistList.length > 0 ? <Rave rave={rave} key={`raveArtist-${idx}`} /> : null
+                        {shows[key].map((show, idx) =>
+                          show.artistList.length > 0 ? <Show show={show} key={`showArtist-${idx}`} /> : null
                         ) }
                       </Segment.Group>
                     </Segment.Group>
@@ -65,7 +65,7 @@ class RaveList extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return { raves: state.raves };
+  return { shows: state.shows };
 };
 
-export default connect(mapStateToProps)(RaveList)
+export default connect(mapStateToProps)(ShowList)

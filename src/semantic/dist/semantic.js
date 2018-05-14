@@ -5788,7 +5788,7 @@ $.fn.dropdown = function(parameters) {
                   }
                 }
 
-                // up arrow (traverse menu up)
+                // up arrow (tshowrse menu up)
                 if(pressedKey == keys.upArrow) {
                   $nextItem = (hasSelectedItem && inVisibleMenu)
                     ? $selectedItem.prevAll(selector.item + ':not(' + selector.unselectable + ')').eq(0)
@@ -5815,7 +5815,7 @@ $.fn.dropdown = function(parameters) {
                   event.preventDefault();
                 }
 
-                // down arrow (traverse menu down)
+                // down arrow (tshowrse menu down)
                 if(pressedKey == keys.downArrow) {
                   $nextItem = (hasSelectedItem && inVisibleMenu)
                     ? $nextItem = $selectedItem.nextAll(selector.item + ':not(' + selector.unselectable + ')').eq(0)

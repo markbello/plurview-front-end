@@ -126,7 +126,7 @@
 @sliderLineRadius: @circularRadius;
 @sliderLineTransition: background @sliderTransitionDuration @defaultEasing;
 
-@sliderTravelDistance: @sliderLineWidth - @sliderHandleSize;
+@sliderTshowlDistance: @sliderLineWidth - @sliderHandleSize;
 
 @sliderLabelDistance: @sliderLineWidth + 1rem;
 @sliderOffLabelColor: @unselectedTextColor;

@@ -1,4 +1,4 @@
-import { fetchArtists, fetchRaves } from '../apiAdapter'
+import { fetchArtists, fetchShows } from '../apiAdapter'
 
 export const loadArtists = (artist) => {
   return function(dispatch){
@@ -14,14 +14,14 @@ export const loadArtists = (artist) => {
   }
 }
 
-export const loadRaves = (locationId) => {
+export const loadShows = (locationId) => {
   return function(dispatch){
-    return fetchRaves()
+    return fetchShows()
     .then(res => res.json())
     .then(json => {
       dispatch({
-        type: "LOAD_RAVES",
-        payload: json.raves
+        type: "LOAD_SHOWS",
+        payload: json.shows
       })
     })
 

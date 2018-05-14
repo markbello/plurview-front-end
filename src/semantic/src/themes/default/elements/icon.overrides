@@ -459,7 +459,7 @@ i.icon.kickstarter.k:before { content: "\f3bc"; }
 i.icon.korvue:before { content: "\f42f"; }
 i.icon.language:before { content: "\f1ab"; }
 i.icon.laptop:before { content: "\f109"; }
-i.icon.laravel:before { content: "\f3bd"; }
+i.icon.lashowl:before { content: "\f3bd"; }
 i.icon.lastfm:before { content: "\f202"; }
 i.icon.lastfm.square:before { content: "\f203"; }
 i.icon.leaf:before { content: "\f06c"; }
@@ -608,7 +608,7 @@ i.icon.quora:before { content: "\f2c4"; }
 i.icon.quote.left:before { content: "\f10d"; }
 i.icon.quote.right:before { content: "\f10e"; }
 i.icon.random:before { content: "\f074"; }
-i.icon.ravelry:before { content: "\f2d9"; }
+i.icon.showlry:before { content: "\f2d9"; }
 i.icon.react:before { content: "\f41b"; }
 i.icon.rebel:before { content: "\f1d0"; }
 i.icon.recycle:before { content: "\f1b8"; }
@@ -1116,7 +1116,7 @@ i.icon.toggle.left:before { content: "\f191"; }
 i.icon.toggle.right:before { content: "\f152"; }
 i.icon.toggle.up:before { content: "\f151"; }
 i.icon.translate:before { content: "\f1ab"; }
-i.icon.travel:before { content: "\f0b1"; }
+i.icon.tshowl:before { content: "\f0b1"; }
 i.icon.treatment:before { content: "\f0f1"; }
 i.icon.triangle.down:before { content: "\f0d7"; }
 i.icon.triangle.left:before { content: "\f0d9"; }
@@ -1537,7 +1537,7 @@ i.icon.youtube.play:before { content: "\f167"; }
   i.icon.kickstarter,
   i.icon.kickstarter.k,
   i.icon.korvue,
-  i.icon.laravel,
+  i.icon.lashowl,
   i.icon.lastfm,
   i.icon.lastfm.square,
   i.icon.leanpub,
@@ -1597,7 +1597,7 @@ i.icon.youtube.play:before { content: "\f167"; }
   i.icon.qq,
   i.icon.quinscape,
   i.icon.quora,
-  i.icon.ravelry,
+  i.icon.showlry,
   i.icon.react,
   i.icon.rebel,
   i.icon.redriver,

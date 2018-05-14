@@ -390,7 +390,7 @@ c-12 0 -21 -10 -21 -22s9 -21 21 -21s21 9 21 21s-9 22 -21 22zM427 384c24 0 42 -19
 c35 0 64 -29 64 -64c0 -7 -2 -14 -4 -21h47z" />
     <glyph glyph-name="card_membership" unicode="card_membership" 
 d="M427 299v128h-342v-128h342zM427 192v43h-342v-43h342zM427 469c24 0 42 -18 42 -42v-235c0 -24 -18 -43 -42 -43h-86v-106l-85 42l-85 -42v106h-86c-24 0 -42 19 -42 43v235c0 24 18 42 42 42h342z" />
-    <glyph glyph-name="card_travel" unicode="card_travel" 
+    <glyph glyph-name="card_tshowl" unicode="card_tshowl" 
 d="M427 213v128h-64v-42h-43v42h-128v-42h-43v42h-64v-128h342zM427 107v42h-342v-42h342zM192 427v-43h128v43h-128zM427 384c24 0 42 -19 42 -43v-234c0 -24 -18 -43 -42 -43h-342c-24 0 -42 19 -42 43v234c0 24 18 43 42 43h64v43c0 24 19 42 43 42h128
 c24 0 43 -18 43 -42v-43h64z" />
     <glyph glyph-name="casino" unicode="casino" 

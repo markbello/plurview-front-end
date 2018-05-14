@@ -26,7 +26,7 @@ class Artist extends React.Component {
     const {artist} = this.props
 
     return (
-      <Segment basic inverted onClick={() => this.toggleDetails()} as={'div'} className={'rave-component'}>
+      <Segment basic inverted onClick={() => this.toggleDetails()} as={'div'} className={'show-component'}>
         <Header as={'p'}>{artist.name} <Icon name='chevron right' rotated={active ? 'clockwise' : null}/></Header>
         { active ? <ArtistDetails artist={artist} /> : null}
         { hsl ? <div className={'primary-gradient'} style={{background: `linear-gradient(to right, ${hsl}) `}}/> : null }
