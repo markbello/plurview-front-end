@@ -8,7 +8,8 @@ import moment from 'moment'
 class ShowList extends React.Component {
 
   state = {
-    loading: true
+    loading: true,
+    showDays: ['0', '5', '6']
   }
 
   componentWillReceiveProps(nextProps){
@@ -17,6 +18,7 @@ class ShowList extends React.Component {
 
   render() {
     const {shows} = this.props
+    const {showDays} = this.state
 
     return (
       <React.Fragment>
@@ -42,19 +44,24 @@ class ShowList extends React.Component {
           <Grid.Column>
             <Segment basic >
               <Grid stackable>
-                {Object.keys(shows).length > 0 ? Object.keys(shows).map((key,idx) =>
-                  <Grid.Row id={`showDate-${idx}`} key={`showDate-${idx}`} >
-                    <Segment.Group>
-                        <Segment basic>
-                          {<Header inverted as={'p'} ><em>{moment(key).format('dddd, MMMM Do')}</em></Header>}
-                        </Segment>
-                      <Segment.Group>
-                        {shows[key].map((show, idx) =>
-                          show.artistList.length > 0 ? <Show show={show} key={`showArtist-${idx}`} /> : null
-                        ) }
-                      </Segment.Group>
-                    </Segment.Group>
-                  </Grid.Row>) : null  }
+                {Object.keys(shows).length > 0
+                  ? Object.keys(shows).map((key,idx) =>
+                      showDays.includes(moment(key).format('d'))
+                        ? <Grid.Row id={`showDate-${idx}`} key={`showDate-${idx}`} >
+                            <Segment.Group>
+                              <Segment basic>
+                                {<Header inverted as={'p'} ><em>{moment(key).format('dddd, MMMM Do')}</em></Header>}
+                              </Segment>
+                              <Segment.Group>
+                                {shows[key].map((show, idx) =>
+                                  show.artistList.length > 0 ? <Show show={show} key={`showArtist-${idx}`} /> : null
+                                ) }
+                              </Segment.Group>
+                            </Segment.Group>
+                          </Grid.Row>
+                        : null
+                    )
+                  :  null}
                 </Grid>
               </Segment>
           </Grid.Column>
