@@ -90,4 +90,8 @@ p.ui.header, h3.ui.header {
     max-width: 100%;
   }
 
+  .ui.inverted.menu .dropdown.item:hover, .ui.inverted.menu .link.item:hover, .ui.inverted.menu a.item:hover, .ui.link.inverted.menu .item:hover{
+    background: transparent;
+  }
+
 }
