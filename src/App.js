@@ -25,13 +25,13 @@ class App extends Component {
     const { sidebarVisible } = this.state
 
     return (
+      <React.Fragment>
+        <Menu inverted borderless fixed={'top'}>
+          <Menu.Item position={'right'}>Options<Icon style={{marginLeft: '15px', marginRight: '15px;'}}inverted name='options' onClick={this.toggleSidebarVisibility}/></Menu.Item>
+        </Menu>
         <Grid stackable padded >
-          <Logo />
-          <Menu fixed='bottom' right inverted borderless >
-            <Menu.Item position={'right'}><Button onClick={this.toggleSidebarVisibility}>Options</Button></Menu.Item>
-            <Menu.Item position={''}><Button onClick={this.toggleSidebarVisibility}>Color Guide</Button></Menu.Item>
-          </Menu>
-          <Sidebar.Pushable as={Segment} padded basic style={{marginLeft: '5vw'}}>
+
+          <Sidebar.Pushable as={Segment} padded basic>
               <Sidebar
                 as={Menu}
                 animation='overlay'
@@ -39,8 +39,8 @@ class App extends Component {
                 direction='right'
                 visible={sidebarVisible}
                 icon='labeled'
-                vertical
                 inverted
+                vertical
               >
                 <Menu.Item name='home'>
                   <Icon name='home' />
@@ -56,13 +56,15 @@ class App extends Component {
                 </Menu.Item>
               </Sidebar>
               <Sidebar.Pusher style={{background: 'transparent'}}>
-                  <Switch>
-                    <Route path='/' render={() => <ShowList />} />
-                  </Switch>
+                <Logo />
               </Sidebar.Pusher>
 
             </Sidebar.Pushable>
+            <Switch>
+              <Route path='/' render={() => <ShowList />} />
+            </Switch>
         </Grid>
+        </React.Fragment>
     );
   }
 }
