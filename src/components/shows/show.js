@@ -56,6 +56,8 @@ class Show extends React.Component {
                   <em className={'show-location'}>{location} {ages ? <span>({ages})</span> : null}</em>
                 </Segment>
                 <Grid container id={`show-${this.props.show.id}`} columns={1} inverted stackable>
+                  <Grid.Column  className={'artist-column'}>
+
                   {name
                     ?   <Segment basic inverted as={'div'} className={'show-component'}>
                           <Header as={'p'}>{name} {festivalInd ? <React.Fragment> - Festival</React.Fragment> : null}</Header>
@@ -64,9 +66,7 @@ class Show extends React.Component {
 
                   {artists.length > 0
                     ? artists.map((artist, idx) =>
-                        <Grid.Column key={`showList-artist-${idx}`} className={'artist-column'}>
                             <Artist artist={artist[0]} />
-                        </Grid.Column>
                       )
                     : name
                         ? null
@@ -75,6 +75,8 @@ class Show extends React.Component {
                         </Segment>
 
                   }
+                </Grid.Column>
+
               </Grid>
             </Card>
 
