@@ -37,13 +37,15 @@ class Show extends React.Component {
   }
 
   render() {
-    const {show: {venue: {name: venue, location}, ticketLink, ages} } = this.props
+    const {show: {venue: {name: venue, location}, ticketLink, ages, name, festivalInd} } = this.props
     const {showArtists: artists} = this.state
+
+    name ? console.log(name) : null
 
     return (
       <React.Fragment>
-        {artists.length > 0
-          ?  <Card fluid >
+
+          <Card fluid >
                 <Segment basic inverted>
                   <Header className={'show-location'} as={"h2"} >
                     <em>{venue}</em>
@@ -54,14 +56,28 @@ class Show extends React.Component {
                   <em className={'show-location'}>{location} {ages ? <span>({ages})</span> : null}</em>
                 </Segment>
                 <Grid container id={`show-${this.props.show.id}`} columns={1} inverted stackable>
-                  {artists.map((artist, idx) =>
-                    <Grid.Column key={`showList-artist-${idx}`} className={'artist-column'}>
-                        <Artist artist={artist[0]} />
-                    </Grid.Column>
-                  )}
+                  {name
+                    ?   <Segment basic inverted as={'div'} className={'show-component'}>
+                          <Header as={'p'}>{name} {festivalInd ? <React.Fragment> - Festival</React.Fragment> : null}</Header>
+                        </Segment>
+                    : null}
+
+                  {artists.length > 0
+                    ? artists.map((artist, idx) =>
+                        <Grid.Column key={`showList-artist-${idx}`} className={'artist-column'}>
+                            <Artist artist={artist[0]} />
+                        </Grid.Column>
+                      )
+                    : name
+                        ? null
+                        : <Segment basic inverted as={'div'} className={'show-component'}>
+                          <p>See ticket link for more info...</p>
+                        </Segment>
+
+                  }
               </Grid>
             </Card>
-         :  null}
+
       </React.Fragment>
     );
   }

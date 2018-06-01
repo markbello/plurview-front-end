@@ -20,6 +20,8 @@ class ShowList extends React.Component {
     const {shows} = this.props
     const {showDays} = this.state
 
+    console.log(shows)
+
     return (
       <React.Fragment>
       {this.state.loading
@@ -54,7 +56,8 @@ class ShowList extends React.Component {
                               </Segment>
                               <Segment.Group>
                                 {shows[key].map((show, idx) =>
-                                  show.artistList.length > 0 ? <Show show={show} key={`showArtist-${idx}`} /> : null
+                                  <Show show={show} key={`showArtist-${idx}`} />
+                                  
                                 ) }
                               </Segment.Group>
                             </Segment.Group>

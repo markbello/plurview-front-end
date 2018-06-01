@@ -1,7 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import { Loader, Segment, List } from 'semantic-ui-react'
+import { Loader, Segment, List, Input } from 'semantic-ui-react'
 import {fetchShowRelatedArtists, fetchArtistSubGenres} from '../../apiAdapter'
+import VotingBlock from './votingBlock'
 
 class ArtistDetails extends React.Component {
 
@@ -42,7 +43,7 @@ class ArtistDetails extends React.Component {
 
   render() {
     const {loading, relatedArtists, subGenres} = this.state
-    const {artist} = this.props
+    const {artist, votingEnabled} = this.props
 
     return (
       <React.Fragment>
@@ -76,6 +77,13 @@ class ArtistDetails extends React.Component {
                 </React.Fragment>
               : null
             }
+            <Segment basic inverted>
+              <em>Vote on Colors</em>
+              {votingEnabled
+                ? <VotingBlock artist={artist} />
+                : <Input action="Submit" placeholder="Enter Password" />
+              }
+            </Segment>
           </Segment>
         </React.Fragment>
       }
