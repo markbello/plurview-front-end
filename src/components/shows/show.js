@@ -60,7 +60,7 @@ class Show extends React.Component {
 
                   {name
                     ?   <Segment basic inverted as={'div'} className={'show-component'}>
-                          <Header as={'p'}>{name} {festivalInd ? <React.Fragment> - Festival</React.Fragment> : null}</Header>
+                          <Header as={'p'}><em>{name} {festivalInd ? <React.Fragment> - Festival</React.Fragment> : null}</em></Header>
                         </Segment>
                     : null}
 
