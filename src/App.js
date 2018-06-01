@@ -27,7 +27,7 @@ class App extends Component {
     return (
       <React.Fragment>
         <Menu inverted borderless fixed={'top'}>
-          <Menu.Item position={'right'}>Options<Icon style={{marginLeft: '15px', marginRight: '15px;'}}inverted name='options' onClick={this.toggleSidebarVisibility}/></Menu.Item>
+          <Menu.Item position={'right'} onClick={this.toggleSidebarVisibility} style={{marginTop: '30px'}}>Options<Icon style={{marginLeft: '15px', marginRight: '15px;'}}inverted name='options' /></Menu.Item>
         </Menu>
         <Grid stackable padded >
 
@@ -41,18 +41,20 @@ class App extends Component {
                 icon='labeled'
                 inverted
                 vertical
+                style={{height: '150%'}}
               >
-                <Menu.Item name='home'>
-                  <Icon name='home' />
-                  Home
+              <Menu.Item></Menu.Item>
+                <Menu.Item name='marker'>
+                  Cities
                 </Menu.Item>
-                <Menu.Item name='gamepad'>
-                  <Icon name='gamepad' />
-                  Games
+                <Menu.Item name='calendar'>
+                  Days
                 </Menu.Item>
-                <Menu.Item name='camera'>
-                  <Icon name='camera' />
-                  Channels
+                <Menu.Item name='moon'>
+                  Venue Type
+                </Menu.Item>
+                <Menu.Item name='mail outline'>
+                  Contact
                 </Menu.Item>
               </Sidebar>
               <Sidebar.Pusher style={{background: 'transparent'}}>
