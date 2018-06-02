@@ -16,8 +16,14 @@ class ShowList extends React.Component {
 
   componentWillReceiveProps(nextProps){
     const currentLocation = Locations.find((location) =>  location.value === nextProps.location).text
-    this.setState({loading: false, location: currentLocation})
+    const weekends = ['0', '5', '6']
+    const allWeek = ['0', '1', '2', '3', '4', '5', '6']
+    let selectedDays
+    nextProps.onlyWeekends ? selectedDays = weekends : selectedDays = allWeek
+
+    this.setState({loading: false, location: currentLocation, showDays: selectedDays})
   }
+
 
   render() {
     const {shows} = this.props
@@ -77,7 +83,7 @@ class ShowList extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return { shows: state.shows, location: state.location };
+  return { shows: state.shows, location: state.location, onlyWeekends: state.onlyWeekends };
 };
 
 export default connect(mapStateToProps)(ShowList)

@@ -556,10 +556,10 @@
 
 /* Green */
 .ui.green.segment:not(.inverted) {
-  border-top: 2px solid #00ff11 !important;
+  border-top: 2px solid #24b99b !important;
 }
 .ui.inverted.green.segment {
-  background-color: #00ff11 !important;
+  background-color: #24b99b !important;
   color: #FFFFFF !important;
 }
 

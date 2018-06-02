@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import * as actions from  './actions/index';
 import './App.css';
 import ShowList from './components/shows/showList'
-import { Grid, Sidebar, Segment, Button, Menu, Image, Icon, Header, Select } from 'semantic-ui-react'
+import { Grid, Sidebar, Segment, Button, Menu, Image, Icon, Header, Select, Checkbox } from 'semantic-ui-react'
 import {Route, Switch} from 'react-router-dom'
 import Logo from './components/app/logo'
 import Locations from './common/locations'
@@ -25,12 +25,18 @@ class App extends Component {
     this.props.changeLocation(value)
   }
 
+  handleWeekendToggle = () => {
+    this.props.toggleWeekends()
+  }
+
   componentWillReceiveProps = (nextProps) => {
     nextProps.location !== this.props.location ? this.props.loadShows(nextProps.location) : null
   }
 
   render() {
     const { sidebarVisible } = this.state
+    const currentLocation = Locations.find((location) =>  location.value === this.props.location).text
+
 
     return (
       <React.Fragment>
@@ -53,20 +59,21 @@ class App extends Component {
               >
                 <Menu.Item name='marker'>
                   <Select
-                    placeholder='Select your city'
-                    inverted
+                    placeholder={currentLocation}
                     options={Locations}
                     onChange={this.handleChangeLocation}
                     />
                 </Menu.Item>
                 <Menu.Item name='calendar'>
-                  Days
+                  <Checkbox
+                    checked={this.props.onlyWeekends}
+                    onChange={this.handleWeekendToggle}
+                    toggle
+                    label={this.props.onlyWeekends ? 'Weekends Only' : 'Shows All Week'}/>
                 </Menu.Item>
-                <Menu.Item name='moon'>
-                  Venue Type
-                </Menu.Item>
+
                 <Menu.Item name='mail outline'>
-                  Contact
+                  <a href='mailto:mark@nephewapps.com'>Contact Mark</a>
                 </Menu.Item>
               </Sidebar>
               <Sidebar.Pusher style={{background: 'transparent'}}>
@@ -84,7 +91,7 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { artists: state.artists, location: state.location };
+  return { artists: state.artists, location: state.location, onlyWeekends: state.onlyWeekends };
 };
 
 export default connect(mapStateToProps, actions)(App)

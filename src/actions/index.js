@@ -48,3 +48,9 @@ export const changeLocation = (locationId) => {
     })
   }
 }
+
+export const toggleWeekends = () => {
+  return function(dispatch){
+    dispatch({type: 'TOGGLE_WEEKENDS'})
+  }
+}
