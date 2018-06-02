@@ -3,17 +3,17 @@ import { connect } from 'react-redux';
 import * as actions from  './actions/index';
 import './App.css';
 import ShowList from './components/shows/showList'
-import { Grid, Sidebar, Segment, Button, Menu, Image, Icon, Header } from 'semantic-ui-react'
+import { Grid, Sidebar, Segment, Button, Menu, Image, Icon, Header, Select } from 'semantic-ui-react'
 import {Route, Switch} from 'react-router-dom'
 import Logo from './components/app/logo'
-import SidebarRightScaleDown from './components/app/sidebarRightScaleDown'
+import Locations from './common/locations'
 
 class App extends Component {
 
   componentDidMount() {
     this.props.loadArtists()
     .then(() => {
-      this.props.loadShows(70)
+      this.props.loadInitialShows()
     })
   }
 
@@ -21,13 +21,21 @@ class App extends Component {
 
   toggleSidebarVisibility = () => this.setState({ sidebarVisible: !this.state.sidebarVisible })
 
+  handleChangeLocation = (e, {value}) => {
+    this.props.changeLocation(value)
+  }
+
+  componentWillReceiveProps = (nextProps) => {
+    nextProps.location !== this.props.location ? this.props.loadShows(nextProps.location) : null
+  }
+
   render() {
     const { sidebarVisible } = this.state
 
     return (
       <React.Fragment>
-        <Menu inverted borderless fixed={'top'}>
-          <Menu.Item position={'right'} onClick={this.toggleSidebarVisibility} style={{marginTop: '30px'}}>Options<Icon style={{marginLeft: '15px', marginRight: '15px;'}}inverted name='options' /></Menu.Item>
+        <Menu inverted borderless >
+          <Menu.Item position={'left'} onClick={this.toggleSidebarVisibility} style={{marginTop: '30px'}}>Options<Icon style={{marginLeft: '15px', marginRight: '15px;'}}inverted name='options' /></Menu.Item>
         </Menu>
         <Grid stackable padded >
 
@@ -36,16 +44,20 @@ class App extends Component {
                 as={Menu}
                 animation='overlay'
                 width='wide'
-                direction='right'
+                direction='left'
                 visible={sidebarVisible}
                 icon='labeled'
                 inverted
                 vertical
                 style={{height: '150%'}}
               >
-              <Menu.Item></Menu.Item>
                 <Menu.Item name='marker'>
-                  Cities
+                  <Select
+                    placeholder='Select your city'
+                    inverted
+                    options={Locations}
+                    onChange={this.handleChangeLocation}
+                    />
                 </Menu.Item>
                 <Menu.Item name='calendar'>
                   Days
@@ -72,7 +84,7 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { artists: state.artists };
+  return { artists: state.artists, location: state.location };
 };
 
 export default connect(mapStateToProps, actions)(App)

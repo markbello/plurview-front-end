@@ -4,23 +4,25 @@ import Show from './show'
 import About from '../app/about'
 import { Segment, Loader, Grid, Header } from 'semantic-ui-react'
 import moment from 'moment'
+import Locations from '../../common/locations'
 
 class ShowList extends React.Component {
 
   state = {
     loading: true,
-    showDays: ['0', '5', '6']
+    showDays: ['0', '5', '6'],
+    location: null
   }
 
   componentWillReceiveProps(nextProps){
-    this.setState({loading: false})
+    const currentLocation = Locations.find((location) =>  location.value === nextProps.location).text
+    this.setState({loading: false, location: currentLocation})
   }
 
   render() {
     const {shows} = this.props
     const {showDays} = this.state
 
-    console.log(shows)
 
     return (
       <React.Fragment>
@@ -36,7 +38,7 @@ class ShowList extends React.Component {
             <Grid.Row>
               <Grid.Column width={2}></Grid.Column>
               <Grid.Column width={11}>
-                <Header inverted as='h2' textAlign='center'>Upcoming Events</Header>
+                <Header inverted as='h2' textAlign='center'>Upcoming Events - {this.state.location}</Header>
               </Grid.Column>
             </Grid.Row>
           </React.Fragment>}
@@ -57,7 +59,7 @@ class ShowList extends React.Component {
                               <Segment.Group>
                                 {shows[key].map((show, idx) =>
                                   <Show show={show} key={`showArtist-${idx}`} />
-                                  
+
                                 ) }
                               </Segment.Group>
                             </Segment.Group>
@@ -75,7 +77,7 @@ class ShowList extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return { shows: state.shows };
+  return { shows: state.shows, location: state.location };
 };
 
 export default connect(mapStateToProps)(ShowList)

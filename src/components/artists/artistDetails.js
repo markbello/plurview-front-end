@@ -77,13 +77,6 @@ class ArtistDetails extends React.Component {
                 </React.Fragment>
               : null
             }
-            <Segment basic inverted>
-              <em>Vote on Colors</em>
-              {votingEnabled
-                ? <VotingBlock artist={artist} />
-                : <Input action="Submit" placeholder="Enter Password" />
-              }
-            </Segment>
           </Segment>
         </React.Fragment>
       }
@@ -94,3 +87,13 @@ class ArtistDetails extends React.Component {
 }
 
 export default ArtistDetails
+
+
+
+// <Segment basic inverted>
+//   <em>Vote on Colors</em>
+//   {votingEnabled
+//     ? <VotingBlock artist={artist} />
+//   : <Input action="Submit" placeholder="Enter Password" />
+// }
+// </Segment>

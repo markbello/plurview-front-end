@@ -40,7 +40,6 @@ class Show extends React.Component {
     const {show: {venue: {name: venue, location}, ticketLink, ages, name, festivalInd} } = this.props
     const {showArtists: artists} = this.state
 
-    name ? console.log(name) : null
 
     return (
       <React.Fragment>

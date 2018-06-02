@@ -8,7 +8,11 @@ export const fetchArtists = () => {
   return fetch(`${API_URL}/artists`)
 }
 
-export const fetchShows = () => {
+export const fetchShows = (locationId) => {
+  return fetch(`${API_URL}/shows/${locationId}`)
+}
+
+export const fetchInitialShows = () => {
   return fetch(`${API_URL}/shows`)
 }
 
