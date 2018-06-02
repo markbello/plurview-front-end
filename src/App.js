@@ -48,7 +48,7 @@ class App extends Component {
           <Sidebar.Pushable as={Segment} padded basic>
               <Sidebar
                 as={Menu}
-                animation='overlay'
+                animation='push'
                 width='wide'
                 direction='left'
                 visible={sidebarVisible}
