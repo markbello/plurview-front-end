@@ -139,7 +139,7 @@
        Links
 --------------------*/
 
-@linkColor           : #24b99b;
+@linkColor           : @green;
 @linkUnderline       : none;
 @linkHoverColor      : darken(saturate(@linkColor, 20), 15, relative);
 @linkHoverUnderline  : @linkUnderline;
@@ -225,7 +225,7 @@
 @orange           : #FF6D00;
 @yellow           : #ffff00;
 @olive            : #B5CC18;
-@green            : #24b99b;
+@green            : #19b824;
 @teal             : #00B5AD;
 @blue             : #1500ff;
 @violet           : #673AB7;

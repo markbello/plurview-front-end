@@ -273,14 +273,14 @@ i.inverted.circular.olive.icon {
 
 /* Green */
 i.green.icon {
-  color: #24b99b !important;
+  color: #19b824 !important;
 }
 i.inverted.green.icon {
   color: #2ECC40 !important;
 }
 i.inverted.bordered.green.icon,
 i.inverted.circular.green.icon {
-  background-color: #24b99b !important;
+  background-color: #19b824 !important;
   color: #FFFFFF !important;
 }
 

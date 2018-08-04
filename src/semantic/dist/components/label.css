@@ -654,7 +654,7 @@ a.ui.olive.label:hover {
 
 /* Ribbon */
 .ui.olive.ribbon.label {
-  border-color: #1c8e77 !important;
+  border-color: #138b1b !important;
 }
 
 /* Basic */
@@ -674,16 +674,16 @@ a.ui.basic.olive.label:hover {
 
 .ui.green.labels .label,
 .ui.green.label {
-  background-color: #24b99b !important;
-  border-color: #24b99b !important;
+  background-color: #19b824 !important;
+  border-color: #19b824 !important;
   color: #FFFFFF !important;
 }
 
 /* Link */
 .ui.green.labels .label:hover,
 a.ui.green.label:hover {
-  background-color: #19aa8d !important;
-  border-color: #19aa8d !important;
+  background-color: #0fa91a !important;
+  border-color: #0fa91a !important;
   color: #FFFFFF !important;
 }
 
@@ -695,20 +695,20 @@ a.ui.green.label:hover {
 
 /* Ribbon */
 .ui.green.ribbon.label {
-  border-color: #1c8e77 !important;
+  border-color: #138b1b !important;
 }
 
 /* Basic */
 .ui.basic.green.label {
   background-color: #FFFFFF !important;
-  color: #24b99b !important;
-  border-color: #24b99b !important;
+  color: #19b824 !important;
+  border-color: #19b824 !important;
 }
 .ui.basic.green.labels a.label:hover,
 a.ui.basic.green.label:hover {
   background-color: #FFFFFF !important;
-  color: #19aa8d !important;
-  border-color: #19aa8d !important;
+  color: #0fa91a !important;
+  border-color: #0fa91a !important;
 }
 
 /*--- Teal ---*/
@@ -1055,7 +1055,7 @@ a.ui.basic.black.label:hover {
 a.ui.basic.label:hover {
   text-decoration: none;
   background: none #FFFFFF;
-  color: #0cb08f;
+  color: #03ae0f;
   -webkit-box-shadow: 1px solid rgba(34, 36, 38, 0.15);
           box-shadow: 1px solid rgba(34, 36, 38, 0.15);
   -webkit-box-shadow: none;
