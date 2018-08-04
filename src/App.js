@@ -4,7 +4,7 @@ import * as actions from  './actions/index';
 import './App.css';
 import ShowList from './components/shows/showList'
 import { Grid, Sidebar, Segment, Button, Menu, Image, Icon, Header, Select, Checkbox } from 'semantic-ui-react'
-import {Route, Switch} from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import Logo from './components/app/logo'
 import Locations from './common/locations'
 
