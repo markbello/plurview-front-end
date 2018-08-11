@@ -14,7 +14,7 @@ class App extends Component {
   componentDidMount() {
     const { cookies } = this.props;
     const locationValue = cookies.get('location');
-    locationValue ? this.props.location = locationValue : null;
+    locationValue ? this.setState({location: locationValue}) : null;
     // this.props.changeLocation(locationValue);
     this.props.loadArtists()
     .then(() => {
@@ -25,6 +25,7 @@ class App extends Component {
 
   state = {
     sidebarVisible: false,
+    location: 332,
    };
 
 
