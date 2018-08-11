@@ -1,28 +1,39 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withCookies, Cookies } from 'react-cookie';
+import { Grid, Sidebar, Segment, Button, Menu, Image, Icon, Header, Select, Checkbox } from 'semantic-ui-react';
+import { Route, Switch } from 'react-router-dom';
 import * as actions from  './actions/index';
 import './App.css';
-import ShowList from './components/shows/showList'
-import { Grid, Sidebar, Segment, Button, Menu, Image, Icon, Header, Select, Checkbox } from 'semantic-ui-react'
-import { Route, Switch } from 'react-router-dom'
-import Logo from './components/app/logo'
-import Locations from './common/locations'
+import ShowList from './components/shows/showList';
+import Logo from './components/app/logo';
+import Locations from './common/locations';
 
 class App extends Component {
 
   componentDidMount() {
+    const { cookies } = this.props;
+    const locationValue = cookies.get('location');
+    locationValue ? this.props.location = locationValue : null;
+    // this.props.changeLocation(locationValue);
     this.props.loadArtists()
     .then(() => {
       this.props.loadInitialShows()
-    })
-  }
+    });
+  };
 
-  state = { sidebarVisible: false }
+
+  state = {
+    sidebarVisible: false,
+   };
+
 
   toggleSidebarVisibility = () => this.setState({ sidebarVisible: !this.state.sidebarVisible })
 
   handleChangeLocation = (e, {value}) => {
-    this.props.changeLocation(value)
+    const { cookies } = this.props;
+    cookies.set('location', value, { path: '/' });
+    this.props.changeLocation(value);
   }
 
   handleWeekendToggle = () => {
@@ -34,9 +45,9 @@ class App extends Component {
   }
 
   render() {
+    const { cookies } = this.props;
     const { sidebarVisible } = this.state
     const currentLocation = Locations.find((location) =>  location.value === this.props.location).text
-
 
     return (
       <React.Fragment>
@@ -94,4 +105,4 @@ const mapStateToProps = (state) => {
   return { artists: state.artists, location: state.location, onlyWeekends: state.onlyWeekends };
 };
 
-export default connect(mapStateToProps, actions)(App)
+export default connect(mapStateToProps, actions)(withCookies(App));

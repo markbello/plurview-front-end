@@ -3,7 +3,7 @@ export default function rootReducer(state = {
   genres: [],
   activeArtists: [],
   shows: [],
-  location: 70,
+  location: 332,
   onlyWeekends: true
 }, action) {
   switch(action.type) {
@@ -22,11 +22,8 @@ export default function rootReducer(state = {
     case 'CHANGE_LOCATION':
       return {...state, location: action.payload}
     case 'TOGGLE_WEEKENDS':
-      console.log("Current weekend state: ", state.onlyWeekends)
-      console.log("Next weekend state: ", !state.onlyWeekends)
       return {...state, onlyWeekends: !state.onlyWeekends}
     default:
-      console.log("App initialized");
       return state;
   }
 }
