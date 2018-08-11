@@ -33,6 +33,7 @@ class App extends Component {
   handleChangeLocation = (e, {value}) => {
     const { cookies } = this.props;
     cookies.set('location', value, { path: '/' });
+    console.log("fuck, ", cookies.get('location'));
     this.props.changeLocation(value);
   }
 

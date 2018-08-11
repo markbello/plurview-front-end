@@ -15,7 +15,7 @@ class ShowList extends React.Component {
   }
 
   componentWillReceiveProps(nextProps){
-    const currentLocation = Locations.find((location) =>  location.value === nextProps.location).text
+    const currentLocation = Locations.find(location =>  location.value === nextProps.location).text
     const weekends = ['0', '5', '6']
     const allWeek = ['0', '1', '2', '3', '4', '5', '6']
     let selectedDays
