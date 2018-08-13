@@ -25,7 +25,7 @@ class App extends Component {
 
   state = {
     sidebarVisible: false,
-    location: 332,
+    location: 130,
    };
 
 

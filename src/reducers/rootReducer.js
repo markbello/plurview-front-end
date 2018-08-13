@@ -3,7 +3,7 @@ export default function rootReducer(state = {
   genres: [],
   activeArtists: [],
   shows: [],
-  location: 332,
+  location: 130,
   onlyWeekends: true,
 }, action) {
   switch(action.type) {
