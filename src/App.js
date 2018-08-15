@@ -25,7 +25,7 @@ class App extends Component {
 
   state = {
     sidebarVisible: false,
-    location: 130,
+    location: 70,
    };
 
 
@@ -34,7 +34,6 @@ class App extends Component {
   handleChangeLocation = (e, {value}) => {
     const { cookies } = this.props;
     cookies.set('location', value, { path: '/' });
-    console.log("fuck, ", cookies.get('location'));
     this.props.changeLocation(value);
   }
 
