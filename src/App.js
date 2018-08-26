@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withCookies, Cookies } from 'react-cookie';
+import { withCookies, cookies } from 'react-cookie';
 import { Grid, Sidebar, Segment, Button, Menu, Image, Icon, Header, Select, Checkbox } from 'semantic-ui-react';
 import { Route, Switch } from 'react-router-dom';
 import * as actions from  './actions/index';
@@ -15,10 +15,22 @@ class App extends Component {
     const { cookies } = this.props;
     const locationValue = cookies.get('location');
     locationValue ? this.setState({location: locationValue}) : null;
+    const scrollPosition = cookies.get('scrollY');
     // this.props.changeLocation(locationValue);
     this.props.loadArtists()
     .then(() => {
-      this.props.loadInitialShows()
+      this.props.loadInitialShows();
+    })
+    .then(() => {
+      setTimeout(() => {
+        window.scrollTo(0, scrollPosition);
+      }, 1000);
+    });
+
+    window.addEventListener('scroll', () => {
+      setTimeout(() => {
+        cookies.set('scrollY', window.scrollY, { maxAge: 600 })
+      }, 200);
     });
   };
 
@@ -35,11 +47,17 @@ class App extends Component {
     const { cookies } = this.props;
     cookies.set('location', value, { path: '/' });
     this.props.changeLocation(value);
-  }
+  };
 
   handleWeekendToggle = () => {
-    this.props.toggleWeekends()
-  }
+    this.props.toggleWeekends();
+  };
+
+  handleScroll = (cookies) => {
+    setTimeout(() => {
+      cookies.set('scrollY', window.scrollY)
+    }, 500);
+  };
 
   componentWillReceiveProps = (nextProps) => {
     nextProps.location !== this.props.location ? this.props.loadShows(nextProps.location) : null
@@ -53,7 +71,7 @@ class App extends Component {
     return (
       <React.Fragment>
         <Menu inverted borderless >
-          <Menu.Item position={'left'} onClick={this.toggleSidebarVisibility} style={{marginTop: '30px'}}>Options<Icon style={{marginLeft: '15px', marginRight: '15px;'}}inverted name='options' /></Menu.Item>
+          <Menu.Item position={'left'} onClick={this.toggleSidebarVisibility} style={{marginTop: '30px'}}>Options<Icon style={{marginLeft: '15px', marginRight: '15px'}}inverted name='options' /></Menu.Item>
         </Menu>
         <Grid stackable padded >
 
@@ -103,7 +121,8 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { artists: state.artists, location: state.location, onlyWeekends: state.onlyWeekends };
+  const { artists, location, onlyWeekends } = state;
+  return { artists, location, onlyWeekends };
 };
 
 export default connect(mapStateToProps, actions)(withCookies(App));
