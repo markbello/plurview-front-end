@@ -35,19 +35,28 @@ export const loadInitialShows = () => {
       dispatch({
         type: "LOAD_SHOWS",
         payload: json.shows
-      })
-    })
-  }
-}
+      });
+    });
+  };
+};
 
-export const changeLocation = (locationId) => {
-  return function(dispatch){
+export const changeLocation = locationId => {
+  return function(dispatch) {
     dispatch({
       type: "CHANGE_LOCATION",
-      payload: locationId
-    })
-  }
-}
+      payload: { locationId }
+    });
+  };
+};
+
+export const setLocationName = locationName => {
+  return function(dispatch) {
+    dispatch({
+      type: "SET_LOCATION_NAME",
+      payload: locationName,
+    });
+  };
+};
 
 export const toggleWeekends = () => {
   return function(dispatch){

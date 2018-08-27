@@ -11,24 +11,20 @@ class ShowList extends React.Component {
   state = {
     loading: true,
     showDays: ['0', '5', '6'],
-    location: null
   }
 
   componentWillReceiveProps(nextProps){
-    const currentLocation = Locations.find(location =>  location.value === nextProps.location).text
-    const weekends = ['0', '5', '6']
-    const allWeek = ['0', '1', '2', '3', '4', '5', '6']
-    let selectedDays
-    nextProps.onlyWeekends ? selectedDays = weekends : selectedDays = allWeek
-
-    this.setState({loading: false, location: currentLocation, showDays: selectedDays})
-  }
-
+    // const currentLocation = Locations.find(location =>  location.value == nextProps.location).text;
+    const weekends = ['0', '5', '6'];
+    const allWeek = ['0', '1', '2', '3', '4', '5', '6'];
+    let selectedDays;
+    nextProps.onlyWeekends ? selectedDays = weekends : selectedDays = allWeek;
+    this.setState({loading: false, showDays: selectedDays});
+  };
 
   render() {
-    const {shows} = this.props
-    const {showDays} = this.state
-
+    const { shows, locationName } = this.props
+    const { showDays } = this.state
 
     return (
       <React.Fragment>
@@ -44,7 +40,7 @@ class ShowList extends React.Component {
             <Grid.Row>
               <Grid.Column width={2}></Grid.Column>
               <Grid.Column width={11}>
-                <Header inverted as='h2' textAlign='center'>Upcoming Events - {this.state.location}</Header>
+                <Header inverted as='h2' textAlign='center'>Upcoming Events - { locationName }</Header>
               </Grid.Column>
             </Grid.Row>
           </React.Fragment>}
@@ -83,7 +79,8 @@ class ShowList extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return { shows: state.shows, location: state.location, onlyWeekends: state.onlyWeekends };
+  const { shows, location, locationName, onlyWeekends } = state;
+  return { shows, location, locationName, onlyWeekends };
 };
 
 export default connect(mapStateToProps)(ShowList)
