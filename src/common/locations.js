@@ -464,8 +464,8 @@ const rawLocations = [
 ]
 
 const Locations = rawLocations.map((location) => {
-  const {id, city, stateCode} = location
-  return {value: id, text: `${city}, ${stateCode}`}
-})
+  const { id, city, stateCode } = location
+  return { value: id, text: `${city}, ${stateCode}` }
+});
 
-export default Locations
+export default Locations;
