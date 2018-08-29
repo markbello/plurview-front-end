@@ -133,12 +133,12 @@ class App extends Component {
     }
     this.props.cookies.set('location', closestCity.id);
     const locationId = this.props.cookies.get('location');
-    const currentLocation = this.findLocationName(locationId);
-    this.props.changeLocation(locationId);
+    const currentLocation = this.findLocationName(closestCity.id);
+    this.props.changeLocation(closestCity.id);
     this.props.setLocationName(currentLocation);
     this.props.loadArtists()
     .then(() => {
-      this.props.loadShows(locationId);
+      this.props.loadShows(closestCity.id);
     })
   }
 
