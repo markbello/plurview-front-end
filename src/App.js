@@ -7,7 +7,7 @@ import * as actions from  './actions/index';
 import './App.css';
 import ShowList from './components/shows/showList';
 import Logo from './components/app/logo';
-import Locations from './common/locations';
+import Locations, { rawLocations } from './common/locations';
 
 class App extends Component {
 
@@ -20,9 +20,8 @@ class App extends Component {
       loadInitialShows,
       loadShows
     } = this.props;
-
     let locationId = cookies.get('location');
-    locationId ? this.setState({ locationId }) : locationId = 70;
+    locationId ? null : locationId = this.detectLocation();
     const currentLocation = this.findLocationName(locationId);
     const scrollPosition = cookies.get('scrollY');
     changeLocation(locationId);
@@ -47,7 +46,6 @@ class App extends Component {
 
   state = {
     sidebarVisible: false,
-    location: 70,
    };
 
 
@@ -73,6 +71,40 @@ class App extends Component {
       cookies.set('scrollY', window.scrollY)
     }, 500);
   };
+
+  detectLocation = () => {
+    let closestCity;
+    if(navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        const { latitude, longitude } = position.coords;
+        const closestLatitude = this.closestValue(rawLocations, 'latitude', latitude);
+        const closestLongitude = this.closestValue(rawLocations, 'longitude', longitude);
+        const locationsByLatitude = rawLocations.filter(loc => loc.latitude === closestLatitude);
+        if(locationsByLatitude.length > 1){
+          const locationByLongitude = locationsByLatitude.find(loc => loc.longitude === closestLongitude);
+          closestCity = locationByLongitude;
+        } else if (locationsByLatitude.length === 1) {
+          closestCity = locationsByLatitude[0];
+        }
+        this.props.cookies.set('location', closestCity.id, { path: '/' });
+      }.bind(this));
+    };
+  };
+
+  closestValue = (array, key, value) => {
+  let result,
+      lastDelta;
+
+  array.some(function (item) {
+    let delta = Math.abs(value - item[key]);
+    if (delta > lastDelta) {
+        return true;
+    }
+    result = item[key];
+    lastDelta = delta;
+  });
+  return result;
+  }
 
   componentWillReceiveProps = (nextProps) => {
     nextProps.locationId !== this.props.locationId

@@ -1,4 +1,4 @@
-const rawLocations = [
+export const rawLocations = [
   {
       "id": 70,
       "city": "New York City",
