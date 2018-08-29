@@ -21,7 +21,7 @@ class App extends Component {
       loadShows
     } = this.props;
     let locationId = cookies.get('location');
-    locationId ? null : locationId = this.detectLocation();
+    locationId ? null : locationId = this.detectLocation() || 70;
     const currentLocation = this.findLocationName(locationId);
     const scrollPosition = cookies.get('scrollY');
     changeLocation(locationId);
@@ -86,7 +86,7 @@ class App extends Component {
         } else if (locationsByLatitude.length === 1) {
           closestCity = locationsByLatitude[0];
         }
-        this.props.cookies.set('location', closestCity.id, { path: '/' });
+        this.props.cookies.set('location', closestCity.id);
       }.bind(this));
     };
   };
