@@ -21,20 +21,33 @@ class App extends Component {
       loadShows
     } = this.props;
     let locationId = cookies.get('location');
-    locationId ? null : locationId = this.asyncDetectLocation();
-    const currentLocation = this.findLocationName(locationId);
-    const scrollPosition = cookies.get('scrollY');
-    changeLocation(locationId);
-    setLocationName(currentLocation);
-    loadArtists()
-    .then(() => {
-      loadShows(locationId);
-    })
-    .then(() => {
-      setTimeout(() => {
-        window.scrollTo(0, scrollPosition);
-      }, 1000);
-    });
+    if(locationId) {
+      const currentLocation = this.findLocationName(locationId);
+      const scrollPosition = cookies.get('scrollY');
+      changeLocation(locationId);
+      setLocationName(currentLocation);
+      loadArtists()
+      .then(() => {
+        loadShows(locationId);
+      })
+      .then(() => {
+        setTimeout(() => {
+          window.scrollTo(0, scrollPosition);
+        }, 1000);
+      });
+    } else {
+      this.asyncDetectLocation()
+      .then(() => {
+        locationId = cookies.get('location');
+        const currentLocation = this.findLocationName(locationId);
+        changeLocation(locationId);
+        setLocationName(currentLocation);
+        loadArtists()
+        .then(() => {
+          loadShows(locationId);
+        })
+      })
+    }
 
     window.addEventListener('scroll', () => {
       setTimeout(() => {
