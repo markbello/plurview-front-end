@@ -36,17 +36,7 @@ class App extends Component {
         }, 1000);
       });
     } else {
-      this.asyncDetectLocation()
-      .then(() => {
-        locationId = cookies.get('location');
-        const currentLocation = this.findLocationName(locationId);
-        changeLocation(locationId);
-        setLocationName(currentLocation);
-        loadArtists()
-        .then(() => {
-          loadShows(locationId);
-        })
-      })
+      this.asyncDetectLocation();
     }
 
     window.addEventListener('scroll', () => {
@@ -142,7 +132,14 @@ class App extends Component {
       closestCity = locationsByLatitude[0];
     }
     this.props.cookies.set('location', closestCity.id);
-    return closestCity;
+    const locationId = this.props.cookies.get('location');
+    const currentLocation = this.findLocationName(locationId);
+    this.props.changeLocation(locationId);
+    this.props.setLocationName(currentLocation);
+    this.props.loadArtists()
+    .then(() => {
+      this.props.loadShows(locationId);
+    })
   }
 
   closestValue = (array, key, value) => {
