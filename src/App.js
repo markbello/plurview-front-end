@@ -21,7 +21,7 @@ class App extends Component {
       loadShows
     } = this.props;
     let locationId = cookies.get('location');
-    locationId ? null : locationId = this.detectLocation() || 70;
+    locationId ? null : locationId = this.asyncDetectLocation();
     const currentLocation = this.findLocationName(locationId);
     const scrollPosition = cookies.get('scrollY');
     changeLocation(locationId);
@@ -48,6 +48,25 @@ class App extends Component {
     sidebarVisible: false,
    };
 
+   loadPosition = async () => {
+    try {
+      const position = await this.getCurrentPosition();
+      const { latitude, longitude } = position.coords;
+      console.log(latitude, longitude)
+      this.setState({
+        latitude,
+        longitude
+      }, () => this.findClosestCity());
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  getCurrentPosition = (options = {}) => {
+    return new Promise((resolve, reject) => {
+      navigator.geolocation.getCurrentPosition(resolve, reject, options);
+    });
+  };
 
   toggleSidebarVisibility = () => this.setState({ sidebarVisible: !this.state.sidebarVisible })
 
@@ -72,24 +91,46 @@ class App extends Component {
     }, 500);
   };
 
-  detectLocation = () => {
+  // detectLocation = () => {
+  //   let closestCity;
+  //   if(navigator.geolocation) {
+  //     navigator.geolocation.getCurrentPosition(function(position) {
+  //       const { latitude, longitude } = position.coords;
+  //       const closestLatitude = this.closestValue(rawLocations, 'latitude', latitude);
+  //       const closestLongitude = this.closestValue(rawLocations, 'longitude', longitude);
+  //       const locationsByLatitude = rawLocations.filter(loc => loc.latitude === closestLatitude);
+  //       if(locationsByLatitude.length > 1){
+  //         const locationByLongitude = locationsByLatitude.find(loc => loc.longitude === closestLongitude);
+  //         closestCity = locationByLongitude;
+  //       } else if (locationsByLatitude.length === 1) {
+  //         closestCity = locationsByLatitude[0];
+  //       }
+  //       this.props.cookies.set('location', closestCity.id);
+  //     }.bind(this));
+  //   };
+  // };
+
+  asyncDetectLocation = () => {
+    if ("geolocation" in navigator) {
+      this.loadPosition();
+    }
+  }
+
+  findClosestCity = () => {
     let closestCity;
-    if(navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function(position) {
-        const { latitude, longitude } = position.coords;
-        const closestLatitude = this.closestValue(rawLocations, 'latitude', latitude);
-        const closestLongitude = this.closestValue(rawLocations, 'longitude', longitude);
-        const locationsByLatitude = rawLocations.filter(loc => loc.latitude === closestLatitude);
-        if(locationsByLatitude.length > 1){
-          const locationByLongitude = locationsByLatitude.find(loc => loc.longitude === closestLongitude);
-          closestCity = locationByLongitude;
-        } else if (locationsByLatitude.length === 1) {
-          closestCity = locationsByLatitude[0];
-        }
-        this.props.cookies.set('location', closestCity.id);
-      }.bind(this));
-    };
-  };
+    const closestLatitude = this.closestValue(rawLocations, 'latitude', this.state.latitude);
+    const closestLongitude = this.closestValue(rawLocations, 'longitude', this.state.longitude);
+    const locationsByLatitude = rawLocations.filter(loc => loc.latitude === closestLatitude);
+    console.log(locationsByLatitude);
+    if(locationsByLatitude.length > 1){
+      const locationByLongitude = locationsByLatitude.find(loc => loc.longitude === closestLongitude);
+      closestCity = locationByLongitude;
+    } else if (locationsByLatitude.length === 1) {
+      closestCity = locationsByLatitude[0];
+    }
+    this.props.cookies.set('location', closestCity.id);
+    return closestCity;
+  }
 
   closestValue = (array, key, value) => {
   let result,
