@@ -11,6 +11,10 @@ export default function rootReducer(state = {
   switch(action.type) {
     case 'LOAD_ARTISTS':
       return { ...state, artists: action.payload };
+    case 'SET_ARTISTS_FROM_LOCAL_STORAGE':
+      return { ...state, artists: action.payload };
+    case 'SET_SHOWS_FROM_LOCAL_STORAGE':
+      return { ...state, shows: action.payload };
     case 'LOAD_SHOWS':
       return { ...state, shows: action.payload };
     case 'UPDATE_RELATED_ARTISTS':
