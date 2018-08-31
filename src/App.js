@@ -119,7 +119,7 @@ class App extends Component {
             position={'left'}
             onClick={ this.toggleSidebarVisibility }
             style={{ marginTop: '30px' }}>
-              Options
+              Change Location
               <Icon
                 style={{ marginLeft: '15px', marginRight: '15px' }}
                 inverted
