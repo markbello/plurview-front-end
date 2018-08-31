@@ -17,8 +17,10 @@ class App extends Component {
       changeLocation,
       setLocationName,
       loadArtists,
+      setArtistsFromLocalStorage,
+      setShowsFromLocalStorage,
       loadInitialShows,
-      loadShows
+      loadShows,
     } = this.props;
 
     let locationId = cookies.get('location');
@@ -27,28 +29,55 @@ class App extends Component {
     const scrollPosition = cookies.get('scrollY');
     changeLocation(locationId);
     setLocationName(currentLocation);
-    loadArtists()
-    .then(() => {
-      loadShows(locationId);
-    })
-    .then(() => {
+
+    let artistsListIsCurrent = cookies.get('artistsListIsCurrent');
+    let showListIsCurrent = cookies.get('showListIsCurrent');
+    let showListLocationId = cookies.get('showListLocationId');
+
+    if(artistsListIsCurrent) {
+      setArtistsFromLocalStorage();
+
+      if(showListIsCurrent && (showListLocationId === locationId)){
+        setShowsFromLocalStorage();
+      } else {
+        loadShows(locationId);
+        cookies.set('showListIsCurrent', true, { maxAge: 43200 });
+        cookies.set('showListLocationId', locationId, { maxAge: 43200 });
+      }
+
       setTimeout(() => {
         window.scrollTo(0, scrollPosition);
       }, 1000);
-    });
+    } else {
+      loadArtists()
+      .then(() => {
+        cookies.set('artistsListIsCurrent', true, { maxAge: 43200 });
+        if(showListIsCurrent && (showListLocationId === locationId)){
+          setShowsFromLocalStorage();
+        } else {
+          loadShows(locationId);
+        }
+      })
+      .then(() => {
+        cookies.set('showListIsCurrent', true, { maxAge: 43200 });
+        cookies.set('showListLocationId', locationId, { maxAge: 43200 });
+        setTimeout(() => {
+          window.scrollTo(0, scrollPosition);
+        }, 1000);
+      });
+    }
 
     window.addEventListener('scroll', () => {
       setTimeout(() => {
         cookies.set('scrollY', window.scrollY, { maxAge: 600 })
       }, 200);
     });
-  };
 
+  };
 
   state = {
     sidebarVisible: false,
-   };
-
+  };
 
   toggleSidebarVisibility = () => this.setState({ sidebarVisible: !this.state.sidebarVisible })
 
@@ -82,7 +111,6 @@ class App extends Component {
   render() {
     const { cookies, locationName } = this.props;
     const { sidebarVisible } = this.state;
-    // const currentLocation = Locations.find((location) =>  location.value === location).text;
 
     return (
       <React.Fragment>
@@ -147,8 +175,8 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { artists, location, locationName, onlyWeekends } = state;
-  return { artists, location, locationName, onlyWeekends };
+  const { artists, shows, location, locationName, onlyWeekends } = state;
+  return { artists, shows, location, locationName, onlyWeekends };
 };
 
 export default connect(mapStateToProps, actions)(withCookies(App));
