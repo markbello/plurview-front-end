@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withCookies } from 'react-cookie';
-import { Grid, Sidebar, Segment, Button, Menu, Image, Icon, Header, Select, Checkbox } from 'semantic-ui-react';
+import { Grid, Sidebar, Segment, Menu, Icon, Select, Checkbox } from 'semantic-ui-react';
 import { Route, Switch } from 'react-router-dom';
 import * as actions from  './actions/index';
 import './App.css';
@@ -19,7 +19,6 @@ class App extends Component {
       loadArtists,
       setArtistsFromLocalStorage,
       setShowsFromLocalStorage,
-      loadInitialShows,
       loadShows,
     } = this.props;
 
@@ -90,7 +89,7 @@ class App extends Component {
     this.props.loadShows(value);
   };
 
-  findLocationName = locationId => Locations.find(locationEntry =>  locationEntry.value == locationId).text;
+  findLocationName = locationId => Locations.find(locationEntry =>  locationEntry.value === locationId).text;
 
   handleWeekendToggle = () => {
     this.props.toggleWeekends();
