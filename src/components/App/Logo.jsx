@@ -1,6 +1,6 @@
-import logoImage from '../../assets/ticket-logo.svg'
-import {Image, Segment, Grid} from 'semantic-ui-react'
-import React from 'react'
+import React from 'react';
+import { Image, Segment, Grid } from 'semantic-ui-react';
+import logoImage from '../../assets/ticket-logo.svg';
 
 const Logo = () => {
   return (
@@ -11,7 +11,7 @@ const Logo = () => {
         </Segment>
       </Grid.Column>
     </Grid.Row>
-    )
-}
+  );
+};
 
-export default Logo
+export default Logo;

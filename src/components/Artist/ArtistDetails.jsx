@@ -1,21 +1,19 @@
-import React from 'react'
-import { connect } from 'react-redux';
-import { Loader, Segment, List, Input } from 'semantic-ui-react'
-import {fetchShowRelatedArtists, fetchArtistSubGenres} from '../../apiAdapter'
-import VotingBlock from './votingBlock'
+import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
+import { Loader, Segment, List } from 'semantic-ui-react';
+import { fetchShowRelatedArtists, fetchArtistSubGenres } from '../../apiAdapter';
 
-class ArtistDetails extends React.Component {
-
+class ArtistDetails extends Component {
   state = {
     relatedArtists: [],
     subGenres: [],
     loading: true
-  }
+  };
 
-  componentDidMount(){
-    this.fetchRelatedArtists()
-    this.fetchSubGenres()
-  }
+  componentDidMount() {
+    this.fetchRelatedArtists();
+    this.fetchSubGenres();
+  };
 
   fetchRelatedArtists = () => {
     fetchShowRelatedArtists(this.props.artist)
@@ -25,31 +23,30 @@ class ArtistDetails extends React.Component {
       this.setState({
         relatedArtists: filteredRelatedArtists,
         loading: false
-      })
-    })
-  }
+      });
+    });
+  };
 
   fetchSubGenres = () => {
     fetchArtistSubGenres(this.props.artist)
     .then(res => res.json())
     .then(subGenres => {
-      const filteredSubGenres = subGenres.filter((subGenre) => subGenre.name !== "edm").slice(0,4)
+      const filteredSubGenres = subGenres.filter((subGenre) => subGenre.name !== "edm").slice(0,4);
       this.setState({
         subGenres: filteredSubGenres,
-        loading: false
-      })
-    })
-  }
+        loading: false,
+      });
+    });
+  };
 
   render() {
-    const {loading, relatedArtists, subGenres} = this.state
-    const {artist, votingEnabled} = this.props
+    const { loading, relatedArtists, subGenres } = this.state;
 
     return (
-      <React.Fragment>
+      <Fragment>
       {loading
         ? <Loader active inverted />
-        : <React.Fragment>
+        : <Fragment>
           <Segment basic >
             {relatedArtists.length > 0
               ? <em>Related Artists:</em>
@@ -67,33 +64,26 @@ class ArtistDetails extends React.Component {
                 )
             }
             {subGenres.length > 0
-              ? <React.Fragment>
+              ? <Fragment>
                   <em>Subgenres:</em>
                   <Segment basic inverted>
                     <List>
                       {subGenres.map((subGenre, idx) => <List.Item value={'-'} key={`subgenre-${idx}`} >{subGenre.name}</List.Item>)}
                     </List>
                   </Segment>
-                </React.Fragment>
+                </Fragment>
               : null
             }
           </Segment>
-        </React.Fragment>
+        </Fragment>
       }
-    </React.Fragment>
-
+    </Fragment>
     );
-  }
-}
+  };
+};
 
-export default ArtistDetails
+ArtistDetails.propTypes = {
+  artist: PropTypes.shape({}).isRequired,
+};
 
-
-
-// <Segment basic inverted>
-//   <em>Vote on Colors</em>
-//   {votingEnabled
-//     ? <VotingBlock artist={artist} />
-//   : <Input action="Submit" placeholder="Enter Password" />
-// }
-// </Segment>
+export default ArtistDetails;

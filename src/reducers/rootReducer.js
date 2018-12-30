@@ -1,14 +1,14 @@
+import { NYC } from '../common/locations';
 
 export default function rootReducer(state = {
+  activeArtists: [],
+  activeLocation: NYC,
   artists: [],
   genres: [],
-  activeArtists: [],
   shows: [],
-  location: 70,
-  locationName: "New York City, NY",
   onlyWeekends: true,
 }, action) {
-  switch(action.type) {
+  switch (action.type) {
     case 'LOAD_ARTISTS':
       return { ...state, artists: action.payload };
     case 'SET_ARTISTS_FROM_LOCAL_STORAGE':
@@ -19,18 +19,14 @@ export default function rootReducer(state = {
       return { ...state, shows: action.payload };
     case 'UPDATE_RELATED_ARTISTS':
       const foundArtist = state.artists.find(artist => artist.id === action.payload.id)
-      let foundArtistIndex = state.artists.indexOf(foundArtist)
-      let newArtists = state.artists.slice()
+      const foundArtistIndex = state.artists.indexOf(foundArtist)
+      const newArtists = state.artists.slice()
       newArtists[foundArtistIndex] = action.payload
       return { ...state, artists: newArtists };
     case 'FIND_NEW_ARTIST':
       return { ...state, artists: [ ...state.artists, action.payload ] };
     case 'CHANGE_LOCATION':
-      return { ...state, location: action.payload };
-    case 'SET_LOCATION_NAME':
-      return { ...state, locationName: action.payload };
-    case 'TOGGLE_WEEKENDS':
-      return { ...state, onlyWeekends: !state.onlyWeekends };
+      return { ...state, activeLocation: action.payload };
     default:
       return state;
   };
