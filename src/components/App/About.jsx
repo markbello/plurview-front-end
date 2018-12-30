@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Segment, Header, Icon } from 'semantic-ui-react';
-import explainer from './explainer';
+import explainer from './explainer.json';
 
 class About extends React.Component {
   state = {
