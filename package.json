@@ -4,10 +4,10 @@
   "private": true,
   "dependencies": {
     "better-console": "^1.0.1",
-    "debounce": "^1.1.0",
     "gulp-help": "^1.6.1",
-    "lodash": "^4.17.5",
+    "lodash": "^4.17.11",
     "moment": "^2.21.0",
+    "prop-types": "^15.6.2",
     "react": "^16.2.0",
     "react-cookie": "^2.2.0",
     "react-dnd": "^2.5.4",
@@ -15,12 +15,12 @@
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.1",
+    "react-scripts": "2.0.3",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
     "require-dot-file": "^0.4.0",
-    "semantic-ui": "^2.3.1",
-    "semantic-ui-react": "^0.78.3",
+    "semantic-ui": "^2.4.0",
+    "semantic-ui-react": "^0.84.0",
     "style-it": "^2.0.0",
     "thunk": "^0.0.1"
   },
@@ -28,6 +28,28 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
+    "eject": "react-scripts eject",
+    "storybook": "start-storybook -p 9001 -c ./src/storybook"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/plugin-syntax-object-rest-spread": "^7.0.0",
+    "@storybook/cli": "^4.0.8",
+    "@storybook/react": "^4.0.8",
+    "babel-jest": "^23.6.0",
+    "babel-loader": "^8.0.4",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "enzyme": "^3.7.0",
+    "enzyme-adapter-react-16": "^1.7.0",
+    "jest": "^23.6.0",
+    "jest-cli": "^23.6.0",
+    "react-test-renderer": "^16.6.3"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }

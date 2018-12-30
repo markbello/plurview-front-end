@@ -1,4 +1,6 @@
-export const rawLocations = [
+import { find } from 'lodash';
+
+const rawLocations = [
   {
       "id": 70,
       "city": "New York City",
@@ -461,11 +463,11 @@ export const rawLocations = [
       "longitude": -77.037,
       "link": "https://edmtrain.com/washington-dc"
   }
-]
+];
 
-const Locations = rawLocations.map((location) => {
-  const { id, city, stateCode } = location
-  return { value: id, text: `${city}, ${stateCode}` }
-});
+export const ALL_LOCATIONS = rawLocations.map(location => ({
+  ...location,
+  name: `${location.city}, ${location.stateCode}`,
+}));
 
-export default Locations;
+export const NYC = find(ALL_LOCATIONS, { 'id': 70 });

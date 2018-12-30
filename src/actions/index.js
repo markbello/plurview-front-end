@@ -24,7 +24,7 @@ export const setArtistsFromLocalStorage = () => {
   }
 }
 
-export const loadShows = (locationId) => {
+export const loadShows = ({ id: locationId }) => {
   return function(dispatch){
     return fetchShows(locationId)
     .then(res => res.json())
@@ -61,11 +61,11 @@ export const loadInitialShows = () => {
   };
 };
 
-export const changeLocation = locationId => {
+export const changeLocation = location => {
   return function(dispatch) {
     dispatch({
       type: "CHANGE_LOCATION",
-      payload: { locationId }
+      payload: { location }
     });
   };
 };
