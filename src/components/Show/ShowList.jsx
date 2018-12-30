@@ -7,7 +7,6 @@ import {
   filterShowsByDaysOfWeek,
 } from '../../utils/filters';
 import Show from './Show';
-import About from '../App/About';
 
 const ShowList = ({
   activeCity,
@@ -21,12 +20,6 @@ const ShowList = ({
   return (
     <Fragment>
       <Fragment>
-        <Grid.Row>
-          <Grid.Column width={2}></Grid.Column>
-          <Grid.Column width={11}>
-            <About />
-          </Grid.Column>
-        </Grid.Row>
         <Grid.Row>
           <Grid.Column width={2}></Grid.Column>
           <Grid.Column width={11}>
