@@ -41,7 +41,7 @@
     "enzyme-adapter-react-16": "^1.7.0",
     "jest": "^23.6.0",
     "jest-cli": "^23.6.0",
-    "react-test-renderer": "^16.6.3",
+    "react-test-renderer": "^16.6.3"
   },
   "browserslist": [
     ">0.2%",
