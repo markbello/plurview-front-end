@@ -8,13 +8,15 @@ import {
   Segment,
   Sidebar as SemanticUISidebar,
 } from 'semantic-ui-react';
+import { find } from 'lodash';
 import { ALL_LOCATIONS } from '../../common/locations';
 
 const Sidebar = ({
-  updateActiveLocation,
-  isWeekendsOnly,
-  isVisible,
   activeCity,
+  changeLocation,
+  loadShows,
+  isVisible,
+  isWeekendsOnly,
   toggleWeekendsOnly,
 }) => {
   const locationOptions = ALL_LOCATIONS.map(({ id, name }) => ({
@@ -26,6 +28,11 @@ const Sidebar = ({
     ? 'Weekends Only'
     : 'Raves All Week';
 
+  const updateActiveLocation = (newLocation) => {
+    const newLocationObject = find(ALL_LOCATIONS, { 'id': newLocation });
+    changeLocation(newLocationObject);
+    loadShows(newLocationObject);
+  };
 
   return (
     <SemanticUISidebar.Pushable as={ Segment } padded basic>
@@ -44,8 +51,8 @@ const Sidebar = ({
           <Select
             placeholder={activeCity}
             options={locationOptions}
-            onChange={updateActiveLocation}
-            />
+            onChange={(e, { value }) => updateActiveLocation(value)}
+          />
         </Menu.Item>
         <Menu.Item name='calendar'>
           <Checkbox

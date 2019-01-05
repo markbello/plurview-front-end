@@ -26,7 +26,7 @@ export default function rootReducer(state = {
     case 'FIND_NEW_ARTIST':
       return { ...state, artists: [ ...state.artists, action.payload ] };
     case 'CHANGE_LOCATION':
-      return { ...state, activeLocation: action.payload };
+      return { ...state, activeLocation: action.newLocation };
     default:
       return state;
   };

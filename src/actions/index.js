@@ -1,6 +1,6 @@
 import { fetchArtists, fetchShows, fetchInitialShows } from '../apiAdapter'
 
-export const loadArtists = (artist) => {
+export const loadArtists = () => {
   return function(dispatch){
     return fetchArtists()
     .then(res => res.json())
@@ -61,14 +61,10 @@ export const loadInitialShows = () => {
   };
 };
 
-export const changeLocation = location => {
-  return function(dispatch) {
-    dispatch({
-      type: "CHANGE_LOCATION",
-      payload: { location }
-    });
-  };
-};
+export const changeLocation = newLocation => ({
+  type: 'CHANGE_LOCATION',
+  newLocation,
+});
 
 export const setLocationName = locationName => {
   return function(dispatch) {
@@ -78,9 +74,3 @@ export const setLocationName = locationName => {
     });
   };
 };
-
-export const toggleWeekends = () => {
-  return function(dispatch){
-    dispatch({type: 'TOGGLE_WEEKENDS'})
-  }
-}
