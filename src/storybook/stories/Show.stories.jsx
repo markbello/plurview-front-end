@@ -1,16 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import Show from '../../components/Show';
-
-const props = {
-  venueName: 'Terminal 5',
-  location: '70',
-  ticketLink: '#',
-  ages: '18+',
-  name: 'Bass in Ya Face',
-  festivalInd: false,
-  id: '123',
-};
+import Show from '../../components/Show/Show';
+import { defaultProps } from '../../__tests__/__fixtures__/Show';
 
 storiesOf('Show Component', module)
-  .add('Default Story', () => <Show { ...props} />)
+  .add('Default Story', () => <Show { ...defaultProps} />)

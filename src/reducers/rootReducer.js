@@ -13,7 +13,7 @@ export default function rootReducer(state = {
   activeArtists: [],
   activeLocationId: NYC.id,
   activeLocationName: NYC.name,
-  artists: [],
+  allArtists: [],
   shows: [],
   onlyWeekends: true,
 }, action) {
@@ -27,7 +27,7 @@ export default function rootReducer(state = {
         activeLocationName: newLocationObject.name,
       };
     case LOAD_ARTISTS:
-      return { ...state, artists: action.artists };
+      return { ...state, allArtists: action.artists };
     case LOAD_SHOWS:
       return { ...state, shows: action.shows };
     default:

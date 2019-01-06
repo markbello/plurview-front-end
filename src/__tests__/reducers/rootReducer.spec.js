@@ -22,7 +22,7 @@ describe('reducer', () => {
         activeArtists: [],
         activeLocationId: NYC.id,
         activeLocationName: NYC.name,
-        artists: [],
+        allArtists: [],
         shows: [],
         onlyWeekends: true,
       };
@@ -59,7 +59,7 @@ describe('reducer', () => {
 
       const expectedState = {
         ...defaultState,
-        artists: ['testArtist'],
+        allArtists: ['testArtist'],
       };
 
       expect(testState).toEqual(expectedState);

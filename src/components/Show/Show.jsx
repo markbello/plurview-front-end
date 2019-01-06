@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react'
-import { connect } from 'react-redux';
 import { isEmpty } from 'lodash';
 import { Grid, Segment, Header, Image } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
@@ -8,8 +7,8 @@ import ticketImage from '../../assets/ticket.svg';
 
 const Show = ({
   ages,
+  allArtists,
   artistList,
-  artists: allArtists,
   isFestival,
   location,
   name,
@@ -59,7 +58,7 @@ const Show = ({
 Show.propTypes = {
   ages: PropTypes.string,
   artistList: PropTypes.array.isRequired,
-  artists: PropTypes.array.isRequired,
+  allArtists: PropTypes.array.isRequired,
   isFestival: PropTypes.bool.isRequired,
   location: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
@@ -67,6 +66,4 @@ Show.propTypes = {
   venueName: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = ({ artists }) => ({ artists });
-
-export default connect(mapStateToProps)(Show);
+export default Show;

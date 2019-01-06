@@ -33,7 +33,7 @@ class App extends Component {
     const {
       activeLocationId,
       activeLocationName,
-      artists,
+      allArtists,
       changeLocation,
       loadShows,
       shows,
@@ -42,7 +42,7 @@ class App extends Component {
     const toggleWeekendsOnly = () => this.setState({ isWeekendsOnly: !this.state.isWeekendsOnly });
     const toggleSidebarVisibility = () => this.setState({ isSidebarVisible: !this.state.isSidebarVisible });
 
-    const isLoaded = !!shows && !!artists.length;
+    const isLoaded = !!shows && !!allArtists.length;
 
     return (
       <Fragment>
@@ -71,8 +71,9 @@ class App extends Component {
           />
         {isLoaded && (
           <ShowList
-            isWeekendsOnly={isWeekendsOnly}
             activeLocationName={activeLocationName}
+            allArtists={allArtists}
+            isWeekendsOnly={isWeekendsOnly}
             shows={shows}
           />)}
         </Grid>
@@ -84,12 +85,12 @@ class App extends Component {
 const mapStateToProps = ({
   activeLocationId,
   activeLocationName,
-  artists,
+  allArtists,
   shows,
 }) => ({
   activeLocationId,
   activeLocationName,
-  artists,
+  allArtists,
   shows,
 });
 

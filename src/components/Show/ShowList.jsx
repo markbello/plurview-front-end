@@ -10,7 +10,7 @@ import Show from './Show';
 
 const ShowList = ({
   activeLocationName,
-  artists: allArtists,
+  allArtists,
   isWeekendsOnly,
   shows,
 }) => {
@@ -43,6 +43,7 @@ const ShowList = ({
                         {shows.map((show, idx) => (
                           <Show
                             ages={show.ages}
+                            allArtists={allArtists}
                             artistList={show.artistList}
                             isFestival={show.festivalInd}
                             key={`showArtist-${idx}`}
