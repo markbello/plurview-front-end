@@ -10,7 +10,7 @@ import { ALL_LOCATIONS } from '../../../common/locations';
 import {
   PHILADELPHIA_ID,
   PHILADELPHIA_OBJECT,
-} from '../../__fixtures__/locations';
+} from '../../../__fixtures__/locations';
 
 const changeLocation = jest.fn();
 const loadShows = jest.fn();

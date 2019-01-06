@@ -6,7 +6,7 @@ import {
 import {
   PHILADELPHIA_ID,
   PHILADELPHIA_OBJECT,
-} from '../__fixtures__/locations';
+} from '../../__fixtures__/locations';
 import {
   changeLocation,
   loadArtists,

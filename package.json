@@ -47,6 +47,7 @@
     "collectCoverageFrom": [
       "**/*.{js,jsx}",
       "!**/coverage/**",
+      "!**/__fixtures__/**",
       "!**/node_modules/**",
       "!**/semantic/**",
       "!**/storybook/**",

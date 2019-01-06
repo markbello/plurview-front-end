@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-import { connect } from 'react-redux';
 import { Segment, Grid, Header } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import {
@@ -80,9 +79,4 @@ ShowList.propTypes = {
   locationName: PropTypes.string.isRequired,
 }
 
-const mapStateToProps = (state) => {
-  const { artists, shows, location, locationName, onlyWeekends } = state;
-  return { artists, shows, location, locationName, onlyWeekends };
-};
-
-export default connect(mapStateToProps)(ShowList);
+export default ShowList;

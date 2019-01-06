@@ -7,7 +7,7 @@ import {
   TEST_LOCATION_NAME,
   TEST_SHOW_NAME,
   TEST_VENUE_NAME,
-} from '../../__fixtures__/Show';
+} from '../../../__fixtures__/Show';
 
 const props ={
   ages: defaultProps.ages,

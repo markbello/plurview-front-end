@@ -10,7 +10,7 @@ import {
 import {
   PHILADELPHIA_ID,
   PHILADELPHIA_OBJECT,
-} from '../__fixtures__/locations';
+} from '../../__fixtures__/locations';
 import reducer from '../../reducers/rootReducer';
 
 const defaultState = reducer(undefined, { type: '@@INIT' });
