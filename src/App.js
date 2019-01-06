@@ -21,7 +21,7 @@ class App extends Component {
 
   componentDidMount() {
     this.props.loadArtists();
-    this.props.loadShows(this.props.activeLocation);
+    this.props.loadShows(this.props.activeLocationId);
   };
 
   render() {
@@ -31,7 +31,8 @@ class App extends Component {
     } = this.state;
 
     const {
-      activeLocation,
+      activeLocationId,
+      activeLocationName,
       artists,
       changeLocation,
       loadShows,
@@ -61,7 +62,7 @@ class App extends Component {
         </Menu>
         <Grid stackable padded >
           <Sidebar
-            activeCity={activeLocation.city}
+            activeLocationName={activeLocationName}
             changeLocation={changeLocation}
             isVisible={isSidebarVisible}
             isWeekendsOnly={isWeekendsOnly}
@@ -71,7 +72,7 @@ class App extends Component {
         {isLoaded && (
           <ShowList
             isWeekendsOnly={isWeekendsOnly}
-            activeCity={activeLocation.city}
+            activeLocationName={activeLocationName}
             shows={shows}
           />)}
         </Grid>
@@ -80,10 +81,17 @@ class App extends Component {
   };
 };
 
-const mapStateToProps = (state) => {
-  const { artists, shows, activeLocation } = state;
-  return { artists, shows, activeLocation };
-};
+const mapStateToProps = ({
+  activeLocationId,
+  activeLocationName,
+  artists,
+  shows,
+}) => ({
+  activeLocationId,
+  activeLocationName,
+  artists,
+  shows,
+});
 
 const mapDispatchToProps = {
   changeLocation,

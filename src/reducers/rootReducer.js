@@ -1,32 +1,35 @@
-import { NYC } from '../common/locations';
+import { find } from 'lodash';
+import {
+  ALL_LOCATIONS,
+  NYC,
+} from '../common/locations';
+import {
+  CHANGE_LOCATION,
+  LOAD_ARTISTS,
+  LOAD_SHOWS,
+} from '../actions/actionTypes';
 
 export default function rootReducer(state = {
   activeArtists: [],
-  activeLocation: NYC,
+  activeLocationId: NYC.id,
+  activeLocationName: NYC.name,
   artists: [],
-  genres: [],
   shows: [],
   onlyWeekends: true,
 }, action) {
   switch (action.type) {
-    case 'LOAD_ARTISTS':
-      return { ...state, artists: action.payload };
-    case 'SET_ARTISTS_FROM_LOCAL_STORAGE':
-      return { ...state, artists: action.payload };
-    case 'SET_SHOWS_FROM_LOCAL_STORAGE':
-      return { ...state, shows: action.payload };
-    case 'LOAD_SHOWS':
-      return { ...state, shows: action.payload };
-    case 'UPDATE_RELATED_ARTISTS':
-      const foundArtist = state.artists.find(artist => artist.id === action.payload.id)
-      const foundArtistIndex = state.artists.indexOf(foundArtist)
-      const newArtists = state.artists.slice()
-      newArtists[foundArtistIndex] = action.payload
-      return { ...state, artists: newArtists };
-    case 'FIND_NEW_ARTIST':
-      return { ...state, artists: [ ...state.artists, action.payload ] };
-    case 'CHANGE_LOCATION':
-      return { ...state, activeLocation: action.newLocation };
+    case CHANGE_LOCATION:
+      const newLocationObject = find(ALL_LOCATIONS, { 'id': action.newLocationId });
+
+      return {
+        ...state,
+        activeLocationId: action.newLocationId,
+        activeLocationName: newLocationObject.name,
+      };
+    case LOAD_ARTISTS:
+      return { ...state, artists: action.artists };
+    case LOAD_SHOWS:
+      return { ...state, shows: action.shows };
     default:
       return state;
   };

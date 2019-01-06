@@ -7,16 +7,17 @@ import {
 } from 'semantic-ui-react';
 import Sidebar from '../../../components/App/Sidebar';
 import { ALL_LOCATIONS } from '../../../common/locations';
-
-const PHILADELPHIA_ID = 79;
-const PHILADELPHIA_OBJECT = find(ALL_LOCATIONS, { 'id': PHILADELPHIA_ID });
+import {
+  PHILADELPHIA_ID,
+  PHILADELPHIA_OBJECT,
+} from '../../__fixtures__/locations';
 
 const changeLocation = jest.fn();
 const loadShows = jest.fn();
 const toggleWeekendsOnly = jest.fn();
 
 const props = {
-  activeCity: 'New York City',
+  activeLocationName: 'New York City',
   changeLocation,
   loadShows,
   isVisible: true,
@@ -42,21 +43,21 @@ describe('Sidebar component', () => {
     const dropdownOptions = component.find(Select).prop('options');
     expect(dropdownOptions.length).toEqual(ALL_LOCATIONS.length);
   });
-  it('calls changeLocation with the full location object when updateActiveLocation', () => {
+  it('calls changeLocation with newLocationId when updateActiveLocation', () => {
     const component = shallow(<Sidebar {...props} />);
 
     const dropdownOnChange = component.find(Select).prop('onChange');
     dropdownOnChange(undefined, { value: PHILADELPHIA_ID });
 
-    expect(changeLocation).toHaveBeenCalledWith(PHILADELPHIA_OBJECT);
+    expect(changeLocation).toHaveBeenCalledWith(PHILADELPHIA_ID);
   });
-  it('calls loadShows with the full location object when updateActiveLocation', () => {
+  it('calls loadShows with newLocationId when updateActiveLocation', () => {
     const component = shallow(<Sidebar {...props} />);
 
     const dropdownOnChange = component.find(Select).prop('onChange');
     dropdownOnChange(undefined, { value: PHILADELPHIA_ID });
 
-    expect(loadShows).toHaveBeenCalledWith(PHILADELPHIA_OBJECT);
+    expect(loadShows).toHaveBeenCalledWith(PHILADELPHIA_ID);
   });
   it('labels the weekendsOnly toggle "Weekends Only" when isWeekendsOnly', () => {
     const component = shallow(<Sidebar {...props} />);

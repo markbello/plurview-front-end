@@ -9,7 +9,7 @@ import {
 import Show from './Show';
 
 const ShowList = ({
-  activeCity,
+  activeLocationName,
   artists: allArtists,
   isWeekendsOnly,
   shows,
@@ -23,7 +23,7 @@ const ShowList = ({
         <Grid.Row>
           <Grid.Column width={2}></Grid.Column>
           <Grid.Column width={11}>
-            <Header inverted as='h2' textAlign='center'>Upcoming Events - {activeCity}</Header>
+            <Header inverted as='h2' textAlign='center'>Upcoming Events - {activeLocationName}</Header>
           </Grid.Column>
         </Grid.Row>
       </Fragment>
@@ -66,7 +66,7 @@ const ShowList = ({
 
 
 ShowList.propTypes = {
-  activeCity: PropTypes.string.isRequired,
+  activeLocationName: PropTypes.string.isRequired,
   shows: PropTypes.shape({
     ages: PropTypes.string,
     artistList: PropTypes.array.isRequired,

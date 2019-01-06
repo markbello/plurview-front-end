@@ -1,0 +1,3 @@
+export const CHANGE_LOCATION = 'CHANGE_LOCATION';
+export const LOAD_ARTISTS = 'LOAD_ARTISTS';
+export const LOAD_SHOWS = 'LOAD_SHOWS';

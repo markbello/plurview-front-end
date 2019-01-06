@@ -10,10 +10,6 @@ export const fetchShows = (locationId) => {
   return fetch(`${API_URL}/shows/${locationId}`)
 }
 
-export const fetchInitialShows = () => {
-  return fetch(`${API_URL}/shows`)
-}
-
 export const fetchRelatedArtists = (artist) => {
   return fetch(`${API_URL}/artists/${artist.id}/find_related`)
 }

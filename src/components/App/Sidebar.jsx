@@ -12,7 +12,7 @@ import { find } from 'lodash';
 import { ALL_LOCATIONS } from '../../common/locations';
 
 const Sidebar = ({
-  activeCity,
+  activeLocationName,
   changeLocation,
   loadShows,
   isVisible,
@@ -28,10 +28,9 @@ const Sidebar = ({
     ? 'Weekends Only'
     : 'Raves All Week';
 
-  const updateActiveLocation = (newLocation) => {
-    const newLocationObject = find(ALL_LOCATIONS, { 'id': newLocation });
-    changeLocation(newLocationObject);
-    loadShows(newLocationObject);
+  const updateActiveLocation = (newLocationId) => {
+    changeLocation(newLocationId);
+    loadShows(newLocationId);
   };
 
   return (
@@ -49,9 +48,9 @@ const Sidebar = ({
       >
         <Menu.Item name='marker'>
           <Select
-            placeholder={activeCity}
+            placeholder={activeLocationName}
             options={locationOptions}
-            onChange={(e, { value }) => updateActiveLocation(value)}
+            onChange={(e, { value: newLocationId }) => updateActiveLocation(newLocationId)}
           />
         </Menu.Item>
         <Menu.Item name='calendar'>
@@ -73,7 +72,7 @@ const Sidebar = ({
 };
 
 Sidebar.propTypes = {
-  activeCity: PropTypes.string.isRequired,
+  activeLocationName: PropTypes.string.isRequired,
   isVisible: PropTypes.bool.isRequired,
   isWeekendsOnly: PropTypes.bool.isRequired,
   toggleWeekendsOnly: PropTypes.func.isRequired,
