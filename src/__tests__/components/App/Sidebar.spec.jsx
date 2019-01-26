@@ -1,6 +1,5 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { find } from 'lodash';
 import {
   Checkbox,
   Select,
@@ -9,7 +8,6 @@ import Sidebar from '../../../components/App/Sidebar';
 import { ALL_LOCATIONS } from '../../../common/locations';
 import {
   PHILADELPHIA_ID,
-  PHILADELPHIA_OBJECT,
 } from '../../../__fixtures__/locations';
 
 const changeLocation = jest.fn();

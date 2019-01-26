@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Logo from './Logo';
 import {
   Checkbox,
   Menu,
@@ -8,7 +7,7 @@ import {
   Segment,
   Sidebar as SemanticUISidebar,
 } from 'semantic-ui-react';
-import { find } from 'lodash';
+import Logo from './Logo';
 import { ALL_LOCATIONS } from '../../common/locations';
 
 const Sidebar = ({
@@ -34,34 +33,35 @@ const Sidebar = ({
   };
 
   return (
-    <SemanticUISidebar.Pushable as={ Segment } padded basic>
+    <SemanticUISidebar.Pushable as={Segment} padded={true} basic={true}>
       <SemanticUISidebar
         as={Menu}
-        animation='push'
-        width='wide'
-        direction='left'
+        animation="push"
+        width="wide"
+        direction="left"
         visible={isVisible}
-        icon='labeled'
-        inverted
-        vertical
+        icon="labeled"
+        inverted={true}
+        vertical={true}
         style={{ height: '150%' }}
       >
-        <Menu.Item name='marker'>
+        <Menu.Item name="marker">
           <Select
             placeholder={activeLocationName}
             options={locationOptions}
             onChange={(e, { value: newLocationId }) => updateActiveLocation(newLocationId)}
           />
         </Menu.Item>
-        <Menu.Item name='calendar'>
+        <Menu.Item name="calendar">
           <Checkbox
             checked={isWeekendsOnly}
             onChange={toggleWeekendsOnly}
-            toggle
-            label={weekendsOnlyLabel}/>
+            toggle={true}
+            label={weekendsOnlyLabel}
+          />
         </Menu.Item>
-        <Menu.Item name='mail outline'>
-          <a href='mailto:mcbello51286@gmail.com'>Contact Mark</a>
+        <Menu.Item name="mail outline">
+          <a href="mailto:mcbello51286@gmail.com">Contact Mark</a>
         </Menu.Item>
       </SemanticUISidebar>
       <SemanticUISidebar.Pusher style={{ background: 'transparent' }}>
@@ -73,10 +73,11 @@ const Sidebar = ({
 
 Sidebar.propTypes = {
   activeLocationName: PropTypes.string.isRequired,
+  changeLocation: PropTypes.func.isRequired,
   isVisible: PropTypes.bool.isRequired,
   isWeekendsOnly: PropTypes.bool.isRequired,
+  loadShows: PropTypes.func.isRequired,
   toggleWeekendsOnly: PropTypes.func.isRequired,
-  updateActiveLocation: PropTypes.func.isRequired,
 };
 
 export default Sidebar;

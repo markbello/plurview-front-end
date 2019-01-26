@@ -4,4 +4,4 @@ import ShowList from '../../components/Show/ShowList';
 import defaultProps from '../../__fixtures__/ShowList';
 
 storiesOf('ShowList Component', module)
-  .add('Default Story', () => <ShowList { ...defaultProps} />)
+  .add('Default Story', () => <ShowList {...defaultProps} />);

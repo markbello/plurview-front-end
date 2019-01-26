@@ -1,15 +1,12 @@
 import React from 'react';
-import { Segment } from 'semantic-ui-react';
 import { shallow } from 'enzyme';
 import Show from '../../../components/Show/Show';
 import {
   defaultProps,
-  TEST_LOCATION_NAME,
   TEST_SHOW_NAME,
-  TEST_VENUE_NAME,
 } from '../../../__fixtures__/Show';
 
-const props ={
+const props = {
   ages: defaultProps.ages,
   allArtists: defaultProps.allArtists,
   artistList: defaultProps.artistList,
@@ -27,7 +24,7 @@ describe('Show component', () => {
     const locationName = component.find('em').last().text();
 
     expect(locationName).toEqual(props.location);
-  })
+  });
   it('appends ages metadata to location when supplied', () => {
     const withAgesProps = {
       ...props,

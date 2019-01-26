@@ -1,6 +1,8 @@
-import React, { Fragment } from 'react'
+import React, { Fragment } from 'react';
 import { isEmpty } from 'lodash';
-import { Grid, Segment, Header, Image } from 'semantic-ui-react';
+import {
+  Grid, Segment, Header, Image,
+} from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import Artist from '../Artist/Artist';
 import ticketImage from '../../assets/ticket.svg';
@@ -23,29 +25,31 @@ const Show = ({
     : name;
 
   const artistMatchesFromDB = [];
-  artistList.forEach(artist => {
+  artistList.forEach((artist) => {
     const artistMatch = allArtists.find(dbArtist => dbArtist.name === artist.name);
-    !!artistMatch && artistMatchesFromDB.push(artistMatch);
+    if (artistMatch) {
+      artistMatchesFromDB.push(artistMatch);
+    }
   });
 
   const hasArtistsFromDB = !isEmpty(artistMatchesFromDB);
 
   return hasArtistsFromDB && (
     <Fragment>
-      <Segment basic inverted>
-        <Header className={'show-location'} as={"h2"}>
+      <Segment basic={true} inverted={true}>
+        <Header className="show-location" as="h2">
           <em>{venueName}</em>
           <a href={ticketLink}>
-            <Image className={'ticket-link'} src={ticketImage} size='mini' verticalAlign='middle' />
+            <Image className="ticket-link" src={ticketImage} size="mini" verticalAlign="middle" />
           </a>
         </Header>
-        <em className={'show-location'}>{formattedLocation}</em>
+        <em className="show-location">{formattedLocation}</em>
       </Segment>
-      <Grid container columns={1} inverted stackable>
-        <Grid.Column className={'artist-column'}>
+      <Grid container={true} columns={1} inverted={true} stackable={true}>
+        <Grid.Column className="artist-column">
           {hasName && (
-            <Segment basic inverted as={'div'} className={'show-component'}>
-              <Header as={'p'}><em>{formattedName}</em></Header>
+            <Segment basic={true} inverted={true} as="div" className="show-component">
+              <Header as="p"><em>{formattedName}</em></Header>
             </Segment>
           )}
           {artistMatchesFromDB.map(artist => <Artist artist={artist} />)}
@@ -57,8 +61,8 @@ const Show = ({
 
 Show.propTypes = {
   ages: PropTypes.string,
-  artistList: PropTypes.array.isRequired,
-  allArtists: PropTypes.array.isRequired,
+  artistList: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  allArtists: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   isFestival: PropTypes.bool.isRequired,
   location: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,

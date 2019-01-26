@@ -7,36 +7,40 @@ class ArtistDetails extends Component {
   state = {
     relatedArtists: [],
     subGenres: [],
-    loading: true
+    loading: true,
   };
 
   componentDidMount() {
     this.fetchRelatedArtists();
     this.fetchSubGenres();
-  };
+  }
 
   fetchRelatedArtists = () => {
-    fetchShowRelatedArtists(this.props.artist)
-    .then(res => res.json())
-    .then(relatedArtists => {
-      const filteredRelatedArtists = relatedArtists.sort((a,b) => a.followers > b.followers).slice(0,4)
-      this.setState({
-        relatedArtists: filteredRelatedArtists,
-        loading: false
+    const { artist } = this.props;
+    fetchShowRelatedArtists(artist)
+      .then(res => res.json())
+      .then((relatedArtists) => {
+        const rankedRelatedArtists = relatedArtists.sort((a, b) => a.followers > b.followers);
+        const truncatedRelatedArtists = rankedRelatedArtists.slice(0, 4);
+
+        this.setState({
+          relatedArtists: truncatedRelatedArtists,
+          loading: false,
+        });
       });
-    });
   };
 
   fetchSubGenres = () => {
-    fetchArtistSubGenres(this.props.artist)
-    .then(res => res.json())
-    .then(subGenres => {
-      const filteredSubGenres = subGenres.filter((subGenre) => subGenre.name !== "edm").slice(0,4);
-      this.setState({
-        subGenres: filteredSubGenres,
-        loading: false,
+    const { artist } = this.props;
+    fetchArtistSubGenres(artist)
+      .then(res => res.json())
+      .then((subGenres) => {
+        const filteredSubGenres = subGenres.filter(subGenre => subGenre.name !== 'edm').slice(0, 4);
+        this.setState({
+          subGenres: filteredSubGenres,
+          loading: false,
+        });
       });
-    });
   };
 
   render() {
@@ -44,43 +48,49 @@ class ArtistDetails extends Component {
 
     return (
       <Fragment>
-      {loading
-        ? <Loader active inverted />
-        : <Fragment>
-          <Segment basic >
-            {relatedArtists.length > 0
-              ? <em>Related Artists:</em>
-              : <div>
-                  <em>Loading related artists...</em>
-                </div>
+        {loading
+          ? <Loader active={true} inverted={true} />
+          : (
+            <Fragment>
+              <Segment basic={true}>
+                {relatedArtists.length > 0
+                  ? <em>Related Artists:</em>
+                  : (
+                    <div>
+                      <em>Loading related artists...</em>
+                    </div>
+                  )
             }
-            {loading
-              ? <Loader active inverted />
-              : relatedArtists.map((artist, idx) =>
-                  <Segment basic inverted key={`related-artist-${idx}`}>
-                    {artist.name}
-                    <div className={'secondary-gradient'} style={{background: `linear-gradient(to right, ${artist.hsl}) `}}/>
-                  </Segment>
-                )
+                {loading
+                  ? <Loader active={true} inverted={true} />
+                  : relatedArtists.map(artist => (
+                    <Segment basic={true} inverted={true} key={`related-artist-${artist.name}`}>
+                      {artist.name}
+                      <div className="secondary-gradient" style={{ background: `linear-gradient(to right, ${artist.hsl}) ` }} />
+                    </Segment>
+                  ))
             }
-            {subGenres.length > 0
-              ? <Fragment>
-                  <em>Subgenres:</em>
-                  <Segment basic inverted>
-                    <List>
-                      {subGenres.map((subGenre, idx) => <List.Item value={'-'} key={`subgenre-${idx}`} >{subGenre.name}</List.Item>)}
-                    </List>
-                  </Segment>
-                </Fragment>
-              : null
+                {subGenres.length > 0
+                  ? (
+                    <Fragment>
+                      <em>Subgenres:</em>
+                      <Segment basic={true} inverted={true}>
+                        <List>
+                          {subGenres.map(subGenre => <List.Item value="-" key={`subgenre-${subGenre.name}`}>{subGenre.name}</List.Item>)}
+                        </List>
+                      </Segment>
+                    </Fragment>
+                  )
+                  : null
             }
-          </Segment>
-        </Fragment>
+              </Segment>
+            </Fragment>
+          )
       }
-    </Fragment>
+      </Fragment>
     );
-  };
-};
+  }
+}
 
 ArtistDetails.propTypes = {
   artist: PropTypes.shape({}).isRequired,

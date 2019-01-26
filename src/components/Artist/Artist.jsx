@@ -9,8 +9,10 @@ class Artist extends Component {
   };
 
   toggleDetails = () => {
+    const { active: currentState } = this.state;
+
     this.setState({
-      active: !this.state.active,
+      active: !currentState,
     });
   };
 
@@ -19,14 +21,18 @@ class Artist extends Component {
     const { artist, artist: { name, hsl } } = this.props;
 
     return (
-      <Segment basic inverted onClick={() => this.toggleDetails()} as={'div'} className={'show-component'}>
-        <Header as={'p'}>{name} <Icon name='chevron right' rotated={active && 'clockwise'}/></Header>
+      <Segment basic={true} inverted={true} onClick={() => this.toggleDetails()} as="div" className="show-component">
+        <Header as="p">
+          {name}
+          {' '}
+          <Icon name="chevron right" rotated={active && 'clockwise'} />
+        </Header>
         { active && <ArtistDetails artist={artist} /> }
-        { hsl && <div className={'primary-gradient'} style={{background: `linear-gradient(to right, ${hsl})`}}/> }
+        { hsl && <div className="primary-gradient" style={{ background: `linear-gradient(to right, ${hsl})` }} /> }
       </Segment>
     );
-  };
-};
+  }
+}
 
 Artist.propTypes = {
   artist: PropTypes.shape({

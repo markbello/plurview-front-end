@@ -11,9 +11,9 @@ const ShowList = ({
   activeLocationName,
   allArtists,
   isWeekendsOnly,
-  shows,
+  shows: allShows,
 }) => {
-  const availableDaysToShow = filterShowsByDaysOfWeek(shows, isWeekendsOnly);
+  const availableDaysToShow = filterShowsByDaysOfWeek(allShows, isWeekendsOnly);
   const datesWithValidShows = filterDatesByValidShows(availableDaysToShow, allArtists);
 
   return (
@@ -22,7 +22,10 @@ const ShowList = ({
         <Grid.Row>
           <Grid.Column width={2}></Grid.Column>
           <Grid.Column width={11}>
-            <Header inverted as='h2' textAlign='center'>Upcoming Events - {activeLocationName}</Header>
+            <Header inverted={true} as="h2" textAlign="center">
+                Upcoming Events -
+              {activeLocationName}
+            </Header>
           </Grid.Column>
         </Grid.Row>
       </Fragment>
@@ -30,33 +33,34 @@ const ShowList = ({
       <Grid.Row>
         <Grid.Column width={2}></Grid.Column>
         <Grid.Column>
-          <Segment basic >
-            <Grid stackable>
+          <Segment basic={true}>
+            <Grid stackable={true}>
               {datesWithValidShows.map(({ formattedDate, shows }) => (
-                <Grid.Row >
+                <Grid.Row>
+                  <Segment.Group>
+                    <Segment basic={true}>
+                      <Header inverted={true} as="p"><em>{formattedDate}</em></Header>
+                    </Segment>
                     <Segment.Group>
-                      <Segment basic>
-                        <Header inverted as={'p'} ><em>{formattedDate}</em></Header>
-                      </Segment>
-                      <Segment.Group>
-                        {shows.map((show, idx) => (
-                          <Show
-                            ages={show.ages}
-                            allArtists={allArtists}
-                            artistList={show.artistList}
-                            isFestival={show.festivalInd}
-                            key={`showArtist-${idx}`}
-                            location={show.venue.location}
-                            name={show.name}
-                            ticketLink={show.ticketLink}
-                            venueName={show.venue.name}
-                          />))}
-                      </Segment.Group>
+                      {shows.map(show => (
+                        <Show
+                          ages={show.ages}
+                          allArtists={allArtists}
+                          artistList={show.artistList}
+                          isFestival={show.festivalInd}
+                          key={`show-${show.name}`}
+                          location={show.venue.location}
+                          name={show.name}
+                          ticketLink={show.ticketLink}
+                          venueName={show.venue.name}
+                        />
+                      ))}
                     </Segment.Group>
-                  </Grid.Row>
-                ))}
-              </Grid>
-            </Segment>
+                  </Segment.Group>
+                </Grid.Row>
+              ))}
+            </Grid>
+          </Segment>
         </Grid.Column>
       </Grid.Row>
     </Fragment>
@@ -64,9 +68,10 @@ const ShowList = ({
 };
 
 
-
 ShowList.propTypes = {
   activeLocationName: PropTypes.string.isRequired,
+  allArtists: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  isWeekendsOnly: PropTypes.bool.isRequired,
   shows: PropTypes.shape({
     ages: PropTypes.string,
     artistList: PropTypes.array.isRequired,
@@ -75,8 +80,7 @@ ShowList.propTypes = {
     name: PropTypes.string.isRequired,
     ticketLink: PropTypes.string.isRequired,
     venueName: PropTypes.string.isRequired,
-  }),
-  locationName: PropTypes.string.isRequired,
-}
+  }).isRequired,
+};
 
 export default ShowList;

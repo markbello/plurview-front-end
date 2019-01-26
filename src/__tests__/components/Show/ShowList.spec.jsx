@@ -1,5 +1,4 @@
 import React from 'react';
-import { Segment } from 'semantic-ui-react';
 import { shallow } from 'enzyme';
 import ShowList from '../../../components/Show/ShowList';
 import defaultProps from '../../../__fixtures__/ShowList';
@@ -10,12 +9,6 @@ const props = {
   isWeekendsOnly: defaultProps.isWeekendsOnly,
   shows: defaultProps.shows,
 };
-
-const WEEKEND_DAYS = [
-  'Friday',
-  'Saturday',
-  'Sunday',
-];
 
 const WEEKDAYS = [
   'Monday',
@@ -28,11 +21,11 @@ describe('ShowList component', () => {
   it('only renders weekend shows by default', () => {
     const component = shallow(<ShowList {...props} />);
 
-    WEEKDAYS.map(weekday => {
-      expect(component.debug()).not.toContain(weekday);
-    });
+    WEEKDAYS.map(weekday => (
+      expect(component.debug()).not.toContain(weekday)
+    ));
   });
-  it('only renders weekend shows by default', () => {
+  it('renders weekday shows when !isWeekendsOnly', () => {
     const allWeekProps = {
       ...props,
       isWeekendsOnly: false,
